@@ -3,13 +3,14 @@ package Eredua;
 public class Laukia {
 	private int x;
 	private int y;
-	private boolean egoera;
+	private boolean hutsaDa;
 	private Bloke bloke;
+	private Bomba bomba;
 	
-	public Laukia(int pX, int pY, boolean pEgoera, Bloke pBloke) {
+	public Laukia(int pX, int pY, boolean pHutsaDa, Bloke pBloke) {
 		this.x=pX;
 		this.y=pY;
-		this.egoera=pEgoera;
+		this.hutsaDa=pHutsaDa;
 		this.bloke=pBloke;
 			
 	}
@@ -22,8 +23,8 @@ public class Laukia {
 		return this.y;
 	}
 	
-	public boolean getEgoera() {
-		return this.egoera;
+	public boolean getHutsaDa() {
+		return this.hutsaDa;
 	}
 	
 	public Bloke getBloke() {
