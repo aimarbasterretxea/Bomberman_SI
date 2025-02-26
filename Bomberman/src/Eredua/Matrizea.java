@@ -1,9 +1,10 @@
 package Eredua;
  
 public class Matrizea {
-		private Laukia[][] matrix;
-		private static int errenkada = 11;
-		private static int zutabea = 17;
+	private Laukia[][] matrix;
+	private static int errenkada = 11;
+	private static int zutabea = 17;
+	//private laukiZerrenda Iterator<Laukia>;
 		
 		//eraiki classic
 		
@@ -11,7 +12,7 @@ public class Matrizea {
 		
 		//eraiki empty
 	private static Matrizea nireMatrizea;
-	private Matrizea() {
+	protected Matrizea() {
 		
 	}
 	
@@ -22,12 +23,14 @@ public class Matrizea {
 		return nireMatrizea;
 	}
 	
-	public void matrizeaSortu(int pModo) {
+	public void matrizeaOrokorraSortu(int pModo) {
 		matrix = new Laukia[errenkada][zutabea];
 		for (int i = 0; i < errenkada; i++) {
 			for (int j = 0; j < zutabea; j++) {
-				
+				matrix[i][j]= new Laukia(i,j,false,null);
 			}
 		}
 	}
+	
+	
 }
