@@ -16,7 +16,7 @@ public class Matrizea {
 		
 	}
 	
-	public static Matrizea getMatrizea() {
+	public static Matrizea getNireMatrizea() {
 		if (nireMatrizea == null) {
 			nireMatrizea = new Matrizea();
 		}
@@ -30,6 +30,10 @@ public class Matrizea {
 				matrix[i][j]= new Laukia(i,j,false,null);
 			}
 		}
+	}
+	
+	public Laukia bilatuLaukia(int x, int y) {
+		return matrix[x][y];
 	}
 	
 	
