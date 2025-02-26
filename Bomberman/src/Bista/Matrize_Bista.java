@@ -5,11 +5,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.GridLayout;
 
 public class Matrize_Bista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private static JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -20,6 +21,7 @@ public class Matrize_Bista extends JFrame {
 				try {
 					Matrize_Bista frame = new Matrize_Bista();
 					frame.setVisible(true);
+					Eredua.Matrizea.getNireMatrizea().matrizeaOrokorraSortu();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -37,6 +39,12 @@ public class Matrize_Bista extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
+		contentPane.setLayout(new GridLayout(11, 17, 0, 0));
 	}
 
+	
+	public static void gehituLaukia(Laukia_Bista pLaukiaBista) {
+		contentPane.add(pLaukiaBista);
+	}
+	
 }

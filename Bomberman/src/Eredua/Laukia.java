@@ -1,5 +1,7 @@
 package Eredua;
 
+import Bista.Laukia_Bista;
+
 public class Laukia {
 	private int x;
 	private int y;
@@ -12,7 +14,8 @@ public class Laukia {
 		this.y=pY;
 		this.hutsaDa=pHutsaDa;
 		this.bloke=pBloke;
-			
+		
+		
 	}
 	
 	public int getKoordenatuX() {
@@ -30,5 +33,8 @@ public class Laukia {
 	public Bloke getBloke() {
 		return this.bloke;
 	}
+	
+	
+	
 	
 }
