@@ -1,9 +1,13 @@
 package Eredua;
 
 import Bista.Laukia_Bista;
+import java.util.Observer;
+import java.util.Observable;
+
 
 public abstract class Matrizea {
-	private Laukia[][] matrix;
+	
+	private static Laukia[][] matrix;
 	protected static int errenkada = 11;
 	protected static int zutabea = 17;
 	//private laukiZerrenda Iterator<Laukia>;
@@ -13,19 +17,13 @@ public abstract class Matrizea {
 		//eraiki soft
 		
 		//eraiki empty
-	private static Matrizea nireMatrizea;
-	protected Matrizea() {
-		
+	public Matrizea() {
+		this.matrix=null;
 	}
 	
-	public static Matrizea getNireMatrizea() {
-		if (nireMatrizea == null) {
-			nireMatrizea = new Matrizea();
-		}
-		return nireMatrizea;
-	}
 	
-	public void matrizeaOrokorraSortu() {
+	
+	public static void matrizeaOrokorraSortu() {
 		matrix = new Laukia[errenkada][zutabea];
 		for (int i = 0; i < errenkada; i++) {
 			for (int j = 0; j < zutabea; j++) {
@@ -41,6 +39,8 @@ public abstract class Matrizea {
 	}
 
 	public Laukia[][] getMatrix() { return matrix; }
+
+	
 	
 	
 }

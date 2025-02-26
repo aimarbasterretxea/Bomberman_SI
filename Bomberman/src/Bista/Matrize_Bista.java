@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Eredua.MatrizeClassic;
+import Eredua.Matrizea;
+
 import java.awt.GridLayout;
 
 public class Matrize_Bista extends JFrame {
@@ -18,13 +22,17 @@ public class Matrize_Bista extends JFrame {
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				try {
-					Matrize_Bista frame = new Matrize_Bista();
-					frame.setVisible(true);
-					Eredua.Matrizea.getNireMatrizea().matrizeaOrokorraSortu();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				  try {
+	                    Matrize_Bista frame = new Matrize_Bista();
+	                    frame.setVisible(true);
+
+	                    // Crear una instancia de la subclase específica
+	                    Eredua.Matrizea.matrizeaOrokorraSortu();
+	                  
+
+	                } catch (Exception e) {
+	                    e.printStackTrace();
+	                }
 			}
 		});
 	}
@@ -46,5 +54,5 @@ public class Matrize_Bista extends JFrame {
 	public static void gehituLaukia(Laukia_Bista pLaukiaBista) {
 		contentPane.add(pLaukiaBista);
 	}
-	
+		
 }

@@ -1,8 +1,9 @@
 package Eredua;
 
 import Bista.Laukia_Bista;
+import java.util.Observable;
 
-public class Laukia {
+public class Laukia extends Observable {
 	private int x;
 	private int y;
 	private boolean hutsaDa;
@@ -34,7 +35,9 @@ public class Laukia {
 		return this.bloke;
 	}
 	
-	
+	public void aldatuKolorea() {
+		Bista.Laukia_Bista
+	}
 	
 	
 }
