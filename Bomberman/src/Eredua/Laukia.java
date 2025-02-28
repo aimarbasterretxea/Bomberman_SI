@@ -35,8 +35,13 @@ public class Laukia extends Observable {
 		return this.bloke;
 	}
 	
-	public void aldatuKolorea() {
-		Bista.Laukia_Bista
+	public void blokeGogorraGehitu() {
+		hutsaDa=false;
+		bloke=new BlokeGogorra();
+	}
+	public void blokeBigunaGehitu() {
+		hutsaDa=false;
+		bloke=new BlokeBiguna();
 	}
 	
 	
