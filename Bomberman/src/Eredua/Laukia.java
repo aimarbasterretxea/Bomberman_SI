@@ -9,15 +9,19 @@ public class Laukia extends Observable {
 	private boolean hutsaDa;
 	private Bloke bloke;
 	private Bomba bomba;
+	private Laukia_Bista laukiaBista;
 	
 	public Laukia(int pX, int pY, boolean pHutsaDa, Bloke pBloke) {
 		this.x=pX;
 		this.y=pY;
 		this.hutsaDa=pHutsaDa;
 		this.bloke=pBloke;
+		this.laukiaBista=new Bista.Laukia_Bista(pX, pY);
+		addObserver(this.laukiaBista);
 		
 		
 	}
+	
 	
 	public int getKoordenatuX() {
 		return this.x;
@@ -38,10 +42,14 @@ public class Laukia extends Observable {
 	public void blokeGogorraGehitu() {
 		hutsaDa=false;
 		bloke=new BlokeGogorra();
+		setChanged();
+		notifyObservers(new Object[]{"Bloke gogorra gehitu da",this.x,this.y});
 	}
 	public void blokeBigunaGehitu() {
 		hutsaDa=false;
 		bloke=new BlokeBiguna();
+		setChanged();
+		notifyObservers(new Object[]{"Bloke biguna gehitu da",this.x,this.y});
 	}
 	
 	

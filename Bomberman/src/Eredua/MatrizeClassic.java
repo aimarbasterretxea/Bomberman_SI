@@ -31,15 +31,15 @@ public class MatrizeClassic extends Matrizea {
 				if((i == 0 && j == 0) || (i==1 && j == 0) || (i == 0&& j == 1)) {}
 				else if (1 == (i % 2) && 1 == (j % 2)) {
 					unekoaLaukia.blokeGogorraGehitu();
-					setChanged();
-					notifyObservers(new Object[]{"Bloke gogorra gehitu da",i,j});
+					//	setChanged();
+					//	notifyObservers(new Object[]{"Bloke gogorra gehitu da",i,j});
 					//bloke gogorra da*/
 				}
 				else if(Math.random() >= 0.4) {
 					//sortu bloke biguna
 					unekoaLaukia.blokeBigunaGehitu();
-					setChanged();
-					notifyObservers(new Object[]{"Bloke biguna gehitu da", i, j});
+					// setChanged();
+					// notifyObservers(new Object[]{"Bloke biguna gehitu da", i, j});
 				}
 				
 			}

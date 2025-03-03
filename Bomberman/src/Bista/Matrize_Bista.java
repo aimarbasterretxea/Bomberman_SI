@@ -71,23 +71,11 @@ public class Matrize_Bista extends JFrame implements Observer {
 		if (arg.equals("Matrizea sortu da")) {
 			for (int i = 0; i < 11; i++) {
 				for (int j = 0; j < 17; j++) {
-					this.gehituLaukia(new Laukia_Bista(i, j, false));
+					this.gehituLaukia(new Laukia_Bista(i, j));
 				}
 			}
 		}
-		else if (arg instanceof Object[]) {
-			Object[] obj = (Object[]) arg;
-			if (obj[0].equals("Bloke gogorra gehitu da")) {
-				int i = (int) obj[1];
-				int j = (int) obj[2];
-				this.bilatuLaukia(i, j).blokeGogorra();
-			}
-			else if (obj[0].equals("Bloke biguna gehitu da")) {
-				int i = (int) obj[1];
-				int j = (int) obj[2];
-				this.bilatuLaukia(i, j).blokeBiguna();
-			}
-		}
+
 		else {System.out.println("Ez da ezer gertatu");}
 		
 	}
