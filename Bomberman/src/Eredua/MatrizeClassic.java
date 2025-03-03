@@ -35,7 +35,7 @@ public class MatrizeClassic extends Matrizea {
 					notifyObservers(new Object[]{"Bloke gogorra gehitu da",i,j});
 					//bloke gogorra da*/
 				}
-				else if(Math.random() >= 0.7) {
+				else if(Math.random() >= 0.4) {
 					//sortu bloke biguna
 					unekoaLaukia.blokeBigunaGehitu();
 					setChanged();
