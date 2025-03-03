@@ -8,7 +8,7 @@ import java.awt.Color;
 public class Laukia_Bista extends JPanel {
 	private int x;
 	private int y;
-	private boolean pEgoera;
+	//private boolean pEgoera;
 
 	private static final long serialVersionUID = 1L;
 	
@@ -23,8 +23,10 @@ public class Laukia_Bista extends JPanel {
 	}
 	public void blokeGogorra() {
 		this.setBackground(Color.RED);
+		//this.pEgoera=false;
 	}
 	public void blokeBiguna() {
 		this.setBackground(Color.GREEN);
+		//this.pEgoera=false;
 	}
 }
