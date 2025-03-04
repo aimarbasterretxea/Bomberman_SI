@@ -28,6 +28,7 @@ public class MatrizeClassic extends Matrizea {
 		for (int i = 0; i < errenkada; i++) {
 			for (int j = 0; j < zutabea; j++) {
 				Laukia unekoaLaukia = matrizea[i][j];
+				unekoaLaukia.addObserver(Matrize_Bista.getNireMatrizea().bilatuLaukia(i, j));
 				if((i == 0 && j == 0) || (i==1 && j == 0) || (i == 0&& j == 1)) {}
 				else if (1 == (i % 2) && 1 == (j % 2)) {
 					unekoaLaukia.blokeGogorraGehitu();
