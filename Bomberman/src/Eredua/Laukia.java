@@ -17,7 +17,7 @@ public class Laukia extends Observable {
 		this.hutsaDa=pHutsaDa;
 		this.bloke=pBloke;
 		this.laukiaBista=new Bista.Laukia_Bista(pX, pY);
-		addObserver(this.laukiaBista);
+		
 		
 		
 	}
