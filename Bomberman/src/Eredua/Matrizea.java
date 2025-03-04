@@ -28,6 +28,7 @@ public abstract class Matrizea extends Observable{
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                	Teklatua teklatua = Teklatua.getNireTeklatua();
                 	Matrize_Bista frame = Matrize_Bista.getNireMatrizea();
                     MatrizeClassic matrizeKlasikoa = MatrizeClassic.getNireMatrizea();
                     matrizeKlasikoa.matrizeaOrokorraSortu();
