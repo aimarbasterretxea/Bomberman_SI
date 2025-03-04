@@ -4,8 +4,10 @@ import javax.swing.JPanel;
 import java.awt.SystemColor;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.util.Observable;
+import java.util.Observer;
 
-public class Laukia_Bista extends JPanel {
+public class Laukia_Bista extends JPanel implements Observer {
 	private int x;
 	private int y;
 	//private boolean pEgoera;
@@ -28,5 +30,10 @@ public class Laukia_Bista extends JPanel {
 	public void blokeBiguna() {
 		this.setBackground(Color.GREEN);
 		//this.pEgoera=false;
+	}
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 }
