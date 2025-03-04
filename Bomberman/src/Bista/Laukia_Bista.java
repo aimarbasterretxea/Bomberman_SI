@@ -39,23 +39,16 @@ public class Laukia_Bista extends JPanel implements Observer {
 	}
 	@Override
 	public void update(Observable o, Object arg) {
-		 if (arg instanceof Object[]) {
-			Object[] obj = (Object[]) arg;
-			if (obj[0].equals("Bloke gogorra gehitu da")) {
-				//int i = (int) obj[1];
-				//int j = (int) obj[2];
+			if (arg.equals("Bloke gogorra gehitu da")) {
 				this.blokeGogorra();
 			}
-			else if (obj[0].equals("Bloke biguna gehitu da")) {
-				//int i = (int) obj[1];
-				//int j = (int) obj[2];
+			else if (arg.equals("Bloke biguna gehitu da")) {
 				this.blokeBiguna();
 			}
-		// TODO Auto-generated method stub
 		
 	}
 	
  }
 	
 
-}
+

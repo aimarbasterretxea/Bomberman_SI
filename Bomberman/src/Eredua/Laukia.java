@@ -43,13 +43,13 @@ public class Laukia extends Observable {
 		hutsaDa=false;
 		bloke=new BlokeGogorra();
 		setChanged();
-		notifyObservers(new Object[]{"Bloke gogorra gehitu da",this.x,this.y});
+		notifyObservers("Bloke gogorra gehitu da");
 	}
 	public void blokeBigunaGehitu() {
 		hutsaDa=false;
 		bloke=new BlokeBiguna();
 		setChanged();
-		notifyObservers(new Object[]{"Bloke biguna gehitu da",this.x,this.y});
+		notifyObservers("Bloke biguna gehitu da");
 	}
 	
 	
