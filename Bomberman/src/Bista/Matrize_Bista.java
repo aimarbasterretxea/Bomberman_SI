@@ -1,70 +1,90 @@
 package Bista;
 
-import java.awt.EventQueue;
+import Eredua.Bomberman;
+import Eredua.MatrizeClassic;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import Eredua.Laukia;
-import Eredua.MatrizeClassic;
-import Eredua.Matrizea;
-
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
 
 public class Matrize_Bista extends JFrame implements Observer {
+    private static final long serialVersionUID = 1L;
+    private static JPanel contentPane;
+    private static Matrize_Bista nireMatrizea;
+    private BombermanController controller; // Controlador de teclado
 
-	private static final long serialVersionUID = 1L;
-	private static JPanel contentPane;
-	private static Matrize_Bista nireMatrizea;
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				  try {
-	                    Matrize_Bista frame = new Matrize_Bista();
-	                    frame.setVisible(true);
+    public static Matrize_Bista getNireMatrizea() {
+        if (nireMatrizea == null) {
+            nireMatrizea = new Matrize_Bista();
+        }
+        return nireMatrizea;
+    }
 
-	                    // Crear una instancia de la subclase específica
-	                    Eredua.Matrizea.matrizeaOrokorraSortu();
-	                  
+    private Matrize_Bista() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setBounds(100, 100, 450, 300);
+        contentPane = new JPanel();
+        contentPane.setBorder(new EmptyBorder(1, 1, 5, 5));
+        contentPane.setLayout(new GridLayout(11, 17, 0, 0));
+        setContentPane(contentPane);
 
-	                } catch (Exception e) {
-	                    e.printStackTrace();
-	                }
-			}
-		});*/
+        // Agregar el controlador de teclado
+        controller = new BombermanController();
+        addKeyListener(controller);
+        requestFocusInWindow(); // Asegurar que la ventana tenga el foco
+    }
+
+    public static void gehituLaukia(Laukia_Bista pLaukiaBista) {
+        contentPane.add(pLaukiaBista);
+    }
+
+    public Laukia_Bista bilatuLaukia(int x, int y) {
+        return (Laukia_Bista) contentPane.getComponent(x * 17 + y);
+    }
+/*
+    @Override
+    public void update(Observable o, Object arg) {
+        System.out.println("Update recibido: " + arg);
+    }
+*/
+    // Controlador de teclado separado de "Controler"
+    private class BombermanController implements KeyListener {
+        @Override
+        public void keyPressed(KeyEvent e) {
+            int keyCode = e.getKeyCode();
+            switch (keyCode) {
+                case KeyEvent.VK_W:
+                    System.out.println("parriba");
+                    break;
+                case KeyEvent.VK_S:
+                    System.out.println("pabajo");
+                    break;
+                case KeyEvent.VK_A:
+                    System.out.println("paizda");
+                    break;
+                case KeyEvent.VK_D:
+                    System.out.println("padcha");
+                    break;
+            }
+        }
+
+        @Override
+        public void keyTyped(KeyEvent e) {}
+
+        @Override
+        public void keyReleased(KeyEvent e) {}
+    }
+
+
 	
-	/**
-	 * Create the frame.
-	 */
-	public static Matrize_Bista getNireMatrizea() {
-		if (nireMatrizea == null) {
-			nireMatrizea = new Matrize_Bista();
-		}
-		return nireMatrizea;
-	}
-	private Matrize_Bista() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(11, 17, 0, 0));
-	}
-
 	
-	public static void gehituLaukia(Laukia_Bista pLaukiaBista) {
-		contentPane.add(pLaukiaBista);
-	}
-	public Laukia_Bista bilatuLaukia(int x, int y) {
-		return (Laukia_Bista) contentPane.getComponent(x*17+y);
-	}
 	@Override
 	public void update(Observable o, Object arg) {
 		MatrizeClassic matrizea = MatrizeClassic.getNireMatrizea();
@@ -75,6 +95,7 @@ public class Matrize_Bista extends JFrame implements Observer {
 					;
 				}
 			}
+			bilatuLaukia(0,0).setIcon1();
 		}
 		else if (arg instanceof Object[]) {
 			Object[] obj = (Object[]) arg;
@@ -92,5 +113,9 @@ public class Matrize_Bista extends JFrame implements Observer {
 		else {System.out.println("Ez da ezer gertatu");}
 		
 	}
+	/*@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
+	}*/
 }

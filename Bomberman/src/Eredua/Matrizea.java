@@ -13,6 +13,7 @@ public abstract class Matrizea extends Observable{
 	private static Laukia[][] matrix;
 	protected static int errenkada = 11;
 	protected static int zutabea = 17;
+	protected static Bomberman bomberman;
 	//private laukiZerrenda Iterator<Laukia>;
 		
 		//eraiki classic
@@ -51,8 +52,10 @@ public abstract class Matrizea extends Observable{
 			}
 			
 		}
+		this.bomberman=new BombermanZuria();
 		setChanged();
 		notifyObservers("Matrizea sortu da");
+		
 	}
 	public abstract void matrizeaOsatu();
 	

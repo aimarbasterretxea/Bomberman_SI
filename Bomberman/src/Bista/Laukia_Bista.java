@@ -21,7 +21,7 @@ public class Laukia_Bista extends JPanel implements Observer {
 		setForeground(SystemColor.window);
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBackground(SystemColor.activeCaption);
-		this.setBounds(pX*50, pY*50, 50, 50);
+		this.setBounds(pX*50, pY*50, 100, 100);
 	}
 	public void blokeGogorra() {
 		this.setBackground(Color.RED);
@@ -36,4 +36,12 @@ public class Laukia_Bista extends JPanel implements Observer {
 		// TODO Auto-generated method stub
 		
 	}
+	public void setIcon1(){
+		this.setBackground(Color.yellow);
+	}
+	
+	public void setIcon2(){
+		this.setBackground(SystemColor.activeCaption);
+	}
+	
 }

@@ -6,10 +6,10 @@ public abstract class Bomberman {
 	private boolean bizirik;
 	
 	//eraikitzailea
-	public Bomberman(int pX, int pY, boolean pBizirik) {
-		this.x = pX;
-		this.y = pY;
-		this.bizirik = pBizirik;
+	public Bomberman() {
+		this.x = 0;
+		this.y = 0;
+		this.bizirik = true;
 	}
 	
 	public int getX() {
@@ -20,32 +20,28 @@ public abstract class Bomberman {
 		return this.y;
 	}
 	
-	/*
-	public Laukia mugitu() {
-		int unekoPosizioaX = this.getX();
-		int unekoPosizioaY = this.getY();
-		if (OBSERVER ARRIBA) {
-			if (this.getY() != 0 && Matrizea.getNireMatrizea().bilatuLaukia(unekoPosizioaX, unekoPosizioaY-1).getHutsaDa()) {
-				this.y = unekoPosizioaY-1;
-			}
-			
+	public void mugituW() {
+		if (this.x != 0 && MatrizeClassic.getNireMatrizea().bilatuLaukia(this.x, this.y - 1).getHutsaDa()) {
+			this.y = this.y - 1;
 		}
-		else if (OBSERVER DCHA) {
-			if (this.getX() != 16 && Matrizea.getNireMatrizea().bilatuLaukia(unekoPosizioaX+1, unekoPosizioaY).getHutsaDa()) {
-				this.x = unekoPosizioaX+1;
-			}
-		}
-		else if (OBSERVER IZDA) {
-			if (this.getX() != 0 && Matrizea.getNireMatrizea().bilatuLaukia(unekoPosizioaX-1, unekoPosizioaY).getHutsaDa()) {
-				this.x = unekoPosizioaX-1;
-			}
-		}
-		else {
-			if (this.getY() != 10 && Matrizea.getNireMatrizea().bilatuLaukia(unekoPosizioaX, unekoPosizioaY-1).getHutsaDa()) {
-				this.y = unekoPosizioaX+1;
-			}
-		}
-		return Laukia;
 	}
-	*/
+	
+	public void mugituD() {
+		if (this.x != 16 && MatrizeClassic.getNireMatrizea().bilatuLaukia(this.x + 1, this.y).getHutsaDa()) {
+				this.x = this.x + 1;
+		}		
+	}
+	
+	public void mugituA() {
+		if (this.x != 0 && MatrizeClassic.getNireMatrizea().bilatuLaukia(this.x - 1, this.y).getHutsaDa()) {
+				this.x = this.x - 1;
+		}		
+	}
+	
+	public void mugituS() {
+		if (this.getY() != 10 && MatrizeClassic.getNireMatrizea().bilatuLaukia(this.x, this.y - 1).getHutsaDa()) {
+				this.y = this.y + 1;
+		}		
+	}		
+	
 }
