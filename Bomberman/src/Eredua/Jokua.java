@@ -3,6 +3,9 @@ package Eredua;
 import java.awt.EventQueue;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.JOptionPane;
+
 import Bista.LabirintoBista;
 
 public class Jokua extends Observable{
@@ -30,10 +33,21 @@ public class Jokua extends Observable{
     }
     
 	public void amaituJokua() {
-		System.out.println("Hil da");
-		setChanged();
-		notifyObservers("Jokua amaitu da");
-		
+		Object[] opciones = {"Ados"};
+	    int seleccion = JOptionPane.showOptionDialog(
+	            Bista.LabirintoBista.getNireLabirintoBista(),
+	            "Bomberman hil egin da sakatu 'Ados' irteteko.",
+	            "JOKOAREN AMAIERA",
+	            JOptionPane.DEFAULT_OPTION,
+	            JOptionPane.INFORMATION_MESSAGE,
+	            null,
+	            opciones,
+	            null); 
+	    System.exit(0);
+		//System.out.println("Hil da");
+		//setChanged();
+		//notifyObservers("Jokua amaitu da");
+	}
 	}
 	
 	/*
@@ -71,4 +85,4 @@ public class Jokua extends Observable{
     }*/
 
 
-}
+
