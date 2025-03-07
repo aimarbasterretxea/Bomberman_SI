@@ -4,9 +4,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Teklatua implements KeyListener {
+	//Atributuak
 	private static Teklatua nireTeklatua = null;
 	private Scanner sc;
 	
+	//Eraikitzailea
+	private Teklatua() {}
+
+	//Geterra
 	public static Teklatua getNireTeklatua() {
 		if (nireTeklatua == null) {
 			nireTeklatua = new Teklatua();
@@ -14,14 +19,8 @@ public class Teklatua implements KeyListener {
 		return nireTeklatua; 
 	}
 	
-	private Teklatua() {
-		
-	}
-
 	@Override
-	public void keyTyped(KeyEvent e) {
-		
-	}
+	public void keyTyped(KeyEvent e) {}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -29,13 +28,8 @@ public class Teklatua implements KeyListener {
 			System.out.println("UP");
 		}
 	}
-		// TODO Auto-generated method stu
 
 	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void keyReleased(KeyEvent e) {}
 
 }

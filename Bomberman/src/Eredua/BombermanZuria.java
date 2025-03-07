@@ -18,9 +18,9 @@ public class BombermanZuria extends Bomberman{
 	
 	@Override  
 	public void bombaJarri() {
-		if (MatrizeClassic.getNireMatrizea().bilatuLaukia(this.getX(), this.getY()).getBomba() == null && bombaKop > 0) {
+		if (LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.getX(), this.getY()).getBomba() == null && bombaKop > 0) {
 			bombaKop--;
-			MatrizeClassic.getNireMatrizea().bilatuLaukia(this.getX(), this.getY()).bombaJarri();
+			LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.getX(), this.getY()).bombaJarri();
 			setChanged();
 			notifyObservers(new Object[]{"BombaJarri",this.getX(),this.getY()});	
 			}	

@@ -5,36 +5,33 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public abstract class Bomberman extends Observable {
+	//Atributuak
 	private int x;
 	private int y;
 	private boolean bizirik;
 	private Timer timer=null;
 	protected int bombaKop;
-	private int kontSua=2;
 	private int kontBomba=3;
 	
-	
-	//eraikitzailea
+	//Eraikitzailea
 	public Bomberman() {
 		this.x = 0;
 		this.y = 0;
 		this.bizirik = true;
-		addObserver(Bista.Matrize_Bista.getNireMatrizea());
+		addObserver(Bista.LabirintoBista.getNireLabirintoBista());
 		TimerTask timerTask = new TimerTask() {
 			@Override
 			public void run() {
 				updateKont();
-				
 			}	
-			
 		};
 		timer = new Timer();
-		timer.scheduleAtFixedRate(timerTask, 0, 1000);
+		timer.scheduleAtFixedRate(timerTask, 0, 200);
 	}
+	
 	private void updateKont() {
-		if(MatrizeClassic.getNireMatrizea().bilatuLaukia(this.x,this.y).getSua() instanceof Sua) {
+		if(LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.x,this.y).getSua() instanceof Sua) {
         	this.bombermanHil();
-        	
 		}
 		//System.out.println("Kont: "+kontSua);
 		if(bombaKop == 0) {
@@ -48,6 +45,7 @@ public abstract class Bomberman extends Observable {
 		}
 	}
 	
+	//Geterrak
 	public int getX() {
 		return this.x;
 	}
@@ -56,53 +54,49 @@ public abstract class Bomberman extends Observable {
 		return this.y;
 	}
 	
+	//Metodoak
 	private void bombermanHil(){
-		MatrizeClassic.getNireMatrizea().amaituJokua();
+		Jokua.getJokua().amaituJokua();
 	}
 	
 	public void mugitu(char norabide) {
+	    int xBerria = this.x;
+	    int yBerria = this.y;
 
-	    if ((norabide == 'A' && this.y > 0)&&
-	    ((MatrizeClassic.getNireMatrizea().bilatuLaukia(this.x,this.y-1).getBloke() == null)
-	    &&MatrizeClassic.getNireMatrizea().bilatuLaukia(this.x,this.y-1).getBomba()==null)) {
-	       
-	        this.y--;
-	        setChanged();
-	        notifyObservers(new Object[]{"Move",x,y});
-	        //System.out.println("MugituBomberman");
+	    switch (norabide) {
+	        case 'A': // Ezkerretara mugitu
+	            yBerria--;
+	            break;
+	        case 'D': // Eskuinera mugitu
+	            yBerria++;
+	            break;
+	        case 'W': // Gora mugitu
+	            xBerria--;
+	            break;
+	        case 'S': // Behera mugitu
+	            xBerria++;
+	            break;
+	        default:
+	            return; // Norabide baliogabea bada, irten
 	    }
-	    if ((norabide == 'D' && this.y < 16)&&
-		((MatrizeClassic.getNireMatrizea().bilatuLaukia(this.x,this.y+1).getBloke() ==null) 
-		&&MatrizeClassic.getNireMatrizea().bilatuLaukia(this.x,this.y+1).getBomba()==null)) {
-	        
-	    	this.y++;
-	        setChanged();
-	        notifyObservers(new Object[]{"Move",x,y});
-	        //System.out.println("MugituBomberman");
-	    }
-	    if ((norabide == 'W' && this.x > 0)&&
-		((MatrizeClassic.getNireMatrizea().bilatuLaukia(this.x-1,this.y).getBloke()==null)
-		&&MatrizeClassic.getNireMatrizea().bilatuLaukia(this.x-1,this.y).getBomba()==null)) {
-	    		
-	    	this.x--;
-	        setChanged();
-	        notifyObservers(new Object[]{"Move",x,y});
-	       // System.out.println("MugituBomberman");
-	    }
-	    if ((norabide == 'S' && this.x < 10)&&
-		((MatrizeClassic.getNireMatrizea().bilatuLaukia(this.x+1,this.y).getBloke()==null)
-		&&MatrizeClassic.getNireMatrizea().bilatuLaukia(this.x+1,this.y).getBomba()==null)) {
-	    	
-	    	this.x++;
-	        setChanged();
-	        notifyObservers(new Object[]{"Move",x,y});
-	        //System.out.println("MugituBomberman" + x + ", "  + y);
-	    }
-	    
 
+	    // Egiaztatu posizio berria baliozkoa eta libre dagoen
+	    if (posizioaBaliozkoaDa(xBerria, yBerria) && posizioaLibreaDa(xBerria, yBerria)) {
+	        this.x = xBerria;
+	        this.y = yBerria;
+	        setChanged();
+	        notifyObservers(new Object[]{"Move", x, y});
+	    }
+	}
+
+	private boolean posizioaBaliozkoaDa(int x, int y) {
+	    return x >= 0 && x < 11 && y >= 0 && y < 17;
+	}
+
+	private boolean posizioaLibreaDa(int x, int y) {
+	    Gelaxka gelaxka = LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(x, y);
+	    return gelaxka.getBloke() == null && gelaxka.getBomba() == null;
 	}
 
 	public abstract void bombaJarri() ;
-
-	
 }
