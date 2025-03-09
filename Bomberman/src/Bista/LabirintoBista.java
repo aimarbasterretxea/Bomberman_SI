@@ -8,38 +8,57 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.EventQueue;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 
 public class LabirintoBista extends JFrame implements Observer {
-	//Atributuak
+	
+	// ATRIBUTUAK ////////////////
     private static final long serialVersionUID = 1L;
     private static JPanel contentPane;
     private static LabirintoBista nireLabirintoBista;
     private Kontroladorea kontroladorea; // Controlador de teclado
     private static int x;
     private static int y;
+    private JLabel irudia;
     
-    //Eraikitzailea
+    
+    // ERAIKITZAILEA ////////////////
+    
     private LabirintoBista() {
+    	setTitle("BomberMan");
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(LabirintoBista.class.getResource("/irudiak/blackfront1.png")));
+    	
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 810, 540);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(1, 1, 5, 5));
         contentPane.setLayout(new GridLayout(11, 17, 0, 0));
         setContentPane(contentPane);
+        
+        
 
+        this.irudia = new JLabel("");
+        this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/back.png")));
+        
         // Agregar el controlador de teclado
         kontroladorea = new Kontroladorea();
         addKeyListener(kontroladorea);
         requestFocusInWindow(); // Asegurar que la ventana tenga el foco
     }
     
-    //Geterra
+    
+    // GETERRAK ////////////////
+   
     public static LabirintoBista getNireLabirintoBista() {
         if (nireLabirintoBista == null) {
             nireLabirintoBista = new LabirintoBista();

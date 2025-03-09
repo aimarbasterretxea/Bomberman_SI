@@ -1,8 +1,11 @@
 package Eredua;
 
+import java.awt.Image;
 import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import javax.swing.ImageIcon;
 
 public abstract class Bomberman extends Observable {
 	//Atributuak
@@ -12,12 +15,15 @@ public abstract class Bomberman extends Observable {
 	private Timer timer=null;
 	protected int bombaKop;
 	private int kontBomba=3;
+	private ImageIcon irudia;
 	
 	//Eraikitzailea
 	public Bomberman() {
 		this.x = 0;
 		this.y = 0;
+		this.bombaKop = 10;
 		this.bizirik = true;
+		this.irudia = new ImageIcon(new ImageIcon("irudiak/bomber1.png").getImage().getScaledInstance(50, 50, Image.SCALE_DEFAULT));
 		addObserver(Bista.LabirintoBista.getNireLabirintoBista());
 		TimerTask timerTask = new TimerTask() {
 			@Override

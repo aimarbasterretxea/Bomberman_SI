@@ -1,3 +1,4 @@
-bin/
-*.class
+/Images/
+/irudiak/
+/Bista/
 /Eredua/

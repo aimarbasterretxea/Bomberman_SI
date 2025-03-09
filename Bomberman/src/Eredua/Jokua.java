@@ -1,6 +1,7 @@
 package Eredua;
 
 import java.awt.EventQueue;
+import java.awt.SystemColor;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -37,7 +38,7 @@ public class Jokua extends Observable{
 	    int seleccion = JOptionPane.showOptionDialog(
 	            Bista.LabirintoBista.getNireLabirintoBista(),
 	            "Bomberman hil egin da sakatu 'Ados' irteteko.",
-	            "JOKOAREN AMAIERA",
+	            "Game Over",
 	            JOptionPane.DEFAULT_OPTION,
 	            JOptionPane.INFORMATION_MESSAGE,
 	            null,
