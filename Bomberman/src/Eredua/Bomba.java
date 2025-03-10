@@ -27,6 +27,8 @@ public class Bomba extends Observable {
 	private void updateKont() {
 		kont--;
 		System.out.println("Kont Bomba kentzeko: "+kont);
+				
+		
 		if (kont == 0) {
 			LabirintoaKlasikoa.getNireLabirintoKlasikoa().bombaKendu(x, y);
 			//kont=4; // 3, 2, 1, explota

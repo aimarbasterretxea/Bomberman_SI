@@ -16,6 +16,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 	private int x;
 	private int y;
 	private JLabel irudia;
+	private boolean bomba=false;
 	//private boolean pEgoera;
 	private static final long serialVersionUID = 1L;
 	
@@ -24,10 +25,9 @@ public class GelaxkaBista extends JPanel implements Observer {
 		//setForeground(SystemColor.window);
 		setBorder(new LineBorder(new Color(77, 112, 141)));
 		setBackground(new Color(53, 77, 96));
-		this.setBounds(pX*300, pY*300, 300, 300);
+		this.setBounds(pX*250, pY*200, 200, 200);
 		this.irudia = new JLabel("");
 		this.add(irudia);
-		irudia.resize(300,300);
 		
 	}
 	
@@ -63,27 +63,62 @@ public class GelaxkaBista extends JPanel implements Observer {
 		}
 	}
 	
-	public void bombermanJarri(){
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/bomber1.png")));
+	public void bombermanJarri(char pNorabide) {
+		if (pNorabide=='S') {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitedown1.png")));
+		} 
+		else if (pNorabide=='W') {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup1.png")));
+		}
+		else if (pNorabide=='A') {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteleft1.png")));
+		}
+		else if (pNorabide=='D') {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteright1.png")));
+		}
+		else {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitefront1.png")));
+		}
+	
 	}
 	
+
 	public void bombermanKendu(){
-		if (!(this.irudia.equals(LabirintoBista.class.getResource("/irudiak/bomb1.png")))) {
-			this.irudia.setIcon(null);
+		if(this.bomba==true) {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/bomb1.png")));
 		}
+		else {
+			this.irudia.setIcon(null);
+		}		
 	}
 	
 	public void bombaJarri(){
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/bomb1.png")));
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitewithbomb1.png")));
+		this.bomba=true;
 		System.out.println("Bomba jarri da");
 	}
 	
 	public void suaJarri() {
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/kaBomb2.png")));
+		
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/kaBomb5.png")));
-	}
+		}
+	
 	
 	public void elementuaKendu(){
-		this.irudia.setIcon(null);
+		if (this.bomba==true) {
+			bombaKendu();
+		}
+		else{
+			this.irudia.setIcon(null);
+		}
+
+	}
+	
+	public void bombaKendu() {
+		suaJarri();
+		this.bomba=false;
+		System.out.println("Bomba kendu da");
 	}
 
 	/*public void norabideBomberman() {

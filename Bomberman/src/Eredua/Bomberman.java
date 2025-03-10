@@ -91,7 +91,7 @@ public abstract class Bomberman extends Observable {
 	        this.x = xBerria;
 	        this.y = yBerria;
 	        setChanged();
-	        notifyObservers(new Object[]{"Move", x, y});
+	        notifyObservers(new Object[]{"Move", x, y, norabide});
 	    }
 	}
 
