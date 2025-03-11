@@ -19,11 +19,12 @@ public class BombermanZuria extends Bomberman{
 	@Override  
 	public void bombaJarri() {
 		if (LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.getX(), this.getY()).getBomba() == null && bombaKop > 0) {
-			bombaKop--;
 			LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.getX(), this.getY()).bombaJarri();
+			bombaKop--;
 			setChanged();
 			notifyObservers(new Object[]{"BombaJarri",this.getX(),this.getY()});	
 			}	
-		}
-	}  
+		super.eguneratuBombaKop();
+	}
+}  
 

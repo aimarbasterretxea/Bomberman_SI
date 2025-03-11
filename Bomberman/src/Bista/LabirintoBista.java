@@ -141,8 +141,7 @@ public class LabirintoBista extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		LabirintoaKlasikoa matrizea = LabirintoaKlasikoa.getNireLabirintoKlasikoa();
-		if (arg.equals("Matrizea sortu da")) {
+		if (arg.equals("Matrizea sortu da")) { 
 			for (int i = 0; i < 11; i++) {
 				for (int j = 0; j < 17; j++) {
 					this.gehituGelaxka(new GelaxkaBista(i, j, false));
