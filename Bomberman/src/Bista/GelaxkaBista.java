@@ -18,10 +18,10 @@ public class GelaxkaBista extends JPanel implements Observer {
 	private JLabel irudia;
 	private boolean bombaDago=false;
 	private static final long serialVersionUID = 1L;
-	private static int w,a,s,d=1;
+	private static int pausuak=1;
+	private static String aurrekoNorabidea="";
 	// ERAIKITZAILEA //////////////////////////
 	public GelaxkaBista(int pX, int pY,boolean pEgoera) {
-		//setBorder(new LineBorder(new Color(77, 112, 141)));
 		this.irudia = new JLabel("");
 		this.add(irudia);
 		this.setOpaque(false);
@@ -31,23 +31,27 @@ public class GelaxkaBista extends JPanel implements Observer {
 	
 	// METODOAK //////////////////////////
 	public void blokeGogorra() {
-		//this.setBackground(Color.BLACK);
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/hard5.png")));
-		//this.pEgoera=false;
 	}
 	
 	public void blokeBiguna() {
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/soft4.png")));
-		//this.pEgoera=false;
 	}
 	
 	@Override
 	public void update(Observable o, Object arg) {
+		if(arg instanceof Object[]) {
+			Object[] obj = (Object[]) arg;
+			if(obj[0].equals("BombaJarri")) {
+				this.bombaJarri((int) obj[1]);
+				
+			}
+		}
 		if (arg.equals("BombaKendu")) {
 			this.elementuaKendu();
 			
 		} else if (arg.equals("BombaJarri")) {
-			this.bombaJarri();
+			this.bombaJarri(1);
 			
 			
 		} else if(arg.equals("SuaJarri")) {
@@ -60,98 +64,42 @@ public class GelaxkaBista extends JPanel implements Observer {
 	
 	public void bombermanJarri(Character pNorabide) {
 		String pNorabideChar=pNorabide.toString();
-	
-		if (bombaDago==false) {
+		String norabideBerria;
+		if(bombaDago==false) {
 			if (pNorabideChar.equals("W")) {
-				a=1;
-				s=1;
-				d=1;
-				if(w==1) {
-					
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup1.png")));
-					w++;	}
-				else if(w==2) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup2.png")));
-					w++;	}
-				else if(w==3) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup3.png")));
-					w++;	}
-				else if(w==4) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup4.png")));
-					w++;	}
-				else if(w==5) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup5.png")));
-					w=1;	}
-				else {
-					w=1;}}
+				norabideBerria="up";
+			}
 			else if (pNorabideChar.equals("S")) {
-				w=1;
-				a=1;
-				d=1;
-				if(s==1) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitedown1.png")));
-					s++;	}
-				else if(s==2) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitedown2.png")));
-					s++;	}
-				else if(s==3) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitedown3.png")));
-					s++;	}
-				else if(s==4) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitedown4.png")));
-					s=1;	}
-				else {
-					s=1;
-					}}
-			else if (pNorabideChar.equals("A")) {
-				w=1;
-				s=1;
-				d=1;
-				if(a==1) {
-					
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteleft1.png")));
-					a++;	}
-				else if(a==2) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteleft2.png")));
-					a++;	}
-				else if(a==3) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteleft3.png")));
-					a++;}
-				else if(a==4) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteleft4.png")));
-					a++;
+				if (pausuak>4) {
+					pausuak=1;
 				}
-				 if(a==5) {
-						this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteleft5.png")));
-						a=1;	}}
-				else if (pNorabideChar.equals("D")) {
-					w=1;
-					s=1;
-					a=1;
-				 if(d==1) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteright1.png")));
-					d++;	}
-				else if(d==2) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteright2.png")));
-					d++;	}
-				else if(d==3) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteright3.png")));
-					d++;	}
-				else if(d==4) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteright4.png")));
-					d++;	}
-				else if(d==5) {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteright5.png")));
-					d=1;	}
+				norabideBerria="down";
+			}
+			else if (pNorabideChar.equals("A")) {
+				norabideBerria="left";
+			}
+			else if (pNorabideChar.equals("D")) {
+				norabideBerria="right";
+			}
+			else {
+				norabideBerria="front";
+			}
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/white"+norabideBerria+pausuak+".png")));
+			
+			if (aurrekoNorabidea.equals(norabideBerria)) {
+				if (pausuak>4) {
+					pausuak=1;
+				}
 				else {
-					d=1;}}
-				else {
-					a=1;
-					s=1;
-					d=1;
-					w=1;
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitefront1.png")));}
-			}	
+					pausuak++;
+				}
+			}
+			else {
+				pausuak=1;
+			}
+			aurrekoNorabidea=norabideBerria;
+		}
+	
 			}
 	
 
@@ -164,8 +112,8 @@ public class GelaxkaBista extends JPanel implements Observer {
 		}		
 	}
 	
-	public void bombaJarri(){
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitewithbomb1.png")));
+	public void bombaJarri(int kont){
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitewithbomb"+kont+".png")));
 		this.bombaDago=true;
 	}
 	

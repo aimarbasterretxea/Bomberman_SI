@@ -13,6 +13,7 @@ public class Gelaxka extends Observable {
 	private boolean sua;
 	private Timer timerBomba=null;
 	private Timer timerSua=null;
+	private int kont =1;
 	
 	
 	//Eraikitzaileka
@@ -80,12 +81,24 @@ public class Gelaxka extends Observable {
 		TimerTask timerTask = new TimerTask() {
 			@Override
 			public void run() {
-				bombaKendu();
+				
+				if(kont<4) {
+					setChanged();
+					notifyObservers(new Object[]{"BombaJarri",kont});
+					kont++;
+					
+					
+				}
+				else {
+					kont=1;
+					bombaKendu();
+					
+				}
 			}
 			
 		};
 		this.timerBomba = new Timer();
-		timerBomba.scheduleAtFixedRate(timerTask, 3000, 3000);
+		timerBomba.scheduleAtFixedRate(timerTask, 1000, 1000);
 	}
 	
 	public void bombaKendu() {
