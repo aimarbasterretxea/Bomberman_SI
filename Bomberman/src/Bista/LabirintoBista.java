@@ -38,9 +38,9 @@ public class LabirintoBista extends JFrame implements Observer {
         setTitle("BomberMan");
         setIconImage(Toolkit.getDefaultToolkit().getImage(LabirintoBista.class.getResource("/irudiak/blackfront1.png")));
         
-        //setResizable(false);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 675, 550);
+        setBounds(100, 100, 675, 500);
 
         contentPane = new JPanel();
         contentPane.setLayout(new BorderLayout());
@@ -70,7 +70,7 @@ public class LabirintoBista extends JFrame implements Observer {
         // panelMatrizea
         panelMatrize = new JPanel();
         panelMatrize.setOpaque(false); 
-        panelMatrize.setLayout(new GridLayout(11, 17, 0, 0)); 
+        panelMatrize.setLayout(new GridLayout(11, 17, 0, -5)); 
         irudia.add(panelMatrize, BorderLayout.CENTER); 
 
         //Kontroladorea
