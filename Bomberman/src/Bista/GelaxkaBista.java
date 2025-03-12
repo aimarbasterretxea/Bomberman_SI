@@ -18,7 +18,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 	private JLabel irudia;
 	private boolean bombaDago=false;
 	private static final long serialVersionUID = 1L;
-	
+	private static int w,a,s,d=1;
 	// ERAIKITZAILEA //////////////////////////
 	public GelaxkaBista(int pX, int pY,boolean pEgoera) {
 		//setBorder(new LineBorder(new Color(77, 112, 141)));
@@ -61,24 +61,104 @@ public class GelaxkaBista extends JPanel implements Observer {
 		}
 	}
 	
-	public void bombermanJarri(char pNorabide) {
-		if (pNorabide=='S') {
-			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitedown1.png")));
-		} 
-		else if (pNorabide=='W') {
-			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup1.png")));
-		}
-		else if (pNorabide=='A') {
-			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteleft1.png")));
-		}
-		else if (pNorabide=='D') {
-			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteright1.png")));
-		}
-		else {
-			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitefront1.png")));
-		}
+	public void bombermanJarri(Character pNorabide) {
+		String pNorabideChar=pNorabide.toString();
 	
-	}
+		if (bombaDago==false) {
+			if (pNorabideChar.equals("W")) {
+				if(w==1) {
+					a=1;
+					s=1;
+					d=1;
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup1.png")));
+					//img = getImg("/Irudiak/whiteup1.png");
+					w++;	}
+				else if(w==2) {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup2.png")));
+					//img = getImg("/Irudiak/whiteup2.png");
+					w++;	}
+				else if(w==3) {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup3.png")));
+					//img = getImg("/Irudiak/whiteup3.png");
+					w++;	}
+				else if(w==4) {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup4.png")));
+				//	img = getImg("/Irudiak/whiteup4.png");
+					w++;	}
+				else if(w==5) {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup5.png")));
+					//img = getImg("/Irudiak/whiteup5.png");
+					w=1;	}
+				else {
+					w=1;}}
+			else if (pNorabideChar.equals("S")) {
+				
+				if(s==1) {
+					w=1;
+					a=1;
+					d=1;
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitedown1.png")));
+					//img = getImg("/Irudiak/whitedown1.png");
+					s++;	}
+				else if(s==2) {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitedown2.png")));
+					//img = getImg("/Irudiak/whitedown2.png");
+					s++;	}
+				else if(s==3) {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitedown3.png")));
+					//img = getImg("/Irudiak/whitedown3.png");
+					s++;	}
+				else if(s==4) {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitedown4.png")));
+					//img = getImg("/Irudiak/whitedown4.png");
+					s=1;	}
+				else {
+					s=1;}}
+			else if (pNorabideChar.equals("A")) {
+				w=1;
+				s=1;
+				d=1;
+				if(a==1) {
+					
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteleft1.png")));
+					a++;	}
+				else if(a==2) {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteleft2.png")));
+					a++;	}
+				else if(a==3) {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteleft3.png")));
+					a++;}
+				else if(a==4) {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteleft4.png")));
+					a++;
+				}
+				 if(a==5) {
+						this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteleft5.png")));
+						a=1;	}}
+				else if (pNorabideChar.equals("D")) {
+					w=1;
+					s=1;
+					a=1;
+				 if(d==1) {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteright1.png")));
+					d++;	}
+				else if(d==2) {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteright2.png")));
+					d++;	}
+				else if(d==3) {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteright3.png")));
+					d++;	}
+				else if(d==4) {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteright4.png")));
+					d++;	}
+				else if(d==5) {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteright5.png")));
+					d=1;	}
+				else {
+					d=1;}}
+				else {
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitefront1.png")));}}	
+			}
 	
 
 	public void bombermanKendu(){

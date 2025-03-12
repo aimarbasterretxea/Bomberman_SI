@@ -97,6 +97,10 @@ public abstract class Bomberman extends Observable {
 	        setChanged();
 	        notifyObservers(new Object[]{"Move", x, y, norabide});
 	    }
+	    else {
+	    	setChanged();
+	        notifyObservers(new Object[]{"Biratu", norabide});
+	    }
 	}
 
 	private boolean posizioaBaliozkoaDa(int x, int y) {
