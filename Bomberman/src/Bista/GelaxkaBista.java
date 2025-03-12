@@ -43,10 +43,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		//Object[] obj = (Object[]) arg;
 		if (arg.equals("BombaKendu")) {
-			//int i = (int) obj[1];
-			//int j = (int) obj[2];
 			this.elementuaKendu();
 			
 		} else if (arg.equals("BombaJarri")) {
@@ -66,54 +63,46 @@ public class GelaxkaBista extends JPanel implements Observer {
 	
 		if (bombaDago==false) {
 			if (pNorabideChar.equals("W")) {
+				a=1;
+				s=1;
+				d=1;
 				if(w==1) {
-					a=1;
-					s=1;
-					d=1;
+					
 					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup1.png")));
-					//img = getImg("/Irudiak/whiteup1.png");
 					w++;	}
 				else if(w==2) {
 					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup2.png")));
-					//img = getImg("/Irudiak/whiteup2.png");
 					w++;	}
 				else if(w==3) {
 					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup3.png")));
-					//img = getImg("/Irudiak/whiteup3.png");
 					w++;	}
 				else if(w==4) {
 					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup4.png")));
-				//	img = getImg("/Irudiak/whiteup4.png");
 					w++;	}
 				else if(w==5) {
 					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whiteup5.png")));
-					//img = getImg("/Irudiak/whiteup5.png");
 					w=1;	}
 				else {
 					w=1;}}
 			else if (pNorabideChar.equals("S")) {
-				
+				w=1;
+				a=1;
+				d=1;
 				if(s==1) {
-					w=1;
-					a=1;
-					d=1;
 					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitedown1.png")));
-					//img = getImg("/Irudiak/whitedown1.png");
 					s++;	}
 				else if(s==2) {
 					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitedown2.png")));
-					//img = getImg("/Irudiak/whitedown2.png");
 					s++;	}
 				else if(s==3) {
 					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitedown3.png")));
-					//img = getImg("/Irudiak/whitedown3.png");
 					s++;	}
 				else if(s==4) {
 					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitedown4.png")));
-					//img = getImg("/Irudiak/whitedown4.png");
 					s=1;	}
 				else {
-					s=1;}}
+					s=1;
+					}}
 			else if (pNorabideChar.equals("A")) {
 				w=1;
 				s=1;
@@ -157,7 +146,12 @@ public class GelaxkaBista extends JPanel implements Observer {
 				else {
 					d=1;}}
 				else {
-					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitefront1.png")));}}	
+					a=1;
+					s=1;
+					d=1;
+					w=1;
+					this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitefront1.png")));}
+			}	
 			}
 	
 
