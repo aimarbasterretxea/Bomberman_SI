@@ -40,7 +40,7 @@ public class LabirintoBista extends JFrame implements Observer {
         
         //setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 675, 475);
+        setBounds(100, 100, 675, 550);
 
         contentPane = new JPanel();
         contentPane.setLayout(new BorderLayout());
@@ -65,6 +65,7 @@ public class LabirintoBista extends JFrame implements Observer {
         bombaKop.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/bomb1.png")));
         bombaKop.setBounds(10, 10, 60, 50);
         panelInfo.add(bombaKop);
+        panelInfo.setOpaque(true);
 
         // panelMatrizea
         panelMatrize = new JPanel();
