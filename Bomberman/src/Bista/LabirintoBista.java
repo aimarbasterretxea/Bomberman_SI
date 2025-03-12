@@ -106,8 +106,11 @@ public class LabirintoBista extends JFrame implements Observer {
         return (GelaxkaBista) panelMatrize.getComponent(x * 17 + y);
     }
     
-    public void mugituBomberman(int hX, int hY, Character pNorabide) {
+    public void mugituBomberman(int hX, int hY, Character pNorabide, boolean mugitu) {
+    	if (mugitu==true){
     	bilatuGelaxka(x, y).bombermanKendu();
+    	}
+    	
     	bilatuGelaxka(hX, hY).bombermanJarri(pNorabide);
     	this.x=hX;
     	this.y=hY;
@@ -174,7 +177,8 @@ public class LabirintoBista extends JFrame implements Observer {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
 				char norabide = (char) obj[3];
-				this.mugituBomberman(i, j, norabide);;
+				boolean mugitu = (boolean) obj[4];
+				this.mugituBomberman(i, j, norabide,mugitu);;
 			} else if (obj[0].equals("BombaJarri")) {
 				int i = (int) obj[1];
 				this.eguneratuBombaKop(i);
@@ -201,7 +205,7 @@ public class LabirintoBista extends JFrame implements Observer {
 			            null); 
 			}
 			else if (obj[0].equals("Biratu")){
-				this.mugituBomberman(x, y, (char) obj[1]);
+				this.mugituBomberman(x, y, (char) obj[1],false);
 			}
 		} 
 

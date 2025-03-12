@@ -95,11 +95,11 @@ public abstract class Bomberman extends Observable {
 	        	this.bombermanHil();
 			}
 	        setChanged();
-	        notifyObservers(new Object[]{"Move", x, y, norabide});
+	        notifyObservers(new Object[]{"Move", x, y, norabide,true});
 	    }
 	    else {
 	    	setChanged();
-	        notifyObservers(new Object[]{"Biratu", norabide});
+	        notifyObservers(new Object[]{"Biratu", norabide,false});
 	    }
 	}
 
