@@ -40,7 +40,7 @@ public class LabirintoBista extends JFrame implements Observer {
         
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 675, 500);
+        setBounds(100, 100, 650, 500);
 
         contentPane = new JPanel();
         contentPane.setLayout(new BorderLayout());
