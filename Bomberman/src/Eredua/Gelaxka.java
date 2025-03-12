@@ -86,8 +86,6 @@ public class Gelaxka extends Observable {
 					setChanged();
 					notifyObservers(new Object[]{"BombaJarri",kont});
 					kont++;
-					
-					
 				}
 				else {
 					kont=1;
@@ -98,7 +96,7 @@ public class Gelaxka extends Observable {
 			
 		};
 		this.timerBomba = new Timer();
-		timerBomba.scheduleAtFixedRate(timerTask, 1000, 1000);
+		timerBomba.scheduleAtFixedRate(timerTask, 0, 1000);
 	}
 	
 	public void bombaKendu() {

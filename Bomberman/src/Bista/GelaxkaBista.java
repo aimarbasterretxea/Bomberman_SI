@@ -17,8 +17,10 @@ public class GelaxkaBista extends JPanel implements Observer {
 	private int y;
 	private JLabel irudia;
 	private boolean bombaDago=false;
+	private boolean bombermanDago=false;
 	private static final long serialVersionUID = 1L;
 	private static int pausuak=1;
+	private int bombaDenbora=1;
 	private static String aurrekoNorabidea="";
 	// ERAIKITZAILEA //////////////////////////
 	public GelaxkaBista(int pX, int pY,boolean pEgoera) {
@@ -51,7 +53,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 			this.elementuaKendu();
 			
 		} else if (arg.equals("BombaJarri")) {
-			this.bombaJarri(1);
+			this.bombaJarri(bombaDenbora);
 			
 			
 		} else if(arg.equals("SuaJarri")) {
@@ -63,6 +65,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 	}
 	
 	public void bombermanJarri(Character pNorabide) {
+		this.bombermanDago=true;
 		String pNorabideChar=pNorabide.toString();
 		String norabideBerria;
 		if(bombaDago==false) {
@@ -70,7 +73,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 				norabideBerria="up";
 			}
 			else if (pNorabideChar.equals("S")) {
-				if (pausuak>4) {
+				if (pausuak>3) {
 					pausuak=1;
 				}
 				norabideBerria="down";
@@ -105,16 +108,25 @@ public class GelaxkaBista extends JPanel implements Observer {
 
 	public void bombermanKendu(){
 		if(this.bombaDago==true) {
-			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/bomb1.png")));
+			this.bombermanDago=false;
+			this.bombaJarri(bombaDenbora);
+			
 		}
 		else {
 			this.irudia.setIcon(null);
+			this.bombermanDago=false;
 		}		
 	}
 	
 	public void bombaJarri(int kont){
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitewithbomb"+kont+".png")));
-		this.bombaDago=true;
+		bombaDenbora=kont;
+		if (this.bombermanDago){
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitewithbomb"+bombaDenbora+".png")));
+		this.bombaDago=true;}
+		else{
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/bomb"+bombaDenbora+".png")));
+			this.bombaDago=true;
+		}
 	}
 	
 	public void suaJarri() {
@@ -127,14 +139,18 @@ public class GelaxkaBista extends JPanel implements Observer {
 			
 			bombaKendu();
 		}
-		else{
+		else {
+			if (this.bombermanDago==true) {
+			this.bombermanDago=false;}
 			this.irudia.setIcon(null);
+			
 		}
 
 	}
 	
 	public void bombaKendu() {
 		this.bombaDago=false;
+		this.irudia.setIcon(null);
 	}
 
 	/*public void norabideBomberman() {
