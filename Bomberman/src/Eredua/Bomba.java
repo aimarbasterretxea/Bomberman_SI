@@ -18,7 +18,7 @@ public class Bomba extends Observable {
 			@Override
 			public void run() {
 				updateKont();
-			}		
+					
 		};
 		timer = new Timer();
 		timer.scheduleAtFixedRate(timerTask, 0, 1000);
