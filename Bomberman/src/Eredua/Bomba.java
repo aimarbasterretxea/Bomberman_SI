@@ -4,7 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Bomba extends Observable {
-	//Atributuak
+/*	//Atributuak
 	private int x;
 	private int y;
 	private int kont = 4;
@@ -35,7 +35,7 @@ public class Bomba extends Observable {
 			timer.cancel();
 		}
 	}
-	
+	*/
 }
 
 

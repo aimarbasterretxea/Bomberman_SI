@@ -1,11 +1,6 @@
 package Eredua;
-import java.util.Random;
-
 import Bista.LabirintoBista;
 
-import java.util.Observable;
-import java.util.Observer;
-import java.awt.EventQueue;
 public class LabirintoaKlasikoa extends Labirintoa {
 	//Atributua
 	private static LabirintoaKlasikoa nireLabirintoKlasikoa;
@@ -40,6 +35,7 @@ public class LabirintoaKlasikoa extends Labirintoa {
 					setChanged();
 					notifyObservers(new Object[]{"Bloke gogorra gehitu da",i,j});
 				} else if (Math.random() >= 0.4) {
+					this.blokeKop++;
 					unekoGelaxka.blokeBigunaGehitu();
 					setChanged();
 					notifyObservers(new Object[]{"Bloke biguna gehitu da", i, j});

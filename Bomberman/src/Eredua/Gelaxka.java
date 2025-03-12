@@ -1,6 +1,5 @@
 package Eredua;
 
-import Bista.GelaxkaBista;
 import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -10,15 +9,18 @@ public class Gelaxka extends Observable {
 	private int x;
 	private int y;
 	private Bloke bloke=null;
-	private Bomba bomba=null;
-	private Sua sua=null;
-	/*private Timer timer=null;
-	private int kont=3;*/
+	private boolean bomba;
+	private boolean sua;
+	private Timer timerBomba=null;
+	private Timer timerSua=null;
+	
 	
 	//Eraikitzaileka
 	public Gelaxka(int pX, int pY) {
 		this.x=pX;
 		this.y=pY;
+		this.bomba=false;
+		this.sua=false;
 	}
 
 	//Geterrak
@@ -30,20 +32,18 @@ public class Gelaxka extends Observable {
 		return this.y;
 	}
 	
-	public Sua getSua() {
+	public boolean getSua() {
 		return this.sua;
 	}
 	
 	public Bloke getBloke() {
 		return this.bloke;
 	}
-	public Bomba getBomba() {
-		return this.bomba;
-	}
+
 	
 	//Metodoak
 	public boolean hutsaDa() {
-		if (this.bloke==null&&this.bomba==null) {
+		if (this.bloke==null&&this.bomba==false) {
 			return true;
 		}
 		else {
@@ -59,33 +59,87 @@ public class Gelaxka extends Observable {
 		bloke=new BlokeBiguna();
 	}
 	
+	
+	
+// BOMBAren METODOAK ////////////////////////////////////////////
+	
+	public boolean getBomba() {
+		return this.bomba;
+	}	
+	
 	public void bombaJarri() {
-		bomba=new Bomba(x, y);
-		setChanged();
-		notifyObservers("BombaJarri");	
+		if(this.bomba==false) {
+			bomba=true;
+			bombaTimer();
+			setChanged();
+			notifyObservers("BombaJarri");	
+		}
+	}
+	
+	private void bombaTimer() {
+		TimerTask timerTask = new TimerTask() {
+			@Override
+			public void run() {
+				bombaKendu();
+			}
+			
+		};
+		this.timerBomba = new Timer();
+		timerBomba.scheduleAtFixedRate(timerTask, 3000, 3000);
 	}
 	
 	public void bombaKendu() {
-		bomba=null;
+		this.timerBomba.cancel();
+		this.timerBomba=null;
+		bomba=false;
 		setChanged();
 		notifyObservers("BombaKendu");
+		LabirintoaKlasikoa.getNireLabirintoKlasikoa().bombaKendu(this.x, this.y);
+		
 	}
 	
-	public void suaJarri() {
-		this.sua=new Sua(x,y);
-		if(this.bloke instanceof BlokeBiguna || this.bloke==null) {
+// SUAren METODOAK ////////////////////////////////////////////
+	
+	public boolean suaJarri() {
+		
+		if(this.sua==true&&this.timerSua!=null) {
+			this.timerSua.cancel();
+			this.timerSua=null;
+		}
+		
+		this.sua=true;
+		boolean blokeBiguna=bloke instanceof BlokeBiguna;
+		
+		if((this.bloke instanceof BlokeBiguna || this.bloke==null)) {
 			this.bloke=null;
+			suaTimer();
 			setChanged();
-			notifyObservers("SuaJarri");
+			notifyObservers("SuaJarri");			
 		}
+		
+		return blokeBiguna;
 	}
+	
+	private void suaTimer() {
+		TimerTask timerTask = new TimerTask() {
+			@Override
+			public void run() {
+				suaKendu();
+			}
 			
-	public void suaKendu() {
-		if (this.sua!=null && (this.bloke instanceof BlokeBiguna || this.bloke==null)) {
-			this.sua=null;
-			setChanged();
-			notifyObservers("SuaKendu");
-			System.out.println("Sua kendu da");
-		}
+		};
+		this.timerSua = new Timer();
+		timerSua.scheduleAtFixedRate(timerTask, 2000, 2000);
 	}
+	
+	public void suaKendu() {
+		this.sua=false;
+		setChanged();
+		notifyObservers("SuaKendu");
+		if(this.timerSua!=null) {
+			this.timerSua.cancel();
+		}
+		this.timerSua=null;
+	}
+	
 }

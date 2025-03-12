@@ -16,18 +16,15 @@ public class GelaxkaBista extends JPanel implements Observer {
 	private int x;
 	private int y;
 	private JLabel irudia;
-	private boolean bomba=false;
-	//private boolean pEgoera;
+	private boolean bombaDago=false;
 	private static final long serialVersionUID = 1L;
 	
 	// ERAIKITZAILEA //////////////////////////
 	public GelaxkaBista(int pX, int pY,boolean pEgoera) {
-		//setForeground(SystemColor.window);
-		setBorder(new LineBorder(new Color(77, 112, 141)));
-		setBackground(new Color(53, 77, 96));
-		this.setBounds(pX*250, pY*200, 200, 200);
+		//setBorder(new LineBorder(new Color(77, 112, 141)));
 		this.irudia = new JLabel("");
 		this.add(irudia);
+		this.setOpaque(false);
 		
 	}
 	
@@ -35,12 +32,12 @@ public class GelaxkaBista extends JPanel implements Observer {
 	// METODOAK //////////////////////////
 	public void blokeGogorra() {
 		//this.setBackground(Color.BLACK);
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/hard1.png")));
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/hard5.png")));
 		//this.pEgoera=false;
 	}
 	
 	public void blokeBiguna() {
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/soft1.png")));
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/soft4.png")));
 		//this.pEgoera=false;
 	}
 	
@@ -54,6 +51,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 			
 		} else if (arg.equals("BombaJarri")) {
 			this.bombaJarri();
+			
 			
 		} else if(arg.equals("SuaJarri")) {
 			this.suaJarri();
@@ -84,7 +82,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 	
 
 	public void bombermanKendu(){
-		if(this.bomba==true) {
+		if(this.bombaDago==true) {
 			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/bomb1.png")));
 		}
 		else {
@@ -94,19 +92,17 @@ public class GelaxkaBista extends JPanel implements Observer {
 	
 	public void bombaJarri(){
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitewithbomb1.png")));
-		this.bomba=true;
-		System.out.println("Bomba jarri da");
+		this.bombaDago=true;
 	}
 	
 	public void suaJarri() {
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/kaBomb2.png")));
-		
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/kaBomb5.png")));
-		}
+	}
 	
 	
 	public void elementuaKendu(){
-		if (this.bomba==true) {
+		if (this.bombaDago==true) {
+			
 			bombaKendu();
 		}
 		else{
@@ -116,9 +112,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 	}
 	
 	public void bombaKendu() {
-		suaJarri();
-		this.bomba=false;
-		System.out.println("Bomba kendu da");
+		this.bombaDago=false;
 	}
 
 	/*public void norabideBomberman() {

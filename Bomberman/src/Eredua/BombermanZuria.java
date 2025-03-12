@@ -1,29 +1,26 @@
 package Eredua;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class BombermanZuria extends Bomberman{
-	
-	private int kont=0;
-	
-
+	//Eraikitzailea
 	public BombermanZuria() {
 		super();
 		this.bombaKop=10;
 	}
 	
+	//Metodoak
 	public void bombermanHil() {
 		
 	}
 	
 	@Override  
 	public void bombaJarri() {
-		if (LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.getX(), this.getY()).getBomba() == null && bombaKop > 0) {
+		if (LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.getX(), this.getY()).getBomba() == false && bombaKop > 0) {
 			LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.getX(), this.getY()).bombaJarri();
 			bombaKop--;
 			setChanged();
 			notifyObservers(new Object[]{"BombaJarri",this.getX(),this.getY()});	
 			}	
+		LabirintoaKlasikoa.getNireLabirintoKlasikoa().bombaJarriDa(this.bombaKop);
 		super.eguneratuBombaKop();
 	}
 }  
