@@ -96,7 +96,6 @@ public class GelaxkaBista extends JPanel implements Observer {
 			else{
 				pausuak=1;
 			}
-			System.out.println(norabideBerria+pausuak);
 			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/white"+norabideBerria+pausuak+".png")));
 			aurrekoNorabidea=norabideBerria;}
 		}
