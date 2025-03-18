@@ -14,6 +14,7 @@ public class Gelaxka extends Observable {
 	private Timer timerBomba=null;
 	private Timer timerSua=null;
 	private int kont =1;
+	private boolean eztanda=false;
 	
 	
 	//Eraikitzaileka
@@ -79,13 +80,17 @@ public class Gelaxka extends Observable {
 	
 	private void bombaTimer() {
 		TimerTask timerTask = new TimerTask() {
+			int azpiKont=0;
 			@Override
 			public void run() {
-				
-				if(kont<4) {
+				azpiKont++;
+				if(kont<4&&!eztanda) {
 					setChanged();
 					notifyObservers(new Object[]{"BombaJarri",kont});
+					if (azpiKont==2) {
 					kont++;
+					azpiKont=0;
+					}
 				}
 				else {
 					kont=1;
@@ -96,10 +101,11 @@ public class Gelaxka extends Observable {
 			
 		};
 		this.timerBomba = new Timer();
-		timerBomba.scheduleAtFixedRate(timerTask, 0, 1000);
+		timerBomba.scheduleAtFixedRate(timerTask, 0, 500);
 	}
 	
 	public void bombaKendu() {
+		eztanda=false;
 		this.timerBomba.cancel();
 		this.timerBomba=null;
 		bomba=false;
@@ -123,10 +129,14 @@ public class Gelaxka extends Observable {
 		
 		if((this.bloke instanceof BlokeBiguna || this.bloke==null)) {
 			this.bloke=null;
+			if (this.bomba==true) {
+				eztanda=true;
+			}
+			else {
 			suaTimer();
 			setChanged();
 			notifyObservers("SuaJarri");			
-		}
+		}}
 		
 		return blokeBiguna;
 	}
