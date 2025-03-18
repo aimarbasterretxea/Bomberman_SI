@@ -9,21 +9,26 @@ public class Gelaxka extends Observable {
 	//Atributuak
 	private int x;
 	private int y;
-	private Bloke bloke=null;
+	private Bloke bloke;
 	private Bomba bomba;
 	private boolean sua;
-	private Timer timerBomba=null;
-	private Timer timerSua=null;
-	private int kont =1;
-	private boolean eztanda=false;
+	private Timer timerBomba;
+	private Timer timerSua;
+	private int kont;
+	private boolean eztanda;
 	
 	
 	//Eraikitzaileka
 	public Gelaxka(int pX, int pY) {
 		this.x=pX;
 		this.y=pY;
+		this.bloke=null;
 		this.bomba=null;
 		this.sua=false;
+		this.timerBomba=null;
+		this.timerSua=null;
+		this.kont=1;
+		this.eztanda=false;
 	}
 
 	//Geterrak
