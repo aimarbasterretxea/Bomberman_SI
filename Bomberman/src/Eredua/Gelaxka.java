@@ -10,7 +10,7 @@ public class Gelaxka extends Observable {
 	private int x;
 	private int y;
 	private Bloke bloke=null;
-	private boolean bomba;
+	private Bomba bomba;
 	private boolean sua;
 	private Timer timerBomba=null;
 	private Timer timerSua=null;
@@ -22,7 +22,7 @@ public class Gelaxka extends Observable {
 	public Gelaxka(int pX, int pY) {
 		this.x=pX;
 		this.y=pY;
-		this.bomba=false;
+		this.bomba=null;
 		this.sua=false;
 	}
 
@@ -46,7 +46,7 @@ public class Gelaxka extends Observable {
 	
 	//Metodoak
 	public boolean hutsaDa() {
-		if (this.bloke==null&&this.bomba==false) {
+		if (this.bloke==null&&this.bomba==null) {
 			return true;
 		}
 		else {
@@ -67,12 +67,12 @@ public class Gelaxka extends Observable {
 // BOMBAren METODOAK ////////////////////////////////////////////
 	
 	public boolean getBomba() {
-		return this.bomba;
+		return this.bomba instanceof Bomba;
 	}	
 	
 	public void bombaJarri() {
-		if(this.bomba==false) {
-			bomba=true;
+		if(this.bomba==null) {
+			bomba=new Bomba();
 			bombaTimer();
 			setChanged();
 			notifyObservers("BombaJarri");	
@@ -109,7 +109,7 @@ public class Gelaxka extends Observable {
 		eztanda=false;
 		this.timerBomba.cancel();
 		this.timerBomba=null;
-		bomba=false;
+		bomba=null;
 		setChanged();
 		notifyObservers("BombaKendu");
 		LabirintoaKlasikoa.getNireLabirintoKlasikoa().bombaKendu(this.x, this.y);
@@ -130,7 +130,7 @@ public class Gelaxka extends Observable {
 		
 		if((this.bloke instanceof BlokeBiguna || this.bloke==null)) {
 			this.bloke=null;
-			if (this.bomba==true) {
+			if (this.bomba instanceof Bomba) {
 				eztanda=true;
 			}
 			else {
