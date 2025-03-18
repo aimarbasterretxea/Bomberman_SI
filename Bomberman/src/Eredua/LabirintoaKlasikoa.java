@@ -7,9 +7,7 @@ public class LabirintoaKlasikoa extends Labirintoa {
 	
 	//Eraikitzailea
 	private LabirintoaKlasikoa() {
-		super();
-		addObserver(LabirintoBista.getNireLabirintoBista());
-		
+		super();		
 	}
 	
 	//Geterra
@@ -32,13 +30,11 @@ public class LabirintoaKlasikoa extends Labirintoa {
 					//Ezer ez
 				} else if (1 == (i % 2) && 1 == (j % 2)) {
 					unekoGelaxka.blokeGogorraGehitu();
-					setChanged();
-					notifyObservers(new Object[]{"Bloke gogorra gehitu da",i,j});
+			        LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Bloke gogorra gehitu da", i, j, ' ', false);
 				} else if (Math.random() >= 0.4) {
 					this.blokeKop++;
 					unekoGelaxka.blokeBigunaGehitu();
-					setChanged();
-					notifyObservers(new Object[]{"Bloke biguna gehitu da", i, j});
+			        LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Bloke biguna gehitu da", i, j, ' ', false);
 				}
 			}
 		}

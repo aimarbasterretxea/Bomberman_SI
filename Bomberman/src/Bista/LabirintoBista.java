@@ -1,7 +1,5 @@
 package Bista;
 
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.BorderLayout;
@@ -17,6 +15,7 @@ import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 
+@SuppressWarnings("deprecation")
 public class LabirintoBista extends JFrame implements Observer {
 	
 	// ATRIBUTUAK ////////////////
@@ -194,7 +193,7 @@ public class LabirintoBista extends JFrame implements Observer {
 					mezua="Bomberman hil egin da sakatu 'Ados' irteteko.";
 				}
 				Object[] opciones = {"Ados"};
-			    int seleccion = JOptionPane.showOptionDialog(
+			    JOptionPane.showOptionDialog(
 			            Bista.LabirintoBista.getNireLabirintoBista(),
 			            mezua,
 			            izenburua,
@@ -205,7 +204,7 @@ public class LabirintoBista extends JFrame implements Observer {
 			            null); 
 			}
 			else if (obj[0].equals("Biratu")){
-				this.mugituBomberman(x, y, (char) obj[1],false);
+				this.mugituBomberman(x, y, (char) obj[3],false);
 			}
 		} 
 
@@ -217,10 +216,4 @@ public class LabirintoBista extends JFrame implements Observer {
 		
 	}
 		
-	
-	/*@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}*/
 }

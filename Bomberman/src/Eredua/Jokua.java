@@ -1,9 +1,8 @@
 package Eredua;
 
-import java.util.Observable;
 import Bista.LabirintoBista;
 
-public class Jokua extends Observable{
+public class Jokua {
 	//Atributua
     private static Jokua nireJokua=null; 
     
@@ -26,12 +25,10 @@ public class Jokua extends Observable{
             matrizeKlasikoa.labirintoOrokorraSortu();
             matrizeKlasikoa.labirintoaOsatu();
             frame.setVisible(true);
-            this.addObserver(frame);
     }
     
-	public void amaituJokua(int Py) {
-		setChanged();
-		notifyObservers(new Object[]{"Jokua amaitu da",Py});
+	public void amaituJokua(int pY) {
+        LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Jokua amaitu da", pY, -1, ' ', false);
 	    System.exit(0);
 		//System.out.println("Hil da");
 	

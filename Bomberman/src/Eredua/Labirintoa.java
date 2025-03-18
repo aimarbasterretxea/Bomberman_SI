@@ -2,9 +2,9 @@ package Eredua;
 
 import java.util.Observable;
 
+@SuppressWarnings("deprecation")
 public abstract class Labirintoa extends Observable{
 	//Atributuak
-	private static Labirintoa nireLabirintoa;
 	private static Gelaxka[][] labirintoa;
 	protected static int errenkada = 11;
 	protected static int zutabea = 17;
@@ -24,7 +24,6 @@ public abstract class Labirintoa extends Observable{
 		return bomberman;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public  void labirintoOrokorraSortu() {
 		labirintoa = new Gelaxka[errenkada][zutabea];
 		for (int i = 0; i < errenkada; i++) {
@@ -100,5 +99,10 @@ public abstract class Labirintoa extends Observable{
 	public void bombaJarriDa(int pKop) {
 		setChanged();
 		notifyObservers(new Object[]{"BombaJarri",pKop});
+	}
+	
+	public void setChanged(String pMezua, int pX, int pY, char pC, boolean pEgia) {
+		setChanged();
+        notifyObservers(new Object[]{pMezua, pX, pY, pC,pEgia});
 	}
 }

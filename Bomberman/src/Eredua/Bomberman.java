@@ -1,14 +1,13 @@
 package Eredua;
 
-import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-public abstract class Bomberman extends Observable {
+public abstract class Bomberman {
 	//Atributuak
-	private int x;
-	private int y;
+	protected int x;
+	protected int y;
 	private static Timer timer=null;
 	protected int bombaKop;
 	
@@ -16,7 +15,6 @@ public abstract class Bomberman extends Observable {
 	public Bomberman() { //Timer ez sortu eraikitzailean.
 		this.x = 0;
 		this.y = 0;
-		addObserver(Bista.LabirintoBista.getNireLabirintoBista());
 	}
 	
     public void eguneratuBombaKop() {
@@ -28,8 +26,7 @@ public abstract class Bomberman extends Observable {
     public void bombaGehitu() {
         if (bombaKop == 0) { 
             bombaKop = 1; 
-            setChanged();
-            notifyObservers(new Object[]{"BombaJarri", bombaKop});
+	        LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("BombaJarri", bombaKop, -1, ' ',false);
             if (timer != null) {
                 timer.cancel(); // Gelditu Timer
                 timer = null; // Berrabiarazi Timer
@@ -94,12 +91,12 @@ public abstract class Bomberman extends Observable {
 			if(LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.x,this.y).getSua()) {
 	        	this.bombermanHil();
 			}
-	        setChanged();
-	        notifyObservers(new Object[]{"Move", x, y, norabide,true});
+	        LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Move", x, y, norabide,true);
+	        
 	    }
 	    else {
-	    	setChanged();
-	        notifyObservers(new Object[]{"Biratu", norabide,false});
+	        LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Biratu", x, y, norabide,false);
+
 	    }
 	}
 
