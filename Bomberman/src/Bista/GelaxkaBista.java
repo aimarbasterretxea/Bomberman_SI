@@ -3,18 +3,13 @@ package Bista;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import java.awt.SystemColor;
-import javax.swing.border.LineBorder;
-import java.awt.Color;
-import java.awt.Image;
 import java.util.Observable;
 import java.util.Observer;
 
+@SuppressWarnings("deprecation")
 public class GelaxkaBista extends JPanel implements Observer {
 	
 	// ATRIBUTUAK //////////////////////////
-	private int x;
-	private int y;
 	private JLabel irudia;
 	private boolean bombaDago=false;
 	private boolean bombermanDago=false;
