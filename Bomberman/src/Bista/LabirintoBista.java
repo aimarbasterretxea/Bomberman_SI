@@ -45,7 +45,7 @@ public class LabirintoBista extends JFrame implements Observer {
         contentPane.setLayout(new BorderLayout());
         setContentPane(contentPane);
 
-        argazkia = new ImageIcon(LabirintoBista.class.getResource("/irudiak/stageback3.png")).getImage();
+        argazkia = new ImageIcon(LabirintoBista.class.getResource("/irudiak/stageBack3.png")).getImage();
         
         irudia = new JLabel();
         irudia.setLayout(new BorderLayout()); 
