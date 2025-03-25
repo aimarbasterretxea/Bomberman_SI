@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import Eredua.LabirintoaKlasikoa;
+
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -34,6 +37,7 @@ public class LabirintoBista extends JFrame implements Observer {
     
     // ERAIKITZAILEA ////////////////
     private LabirintoBista() {
+    	LabirintoaKlasikoa.getNireLabirintoKlasikoa().addObserver(this);
         setTitle("BomberMan");
         setIconImage(Toolkit.getDefaultToolkit().getImage(LabirintoBista.class.getResource("/irudiak/blackfront1.png")));
         
@@ -154,8 +158,9 @@ public class LabirintoBista extends JFrame implements Observer {
 		if (arg.equals("Matrizea sortu da")) { 
 			for (int i = 0; i < 11; i++) {
 				for (int j = 0; j < 17; j++) {
-					gelaxka=new GelaxkaBista(i,j,false);
+					gelaxka=new GelaxkaBista(false);
 					this.gehituGelaxka(gelaxka);
+					LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(i, j).addObserver(gelaxka);
 				}
 			}
 			bilatuGelaxka(0,0).bombermanJarri('H');

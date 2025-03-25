@@ -17,8 +17,6 @@ public class BombermanZuria extends Bomberman{
 		if (LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.getX(), this.getY()).getBomba() == false && bombaKop > 0) {
 			LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.getX(), this.getY()).bombaJarri();
 			bombaKop--;
-	        //LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("BombaJarri", this.x, this.y, ' ',false);
-
 			}	
 		LabirintoaKlasikoa.getNireLabirintoKlasikoa().bombaJarriDa(this.bombaKop);
 		super.eguneratuBombaKop();

@@ -25,16 +25,16 @@ public class LabirintoaKlasikoa extends Labirintoa {
 		for (int i = 0; i < errenkada; i++) {
 			for (int j = 0; j < zutabea; j++) {
 				Gelaxka unekoGelaxka = labirintoa[i][j];
-				unekoGelaxka.addObserver(LabirintoBista.getNireLabirintoBista().bilatuGelaxka(i, j));
+				//unekoGelaxka.addObserver(LabirintoBista.getNireLabirintoBista().bilatuGelaxka(i, j));
 				if((i == 0 && j == 0) || (i==1 && j == 0) || (i == 0 && j == 1)) {
 					//Ezer ez
 				} else if (1 == (i % 2) && 1 == (j % 2)) {
-					unekoGelaxka.blokeGogorraGehitu();
-			        LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Bloke gogorra gehitu da", i, j, ' ', false);
+					unekoGelaxka.blokeaGehitu("Gogorra");
+			       // LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Bloke gogorra gehitu da", i, j, ' ', false);
 				} else if (Math.random() >= 0.4) {
 					this.blokeKop++;
-					unekoGelaxka.blokeBigunaGehitu();
-			        LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Bloke biguna gehitu da", i, j, ' ', false);
+					unekoGelaxka.blokeaGehitu("Biguna");
+			        //LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Bloke biguna gehitu da", i, j, ' ', false);
 				}
 			}
 		}

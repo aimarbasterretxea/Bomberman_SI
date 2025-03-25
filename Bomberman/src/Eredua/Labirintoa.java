@@ -14,7 +14,7 @@ public abstract class Labirintoa extends Observable{
 	//Eraikitzailea
 	public Labirintoa() {
 		this.labirintoa=null;
-		addObserver(Bista.LabirintoBista.getNireLabirintoBista());
+		//addObserver(Bista.LabirintoBista.getNireLabirintoBista());
 	}
 	
 	//Geterrak

@@ -19,7 +19,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 	private static String aurrekoNorabidea="";
 	private String norabideBerria="";
 	// ERAIKITZAILEA //////////////////////////
-	public GelaxkaBista(int pX, int pY,boolean pEgoera) {
+	public GelaxkaBista(boolean pEgoera) {
 		this.irudia = new JLabel("");
 		this.add(irudia);
 		this.setOpaque(false);
@@ -57,6 +57,12 @@ public class GelaxkaBista extends JPanel implements Observer {
 			
 		} else if(arg.equals("SuaKendu")) {
 			this.elementuaKendu();
+		}
+		else if(arg.equals("Gogorra")) {
+			this.blokeGogorra();
+		}
+		else if(arg.equals("Biguna")) {
+			this.blokeBiguna();
 		}
 	}
 	

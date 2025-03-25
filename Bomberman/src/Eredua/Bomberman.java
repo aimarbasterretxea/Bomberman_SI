@@ -26,7 +26,8 @@ public abstract class Bomberman {
     public void bombaGehitu() {
         if (bombaKop == 0) { 
             bombaKop = 1; 
-	        LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("BombaJarri", bombaKop, -1, ' ',false);
+            //LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.x, this.y).bombaJarri();
+	       LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("BombaJarri", bombaKop, -1, ' ',false);
             if (timer != null) {
                 timer.cancel(); // Gelditu Timer
                 timer = null; // Berrabiarazi Timer
@@ -89,7 +90,8 @@ public abstract class Bomberman {
 	        this.x = xBerria;
 	        this.y = yBerria;
 			if(LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.x,this.y).getSua()) {
-	        	this.bombermanHil();
+			LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Move", x, y, norabide,true);	
+	        this.bombermanHil();
 			}
 	        LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Move", x, y, norabide,true);
 	        
