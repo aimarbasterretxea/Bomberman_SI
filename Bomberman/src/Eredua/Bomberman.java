@@ -12,7 +12,7 @@ public abstract class Bomberman {
 	protected int bombaKop;
 	
 	//Eraikitzailea
-	public Bomberman() { //Timer ez sortu eraikitzailean.
+	protected Bomberman() { 
 		this.x = 0;
 		this.y = 0;
 	}

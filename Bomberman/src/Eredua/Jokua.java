@@ -25,15 +25,19 @@ public class Jokua extends Observable {
     public void Hasieraketa() {
         	Menua frame1 = Menua.getNireMenua();
         	frame1.setVisible(true);
-        	
-    		LabirintoBista frame2 = LabirintoBista.getNireLabirintoBista();
-            LabirintoaKlasikoa matrizeKlasikoa = LabirintoaKlasikoa.getNireLabirintoKlasikoa();
-            matrizeKlasikoa.labirintoOrokorraSortu();
-            // Hemen Labirinto Orokorra sortuta dago 
-            
-            matrizeKlasikoa.labirintoaOsatu();
-            frame2.setVisible(true);
     }
+    
+    public void jokuaHasieratu(String labirintoMota, String bomberMota) {
+		//Labirintoa.getNireLabirintoa().labirintoaOsatu(labirintoMota, bomberMota);
+    	LabirintoBista frame2 = LabirintoBista.getNireLabirintoBista();
+        LabirintoaKlasikoa matrizeKlasikoa = LabirintoaKlasikoa.getNireLabirintoKlasikoa();
+        matrizeKlasikoa.labirintoOrokorraSortu();
+        // Hemen Labirinto Orokorra sortuta dago 
+        
+        matrizeKlasikoa.labirintoaOsatu();
+        frame2.setVisible(true);
+    	
+	}
     
 	public void amaituJokua(int pY) {
         LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Jokua amaitu da", pY, -1, ' ', false);

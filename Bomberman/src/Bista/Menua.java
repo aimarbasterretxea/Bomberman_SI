@@ -134,6 +134,11 @@ public class Menua extends JFrame implements Observer {
 		}
 		return nireMenua;
 	}
+	
+	public void menuaItxi() {
+		this.setVisible(false);
+		this.dispose();
+	}
 
 
 	@Override
@@ -167,13 +172,18 @@ public class Menua extends JFrame implements Observer {
 	   		}
        		
        		if(jatorria == jolastuButton) {
-	   			Jokua.getJokua().Hasieraketa();
+       			menuaItxi();
+       			System.out.println("Jolastu botoia sakatu duzu");
+	   			Jokua.getJokua().jokuaHasieratu(labAukera, bomberAukera);
+	   			
 	   		}
 			// TODO Auto-generated method stub
 			
 		}
-    }
 
+	
+			
+		}
 
 
 
