@@ -10,6 +10,7 @@ public class Gelaxka extends Observable {
 	private int x;
 	private int y;
 	private Bloke bloke;
+	private Etsaia etsaia;
 	private Bomba bomba;
 	private boolean sua;
 	private Timer timerBomba;
@@ -63,6 +64,13 @@ public class Gelaxka extends Observable {
 		bloke=BFactory.getNireBFactory().sortuBloke(pMota);
 		setChanged();
 		notifyObservers(pMota);
+	
+	}
+	
+	public void etsaiaGehitu() {
+		etsaia=new Etsaia();
+		setChanged();
+		notifyObservers("Etsaia");
 	
 	}
 	

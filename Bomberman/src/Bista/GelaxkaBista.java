@@ -35,6 +35,9 @@ public class GelaxkaBista extends JPanel implements Observer {
 	public void blokeBiguna() {
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/soft4.png")));
 	}
+	private void etsaia() {
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/doria1.png")));
+	}
 	
 	@Override
 	public void update(Observable o, Object arg) {
@@ -64,8 +67,11 @@ public class GelaxkaBista extends JPanel implements Observer {
 		else if(arg.equals("Biguna")) {
 			this.blokeBiguna();
 		}
+		else if(arg.equals("Etsaia")) {
+			this.etsaia();
+		}
 	}
-	
+
 	public void bombermanJarri(Character pNorabide) {
 		this.bombermanDago=true;
 		String pNorabideChar=pNorabide.toString();

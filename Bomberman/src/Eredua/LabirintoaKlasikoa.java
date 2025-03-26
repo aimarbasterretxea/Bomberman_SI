@@ -29,12 +29,18 @@ public class LabirintoaKlasikoa extends Labirintoa {
 				if((i == 0 && j == 0) || (i==1 && j == 0) || (i == 0 && j == 1)) {
 					//Ezer ez
 				} else if (1 == (i % 2) && 1 == (j % 2)) {
+					//Gogorra gehitu
 					unekoGelaxka.blokeaGehitu("Gogorra");
-			       // LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Bloke gogorra gehitu da", i, j, ' ', false);
 				} else if (Math.random() >= 0.4) {
+					//Biguna gehitu
 					this.blokeKop++;
 					unekoGelaxka.blokeaGehitu("Biguna");
-			        //LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Bloke biguna gehitu da", i, j, ' ', false);
+				} else if (Math.random() >= 0.9) {
+					if (etsaiKop < 6) {
+						//Etsaia gehitu
+						unekoGelaxka.etsaiaGehitu();
+						etsaiKop++;
+					}
 				}
 			}
 		}

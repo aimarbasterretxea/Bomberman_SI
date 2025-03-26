@@ -10,6 +10,7 @@ public abstract class Labirintoa extends Observable{
 	protected static int zutabea = 17;
 	protected static Bomberman bomberman;
 	protected static int blokeKop = 0;
+	protected static int etsaiKop = 0;
 	
 	//Eraikitzailea
 	public Labirintoa() {
