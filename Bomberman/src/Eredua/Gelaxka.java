@@ -61,7 +61,7 @@ public class Gelaxka extends Observable {
 	}
 	
 	public void blokeaGehitu(String pMota) {
-		bloke=BFactory.getNireBFactory().sortuBloke(pMota);
+		bloke=BLactory.getNireBFactory().sortuBloke(pMota);
 		setChanged();
 		notifyObservers(pMota);
 	

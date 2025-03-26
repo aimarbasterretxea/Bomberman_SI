@@ -1,14 +1,14 @@
 package Eredua;
 
-public class BFactory {
-	private static BFactory nBFactory=null;
+public class BLactory {
+	private static BLactory nBFactory=null;
 	
-	private BFactory() {
+	private BLactory() {
 	}
 	
-	public static BFactory getNireBFactory() {
+	public static BLactory getNireBFactory() {
 		if (nBFactory == null) {
-			nBFactory = new BFactory();
+			nBFactory = new BLactory();
 		}
 		return nBFactory;
 	}
