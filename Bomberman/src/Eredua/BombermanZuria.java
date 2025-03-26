@@ -5,6 +5,7 @@ public class BombermanZuria extends Bomberman{
 	public BombermanZuria() {
 		super();
 		this.bombaKop=10;
+		this.bombaMota="Txikia";
 	}
 	
 	//Metodoak
@@ -15,7 +16,7 @@ public class BombermanZuria extends Bomberman{
 	@Override  
 	public void bombaJarri() {
 		if (LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.getX(), this.getY()).getBomba() == false && bombaKop > 0) {
-			LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.getX(), this.getY()).bombaJarri();
+			LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.getX(), this.getY()).bombaJarri(this.bombaMota);
 			bombaKop--;
 			}	
 		LabirintoaKlasikoa.getNireLabirintoKlasikoa().bombaJarriDa(this.bombaKop);

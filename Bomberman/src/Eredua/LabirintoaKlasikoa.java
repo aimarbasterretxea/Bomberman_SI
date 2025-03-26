@@ -35,13 +35,13 @@ public class LabirintoaKlasikoa extends Labirintoa {
 					//Biguna gehitu
 					this.blokeKop++;
 					unekoGelaxka.blokeaGehitu("Biguna");
-				} else if (Math.random() >= 0.9) {
+				} /*else if (Math.random() >= 0.9) {
 					if (etsaiKop < 6) {
 						//Etsaia gehitu
 						unekoGelaxka.etsaiaGehitu();
 						etsaiKop++;
 					}
-				}
+				}*/
 			}
 		}
 	}

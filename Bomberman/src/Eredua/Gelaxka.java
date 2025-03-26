@@ -1,5 +1,6 @@
 package Eredua;
 
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -10,7 +11,6 @@ public class Gelaxka extends Observable {
 	private int x;
 	private int y;
 	private Bloke bloke;
-	private Etsaia etsaia;
 	private Bomba bomba;
 	private boolean sua;
 	private Timer timerBomba;
@@ -61,20 +61,12 @@ public class Gelaxka extends Observable {
 	}
 	
 	public void blokeaGehitu(String pMota) {
-		bloke=BLactory.getNireBFactory().sortuBloke(pMota);
+		bloke=BlokeFactory.getNireBFactory().sortuBloke(pMota);
 		setChanged();
 		notifyObservers(pMota);
 	
 	}
-	
-	public void etsaiaGehitu() {
-		etsaia=new Etsaia();
-		setChanged();
-		notifyObservers("Etsaia");
-	
-	}
-	
-	
+		
 	
 // BOMBAren METODOAK ////////////////////////////////////////////
 	
@@ -82,9 +74,9 @@ public class Gelaxka extends Observable {
 		return this.bomba instanceof Bomba;
 	}	
 	
-	public void bombaJarri() {
+	public void bombaJarri(String pMota) {
 		if(this.bomba==null) {
-			bomba=new Bomba();
+			bomba=BombaFactory.getNireBFactory().sortuBomba(pMota);
 			bombaTimer();
 			setChanged();
 			notifyObservers("BombaJarri");	
@@ -121,17 +113,16 @@ public class Gelaxka extends Observable {
 		eztanda=false;
 		this.timerBomba.cancel();
 		this.timerBomba=null;
-		bomba=null;
 		setChanged();
 		notifyObservers("BombaKendu");
-		LabirintoaKlasikoa.getNireLabirintoKlasikoa().bombaKendu(this.x, this.y);
-		
+		bomba.kalkulatuKoordenatuak(this.x, this.y);
+		bomba=null;
 	}
 	
 // SUAren METODOAK ////////////////////////////////////////////
 	
 	public boolean suaJarri() {
-		
+		boolean sua=false;
 		if(this.sua==true&&this.timerSua!=null) {
 			this.timerSua.cancel();
 			this.timerSua=null;
@@ -144,14 +135,16 @@ public class Gelaxka extends Observable {
 			this.bloke=null;
 			if (this.bomba instanceof Bomba) {
 				eztanda=true;
-			}
-			else {
-			suaTimer();
-			setChanged();
-			notifyObservers("SuaJarri");			
-		}}
+				
+			} 
+				
+				suaTimer();
+				setChanged();
+				notifyObservers("SuaJarri");			
+				
+		}
 		
-		return blokeBiguna;
+		return this.sua;
 	}
 	
 	private void suaTimer() {
@@ -167,7 +160,9 @@ public class Gelaxka extends Observable {
 	}
 	
 	public void suaKendu() {
+	    System.out.println("Sua kendu da: (" + this.x + "," + this.y + ")");
 		this.sua=false;
+		eztanda=false;
 		setChanged();
 		notifyObservers("SuaKendu");
 		if(this.timerSua!=null) {

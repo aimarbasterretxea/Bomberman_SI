@@ -10,6 +10,7 @@ public abstract class Bomberman {
 	protected int y;
 	private static Timer timer=null;
 	protected int bombaKop;
+	protected String bombaMota;
 	
 	//Eraikitzailea
 	protected Bomberman() { 
