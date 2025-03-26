@@ -1,8 +1,11 @@
 package Eredua;
 
-import Bista.LabirintoBista;
+import java.util.Observable;
 
-public class Jokua {
+import Bista.LabirintoBista;
+import Bista.Menua;
+
+public class Jokua extends Observable {
 	//Atributua
     private static Jokua nireJokua=null; 
     
@@ -20,11 +23,16 @@ public class Jokua {
     
     //Metodoa
     public void Hasieraketa() {
-        	LabirintoBista frame = LabirintoBista.getNireLabirintoBista();
+        	Menua frame1 = Menua.getNireMenua();
+        	frame1.setVisible(true);
+        	
+    		LabirintoBista frame2 = LabirintoBista.getNireLabirintoBista();
             LabirintoaKlasikoa matrizeKlasikoa = LabirintoaKlasikoa.getNireLabirintoKlasikoa();
             matrizeKlasikoa.labirintoOrokorraSortu();
+            // Hemen Labirinto Orokorra sortuta dago 
+            
             matrizeKlasikoa.labirintoaOsatu();
-            frame.setVisible(true);
+            frame2.setVisible(true);
     }
     
 	public void amaituJokua(int pY) {
