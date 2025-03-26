@@ -18,6 +18,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 	private int bombaDenbora=1;
 	private static String aurrekoNorabidea="";
 	private String norabideBerria="";
+	private boolean etsaiaDago;
 	// ERAIKITZAILEA //////////////////////////
 	public GelaxkaBista(boolean pEgoera) {
 		this.irudia = new JLabel("");
@@ -70,6 +71,8 @@ public class GelaxkaBista extends JPanel implements Observer {
 		else if(arg.equals("Etsaia")) {
 			this.etsaia();
 		}
+
+		
 	}
 
 	public void bombermanJarri(Character pNorabide) {
@@ -153,10 +156,28 @@ public class GelaxkaBista extends JPanel implements Observer {
 	}
 	
 	public void bombaKendu() {
-		this.bombaDago=false;
-		this.irudia.setIcon(null);
+		if(this.bombaDago==true) {
+			this.bombermanDago=false;
+			this.bombaJarri(bombaDenbora);
+			
+		}
+		else {
+			this.irudia.setIcon(null);
+			this.bombermanDago=false;
+		}
 	}
 
-	/*public void norabideBomberman() {
-	}*/
+
+	public void etsaiaKendu() {
+		this.irudia.setIcon(null);
+		this.etsaiaDago=false;
+	}
+	
+	public void etsaiaJarri(Character pNorabide) {
+		this.etsaiaDago=true;
+		String pNorabideChar=pNorabide.toString();
+	    norabideBerria="1";
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/doria"+norabideBerria+".png")));
+		aurrekoNorabidea=norabideBerria;
+	}
 }

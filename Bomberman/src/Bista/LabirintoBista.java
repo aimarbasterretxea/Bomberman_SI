@@ -109,6 +109,14 @@ public class LabirintoBista extends JFrame implements Observer {
         return (GelaxkaBista) panelMatrize.getComponent(x * 17 + y);
     }
     
+    public void mugituEtsaia(int hX, int hY, Character pNorabide, boolean mugitu, int aurrekoX, int aurrekoY) {	//AQUI EL PROBLEMA
+    	if (mugitu==true){
+    		bilatuGelaxka(aurrekoX,aurrekoY).etsaiaKendu();
+    	}
+    	
+    	bilatuGelaxka(hX, hY).etsaiaJarri(pNorabide);
+    }
+    
     public void mugituBomberman(int hX, int hY, Character pNorabide, boolean mugitu) {
     	if (mugitu==true){
     	bilatuGelaxka(x, y).bombermanKendu();
@@ -118,7 +126,8 @@ public class LabirintoBista extends JFrame implements Observer {
     	this.x=hX;
     	this.y=hY;
     }
-
+   
+    
     // Controlador de teclado separado de "Controler"
     private class Kontroladorea extends Observable implements KeyListener {
         @Override
@@ -182,7 +191,15 @@ public class LabirintoBista extends JFrame implements Observer {
 				int j = (int) obj[2];
 				char norabide = (char) obj[3];
 				boolean mugitu = (boolean) obj[4];
-				this.mugituBomberman(i, j, norabide,mugitu);;
+				this.mugituBomberman(i, j, norabide,mugitu);
+			} else if (obj[0].equals("MoveEtsaia")) {
+				int i = (int) obj[1];
+				int j = (int) obj[2];
+				char norabide = (char) obj[3];
+				boolean mugitu = (boolean) obj[4];
+				int aurrekoX = (int) obj[5];
+				int aurrekoY = (int) obj[6];
+				this.mugituEtsaia(i, j, norabide,mugitu, aurrekoX, aurrekoY);
 			} else if (obj[0].equals("BombaJarri")) {
 				int i = (int) obj[1];
 				this.eguneratuBombaKop(i);
@@ -211,6 +228,13 @@ public class LabirintoBista extends JFrame implements Observer {
 			else if (obj[0].equals("Biratu")){
 				this.mugituBomberman(x, y, (char) obj[3],false);
 			}
+			/*else if (obj[0].equals("MoveEtsaia")) {
+				int i = (int) obj[1];
+				int j = (int) obj[2];
+				char norabide = (char) obj[3];
+				boolean mugitu = (boolean) obj[4];
+				this.mugituEtsaia(i, j, norabide,mugitu);
+			}*/
 		} 
 
 		
