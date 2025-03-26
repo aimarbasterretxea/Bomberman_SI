@@ -10,16 +10,16 @@ public class Gelaxka extends Observable {
 	private int x;
 	private int y;
 	private Bloke bloke;
-	private Etsaia etsaia;
 	private Bomba bomba;
 	private boolean sua;
+	private boolean etsaia;
 	private Timer timerBomba;
 	private Timer timerSua;
 	private int kont;
 	private boolean eztanda;
 	
 	
-	//Eraikitzaileka
+	//Eraikitzailea
 	public Gelaxka(int pX, int pY) {
 		this.x=pX;
 		this.y=pY;
@@ -52,7 +52,7 @@ public class Gelaxka extends Observable {
 	
 	//Metodoak
 	public boolean hutsaDa() {
-		if (this.bloke==null&&this.bomba==null) {
+		if (this.bloke==null&&this.bomba==null&&!this.etsaia) {
 			return true;
 		}
 		else {
@@ -65,16 +65,7 @@ public class Gelaxka extends Observable {
 		setChanged();
 		notifyObservers(pMota);
 	
-	}
-	
-	public void etsaiaGehitu() {
-		etsaia=new Etsaia();
-		setChanged();
-		notifyObservers("Etsaia");
-	
-	}
-	
-	
+	}	
 	
 // BOMBAren METODOAK ////////////////////////////////////////////
 	
@@ -174,6 +165,10 @@ public class Gelaxka extends Observable {
 			this.timerSua.cancel();
 		}
 		this.timerSua=null;
+	}
+
+	public boolean getEtsaia() {
+		return this.etsaia;
 	}
 	
 }

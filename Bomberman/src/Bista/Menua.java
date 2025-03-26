@@ -114,11 +114,8 @@ public class Menua extends JFrame implements Observer {
 		blackBomber.addActionListener(kontroladorea);
 		contentPane.add(blackBomber);
 		
-		JButton jolastuButton = new JButton("Jolastu");
-		jolastuButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		jolastuButton = new JButton("Jolastu");
+		jolastuButton.addActionListener(kontroladorea);
 		jolastuButton.setBounds(311, 215, 85, 21);
 		contentPane.add(jolastuButton);
 		
@@ -169,7 +166,7 @@ public class Menua extends JFrame implements Observer {
 	   		}
        		if(jatorria == whiteBomber) {
        			bomberAukera = "White";
-	   		}
+       		}
        		
        		if(jatorria == jolastuButton) {
        			menuaItxi();

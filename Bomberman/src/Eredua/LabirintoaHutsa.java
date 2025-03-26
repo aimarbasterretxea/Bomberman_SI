@@ -28,13 +28,13 @@ public class LabirintoaHutsa extends Labirintoa{
 					//Ezer ez
 				}
 				else if (Math.random() >= 0.95) {
-					if (etsaiKop < 10) {
+					if (this.getEtsaiak().size() < 10) {
 						//Etsaia gehitu
-						unekoGelaxka.etsaiaGehitu();
-						etsaiKop++;
+						this.etsaiak.add(new Etsaia(i,j));
 					}
 				}
 			}
 		}
+		etsaiaTimer();
 	}
 }

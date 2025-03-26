@@ -32,14 +32,14 @@ public class LabirintoaBiguna extends Labirintoa{
 					//Biguna gehitu
 				}
 				else if (Math.random() >= 0.9) {
-					if (etsaiKop < 8) {
-						unekoGelaxka.etsaiaGehitu();
+					if (this.getEtsaiak().size() < 8) {
 						//Etsaia gehitu
-						etsaiKop++;
+						this.etsaiak.add(new Etsaia(i,j));
 					}
 				}
 				
 			}
 		}
+		etsaiaTimer();
 	}
 }
