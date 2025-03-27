@@ -90,7 +90,7 @@ public abstract class Bomberman {
 	    if (posizioaBaliozkoaDa(xBerria, yBerria) && posizioaLibreaDa(xBerria, yBerria)) {
 	        this.x = xBerria;
 	        this.y = yBerria;
-			if(LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.x,this.y).getSua()) {
+			if(LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.x,this.y).getSua()!=null) {
 			LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Move", x, y, norabide,true);	
 	        this.bombermanHil();
 			}
@@ -102,7 +102,7 @@ public abstract class Bomberman {
 
 	    }
 	}
-
+	
 	private boolean posizioaBaliozkoaDa(int x, int y) {
 	    return x >= 0 && x < 11 && y >= 0 && y < 17;
 	}

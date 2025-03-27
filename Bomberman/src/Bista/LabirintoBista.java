@@ -38,6 +38,7 @@ public class LabirintoBista extends JFrame implements Observer {
     // ERAIKITZAILEA ////////////////
     private LabirintoBista() {
     	LabirintoaKlasikoa.getNireLabirintoKlasikoa().addObserver(this);
+    	System.out.println();
         setTitle("BomberMan");
         setIconImage(Toolkit.getDefaultToolkit().getImage(LabirintoBista.class.getResource("/irudiak/blackfront1.png")));
         
@@ -126,8 +127,6 @@ public class LabirintoBista extends JFrame implements Observer {
     	this.y=hY;
     }
    
-    
-    // Controlador de teclado separado de "Controler"
 	private Kontroladorea getKontroladorea() {
 		if (kontroladorea == null) {
 			kontroladorea = new Kontroladorea();
@@ -183,7 +182,7 @@ public class LabirintoBista extends JFrame implements Observer {
 			
 		} else if (arg instanceof Object[]) {
 			Object[] obj = (Object[]) arg;
-			if (obj[0].equals("Bloke gogorra gehitu da")) {
+		/*	if (obj[0].equals("Bloke gogorra gehitu da")) {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
 				this.bilatuGelaxka(i, j).blokeGogorra();
@@ -191,7 +190,7 @@ public class LabirintoBista extends JFrame implements Observer {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
 				this.bilatuGelaxka(i, j).blokeBiguna();
-			} else if (obj[0].equals("Move")) {
+			} else*/ if (obj[0].equals("Move")) {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
 				char norabide = (char) obj[3];
@@ -208,6 +207,10 @@ public class LabirintoBista extends JFrame implements Observer {
 			} else if (obj[0].equals("BombaJarri")) {
 				int i = (int) obj[1];
 				this.eguneratuBombaKop(i);
+			} else if(obj[0].equals("EtsaiaHil")) {
+				int i = (int) obj[1];
+				int j = (int) obj[2];
+				this.bilatuGelaxka(i, j).etsaiaKendu();
 			} else if(obj[0].equals("Jokua amaitu da")) {
 				String izenburua;
 				String mezua;

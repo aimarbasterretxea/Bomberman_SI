@@ -1,6 +1,7 @@
 package Eredua;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BombaTxikia extends Bomba{
 	@Override
@@ -19,6 +20,10 @@ public class BombaTxikia extends Bomba{
 	        if (berriaX >= 0 && berriaX <= 10 && berriaY >= 0 && berriaY <= 16) {
 	            sutea.add(new int[]{berriaX, berriaY});
 	        }
+	    }
+	    System.out.println("BombaTxikia: ");
+	    for (int[] koord : sutea) {
+	        System.out.println(Arrays.toString(koord));
 	    }
 	    LabirintoaKlasikoa.getNireLabirintoKlasikoa().bombaKendu(sutea);
 	    return sutea;
