@@ -30,6 +30,7 @@ public class Jokua extends Observable {
     public void jokuaHasieratu(String labirintoMota, String bomberMota) {
 		//Labirintoa.getNireLabirintoa().labirintoaOsatu(labirintoMota, bomberMota);
     	System.out.println("Jokua: Jokua hasieratzen saiatu da");
+    	
     	Generator.getNireGenerator().sortuLabirintoa(labirintoMota);
     	LabirintoBista frame2 = LabirintoBista.getNireLabirintoBista();
         BombermanFactory.getBombermanFactory().sortuBomberman(bomberMota);
@@ -37,6 +38,7 @@ public class Jokua extends Observable {
         // Hemen Labirinto Orokorra sortuta dago 
         
     	frame2.setVisible(true);
+    	Generator.getNireGenerator().getLabirintoa().labirintoaOsatu();
     	
 	}
     

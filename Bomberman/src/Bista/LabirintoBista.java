@@ -174,9 +174,20 @@ public class LabirintoBista extends JFrame implements Observer {
 		GelaxkaBista gelaxka;
 		
 		
-			
-		
-		 if (arg instanceof Object[]) {
+		System.out.println("LabirintoBista: gelaxkabista gehitzen");
+		if (arg.equals("Matrizea sortu da")) {
+		for (int i = 0; i < 11; i++) {
+			for (int j = 0; j < 17; j++) {
+				gelaxka=new GelaxkaBista(false);
+				this.gehituGelaxka(gelaxka);
+				Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(i, j).addObserver(gelaxka);
+			}
+		}
+		bilatuGelaxka(0,0).bombermanJarri('H');
+		this.x = 0;
+		this.y = 0;
+		}
+		else if (arg instanceof Object[]) {
 			Object[] obj = (Object[]) arg;
 			
 			if (obj[0].equals("Bloke gogorra gehitu da")) {
@@ -229,19 +240,9 @@ public class LabirintoBista extends JFrame implements Observer {
 			else if (obj[0].equals("Biratu")){
 				this.mugituBomberman(x, y, (char) obj[3],false);
 			}
-			else {
-				System.out.println("LabirintoBista: gelaxkabista gehitzen");
-				for (int i = 0; i < 11; i++) {
-					for (int j = 0; j < 17; j++) {
-						gelaxka=new GelaxkaBista(false);
-						this.gehituGelaxka(gelaxka);
-						Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(i, j).addObserver(gelaxka);
-					}
-				}
-				bilatuGelaxka(0,0).bombermanJarri('H');
-				this.x = 0;
-				this.y = 0;
-			}
+			
+				
+			
 			/*else if (obj[0].equals("MoveEtsaia")) {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
