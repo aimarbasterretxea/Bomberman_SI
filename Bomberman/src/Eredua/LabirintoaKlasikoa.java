@@ -19,10 +19,12 @@ public class LabirintoaKlasikoa extends Labirintoa {
 	//Metodoak
 	@Override
 	public void labirintoaOsatu() {
-		Gelaxka[][] labirintoa = this.getLabirintoa();
+		Labirintoa labirintoa = Generator.getNireGenerator().getLabirintoa();
+		setChanged();
+		notifyObservers("Matrizea sortu da");
 		for (int i = 0; i < errenkada; i++) {
 			for (int j = 0; j < zutabea; j++) {
-				Gelaxka unekoGelaxka = labirintoa[i][j];
+				Gelaxka unekoGelaxka = labirintoa.bilatuGelaxka(i, j);
 				//unekoGelaxka.addObserver(LabirintoBista.getNireLabirintoBista().bilatuGelaxka(i, j));
 				if((i == 0 && j == 0) || (i==1 && j == 0) || (i == 0 && j == 1)) {
 					//Ezer ez
@@ -44,7 +46,6 @@ public class LabirintoaKlasikoa extends Labirintoa {
 			}
 		}
 		etsaiaTimer();
-		setChanged();
-		notifyObservers("Matrizea sortu da");
+		
 	}
 }
