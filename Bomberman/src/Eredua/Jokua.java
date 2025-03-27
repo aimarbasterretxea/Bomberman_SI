@@ -34,11 +34,12 @@ public class Jokua extends Observable {
     	Generator.getNireGenerator().sortuLabirintoa(labirintoMota);
     	LabirintoBista frame2 = LabirintoBista.getNireLabirintoBista();
     	Generator.getNireGenerator().getLabirintoa().sortuBomberman(bomberMota);
+    	Generator.getNireGenerator().getLabirintoa().osatuHasi();
     	
         // Hemen Labirinto Orokorra sortuta dago 
         
     	frame2.setVisible(true);
-    	Generator.getNireGenerator().getLabirintoa().labirintoaOsatu();
+    	//Generator.getNireGenerator().getLabirintoa().labirintoaOsatu();
     	
 	}
     

@@ -7,7 +7,7 @@ public class LabirintoaBiguna extends Labirintoa{
 	
 	//Eraikitzailea
 	private LabirintoaBiguna() {
-		super();		
+		super(new OsatuBiguna());		
 	}
 	
 	//Geterra

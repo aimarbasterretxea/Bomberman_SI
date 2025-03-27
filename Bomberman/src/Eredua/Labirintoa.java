@@ -16,9 +16,9 @@ public abstract class Labirintoa extends Observable{
 	protected static ArrayList<Etsaia> etsaiak = new ArrayList<Etsaia>();
 	protected static int blokeKop = 0;
 	private Timer timerEtsaia;
-	
+	private OsatuPortaera osatuPortaera;
 	//Eraikitzailea
- 	public Labirintoa() {
+ 	protected Labirintoa(OsatuPortaera pOPortaera) {
  		
  		labirintoa = new Gelaxka[errenkada][zutabea];
  		for (int i = 0; i < errenkada; i++) {
@@ -26,7 +26,14 @@ public abstract class Labirintoa extends Observable{
  				labirintoa[i][j]= new Gelaxka(i,j);
  			}
  		}
+ 		osatuPortaera=pOPortaera;
+ 		
  		System.out.println("Labirintoa: Labirinto hutsa sortu da");
+ 	
+ 	}
+ 	
+ 	public void osatuHasi() {
+ 		osatuPortaera.osatu();
  	}
  	
  	public void sortuBomberman(String pMota) {

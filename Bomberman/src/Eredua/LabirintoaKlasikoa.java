@@ -7,7 +7,7 @@ public class LabirintoaKlasikoa extends Labirintoa {
 	
 	//Eraikitzailea
 	public LabirintoaKlasikoa() {
-		super();	
+		super(new OsatuKlasikoa());	
 		System.out.println("LabirintoaKlasikoa: Osatuta");
 	}
 	
