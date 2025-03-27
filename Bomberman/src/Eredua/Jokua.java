@@ -33,7 +33,7 @@ public class Jokua extends Observable {
     	
     	Generator.getNireGenerator().sortuLabirintoa(labirintoMota);
     	LabirintoBista frame2 = LabirintoBista.getNireLabirintoBista();
-        BombermanFactory.getBombermanFactory().sortuBomberman(bomberMota);
+    	Generator.getNireGenerator().getLabirintoa().sortuBomberman(bomberMota);
     	
         // Hemen Labirinto Orokorra sortuta dago 
         

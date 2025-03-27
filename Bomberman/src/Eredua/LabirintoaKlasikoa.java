@@ -31,8 +31,6 @@ public class LabirintoaKlasikoa extends Labirintoa {
 				} else if (1 == (i % 2) && 1 == (j % 2)) {
 					//Gogorra gehitu
 					unekoGelaxka.blokeaGehitu("Gogorra");
-					System.out.println("Gogorra");
-
 				} else if (Math.random() >= 0.4) {
 					//Biguna gehitu
 					this.blokeKop++;
