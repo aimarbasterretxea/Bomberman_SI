@@ -15,11 +15,11 @@ public class BombermanZuria extends Bomberman{
 	
 	@Override  
 	public void bombaJarri() {
-		if (LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.getX(), this.getY()).getBomba() == false && bombaKop > 0) {
-			LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.getX(), this.getY()).bombaJarri(this.bombaMota);
+		if (Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.getX(), this.getY()).getBomba() == false && bombaKop > 0) {
+			Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.getX(), this.getY()).bombaJarri(this.bombaMota);
 			bombaKop--;
 			}	
-		LabirintoaKlasikoa.getNireLabirintoKlasikoa().bombaJarriDa(this.bombaKop);
+		Generator.getNireGenerator().getLabirintoa().bombaJarriDa(this.bombaKop);
 		super.eguneratuBombaKop();
 	}
 }  

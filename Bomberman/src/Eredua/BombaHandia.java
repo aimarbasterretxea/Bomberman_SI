@@ -24,7 +24,7 @@ public class BombaHandia extends Bomba {
 	        	}
 	        }
 	    }
-	    LabirintoaKlasikoa.getNireLabirintoKlasikoa().bombaKendu(sutea);
+	    Generator.getNireGenerator().getLabirintoa().bombaKendu(sutea);
 	    return sutea;
 	}
 }

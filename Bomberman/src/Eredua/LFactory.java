@@ -6,22 +6,27 @@ public class LFactory {
 	private LFactory() {
 	}
 	
-	public static LFactory getNireBFactory() {
+	public static LFactory getNireLFactory() {
 		if (nLFactory == null) {
 			nLFactory = new LFactory();
 		}
 		return nLFactory;
 	}
 	public Labirintoa sortuLabirintoa(String pMota) {
-		Labirintoa nireLabirintoa = null;
-        if (pMota.equals("Klasikoa")) {
+    	System.out.println("LFactory: Sortu labirintoa sartu da");
+    	System.out.println(pMota);
+
+		Labirintoa nireLabirintoa =null;
+     
+		if (pMota.equals("Klasikoa")) {
+        	System.out.println("LFactory: Klasikoa sortu da");
         	nireLabirintoa = new LabirintoaKlasikoa();
 		}
 		else if (pMota.equals("Biguna")) {
-			nireLabirintoa = new LabirintoaBiguna();
+			//nireLabirintoa = new LabirintoaBiguna();
 		}
 		else if (pMota.equals("Hutsa")) {
-			nireLabirintoa = new LabirintoaHutsa();
+			//nireLabirintoa = new LabirintoaHutsa();
 		}
 		return nireLabirintoa;
 	}

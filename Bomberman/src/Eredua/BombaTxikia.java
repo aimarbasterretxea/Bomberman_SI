@@ -20,7 +20,7 @@ public class BombaTxikia extends Bomba{
 	            sutea.add(new int[]{berriaX, berriaY});
 	        }
 	    }
-	    LabirintoaKlasikoa.getNireLabirintoKlasikoa().bombaKendu(sutea);
+	    Generator.getNireGenerator().getLabirintoa().bombaKendu(sutea);
 	    return sutea;
 	}
 }

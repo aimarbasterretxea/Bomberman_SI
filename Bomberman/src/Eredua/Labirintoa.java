@@ -19,7 +19,17 @@ public abstract class Labirintoa extends Observable{
 	
 	//Eraikitzailea
 	public Labirintoa() {
-		this.labirintoa=null;
+		labirintoa = new Gelaxka[errenkada][zutabea];
+		for (int i = 0; i < errenkada; i++) {
+			for (int j = 0; j < zutabea; j++) {
+				labirintoa[i][j]= new Gelaxka(i,j);
+			}
+		}
+		this.bomberman=new BombermanZuria();
+		setChanged();
+		notifyObservers("Matrizea sortu da");	
+		
+		System.out.println("Labirintoa: Labirinto hutsa sortu da");
 	}
 	
 	//Geterrak
@@ -33,7 +43,7 @@ public abstract class Labirintoa extends Observable{
 		return bomberman;
 	}
 	
-	public  void labirintoOrokorraSortu() {
+	/*public  void labirintoOrokorraSortu() {
 		labirintoa = new Gelaxka[errenkada][zutabea];
 		for (int i = 0; i < errenkada; i++) {
 			for (int j = 0; j < zutabea; j++) {
@@ -43,7 +53,7 @@ public abstract class Labirintoa extends Observable{
 		this.bomberman=new BombermanZuria();
 		setChanged();
 		notifyObservers("Matrizea sortu da");
-	}
+	}*/
 	
 	public ArrayList<Etsaia> getEtsaiak() {
 		return etsaiak;

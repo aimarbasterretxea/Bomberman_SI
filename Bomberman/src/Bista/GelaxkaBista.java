@@ -64,6 +64,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 		}
 		else if(arg.equals("Gogorra")) {
 			this.blokeGogorra();
+			System.out.println("Bistan: bloke gogorra jarri da");
 		}
 		else if(arg.equals("Biguna")) {
 			this.blokeBiguna();
@@ -156,15 +157,8 @@ public class GelaxkaBista extends JPanel implements Observer {
 	}
 	
 	public void bombaKendu() {
-		if(this.bombaDago==true) {
-			this.bombermanDago=false;
-			this.bombaJarri(bombaDenbora);
-			
-		}
-		else {
-			this.irudia.setIcon(null);
-			this.bombermanDago=false;
-		}
+		this.bombaDago=false;
+		this.irudia.setIcon(null);
 	}
 
 

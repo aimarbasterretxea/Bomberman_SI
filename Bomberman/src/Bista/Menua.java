@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.event.ActionEvent;
@@ -36,8 +38,8 @@ public class Menua extends JFrame implements Observer {
 	
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private final ButtonGroup buttonGroup = new ButtonGroup();
-	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
+	private final ButtonGroup buttonGroup;
+	private final ButtonGroup buttonGroup_1;
 
 	/**
 	 * Launch the application.
@@ -60,8 +62,8 @@ public class Menua extends JFrame implements Observer {
 	 */
 	public Menua() {
 		Jokua.getJokua().addObserver(this);
-		kontroladorea = new Kontroladorea();
-	
+		buttonGroup = new ButtonGroup();
+		buttonGroup_1 = new ButtonGroup();
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(Menua.class.getResource("/irudiak/blackfront1.png")));
 		setAlwaysOnTop(true);
@@ -81,19 +83,19 @@ public class Menua extends JFrame implements Observer {
 		classicButton = new JRadioButton("Classic");
 		buttonGroup.add(classicButton);
 		classicButton.setBounds(119, 135, 57, 21);
-		classicButton.addActionListener(getKontroladorea());
+		classicButton.addItemListener(getKontroladorea());
 		contentPane.add(classicButton);
 		
 		softButton = new JRadioButton("Soft");
 		buttonGroup.add(softButton);
 		softButton.setBounds(178, 135, 43, 21);
-		softButton.addActionListener(getKontroladorea());
+		softButton.addItemListener(getKontroladorea());
 		contentPane.add(softButton);
 		
 		emptyButton = new JRadioButton("Empty");
 		buttonGroup.add(emptyButton);
 		emptyButton.setBounds(237, 135, 57, 21);
-		emptyButton.addActionListener(getKontroladorea());
+		emptyButton.addItemListener(getKontroladorea());
 		contentPane.add(emptyButton);
 		
 		JLabel lblNewLabel_2 = new JLabel("Bomberman");
@@ -103,13 +105,13 @@ public class Menua extends JFrame implements Observer {
 		whiteBomber = new JRadioButton("White");
 		buttonGroup_1.add(whiteBomber);
 		whiteBomber.setBounds(118, 184, 57, 21);
-		whiteBomber.addActionListener(getKontroladorea());
+		whiteBomber.addItemListener(getKontroladorea());
 		contentPane.add(whiteBomber);
 		
 		blackBomber = new JRadioButton("Black");
 		buttonGroup_1.add(blackBomber);
 		blackBomber.setBounds(184, 184, 57, 21);
-		blackBomber.addActionListener(getKontroladorea());
+		blackBomber.addItemListener(getKontroladorea());
 		contentPane.add(blackBomber);
 		
 		jolastuButton = new JButton("Jolastu");
@@ -150,44 +152,48 @@ public class Menua extends JFrame implements Observer {
 		return kontroladorea;
 	}
 
-	private class Kontroladorea extends Observable implements ActionListener {
-       
-       	@Override
-		public void actionPerformed(ActionEvent e) {
-       		Object jatorria = e.getSource();
-       		String labAukera = "";
-       		String bomberAukera = "";
-       		
-       		if(jatorria == classicButton) {
-       			labAukera = "Classic";
-       		}
-       		if(jatorria == softButton) {
-       			labAukera = "Soft";
-       		}
-       		if(jatorria == emptyButton) {
-       			labAukera = "Empty";
-       		}
-       		if(jatorria == blackBomber) {
-       			bomberAukera = "Black";
-	   		}
-       		if(jatorria == whiteBomber) {
-       			bomberAukera = "White";
-       		}
-       		
-       		if(jatorria == jolastuButton) {
-       			menuaItxi();
-       			System.out.println("Jolastu botoia sakatu duzu");
-	   			Jokua.getJokua().jokuaHasieratu(labAukera, bomberAukera);
-	   			
-	   		}
-			// TODO Auto-generated method stub
-			
-		}
+	private class Kontroladorea extends Observable implements ActionListener, ItemListener {
+	    private String labAukera = "";
+	    private String bomberAukera = "";
 
-	
-			
-		}
+	    @Override
+	    public void actionPerformed(ActionEvent e) {
+	        Object jatorria = e.getSource();
+	        if (jatorria == jolastuButton) {
+	            menuaItxi();
+	            System.out.println("Jolastu botoia sakatu duzu");
+	            System.out.println("Zure aukerak:");
+	            System.out.println(labAukera);
+	            System.out.println(bomberAukera);
+	            Jokua.getJokua().jokuaHasieratu(labAukera, bomberAukera);
+	        }
+	    }
 
-
+	    public void itemStateChanged(ItemEvent e) {
+	        Object jatorria = e.getSource();
+	        if (e.getStateChange() == ItemEvent.SELECTED) {
+	            if (jatorria == classicButton) {
+	                labAukera = "Klasikoa";
+	                System.out.println("Classic selected");
+	            }
+	            if (jatorria == softButton) {
+	                labAukera = "Biguna";
+	                System.out.println("Soft selected");
+	            }
+	            if (jatorria == emptyButton) {
+	                labAukera = "Hutsa";
+	                System.out.println("Empty selected");
+	            }
+	            if (jatorria == blackBomber) {
+	                bomberAukera = "Beltza";
+	                System.out.println("Black Bomber selected");
+	            }
+	            if (jatorria == whiteBomber) {
+	                bomberAukera = "Zuria";
+	                System.out.println("White Bomber selected");
+	            }
+	        }
+	    }
+	}
 
 }

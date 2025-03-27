@@ -28,7 +28,7 @@ public abstract class Bomberman {
         if (bombaKop == 0) { 
             bombaKop = 1; 
             //LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.x, this.y).bombaJarri();
-	       LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("BombaJarri", bombaKop, -1, ' ',false);
+            Generator.getNireGenerator().getLabirintoa().setChanged("BombaJarri", bombaKop, -1, ' ',false);
             if (timer != null) {
                 timer.cancel(); // Gelditu Timer
                 timer = null; // Berrabiarazi Timer
@@ -61,7 +61,7 @@ public abstract class Bomberman {
 	
 	//Metodoak
 	private void bombermanHil(){
-		LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.x,this.y).suaKendu();
+		Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.x,this.y).suaKendu();
 		Jokua.getJokua().amaituJokua(1);
 	}
 	
@@ -90,15 +90,15 @@ public abstract class Bomberman {
 	    if (posizioaBaliozkoaDa(xBerria, yBerria) && posizioaLibreaDa(xBerria, yBerria)) {
 	        this.x = xBerria;
 	        this.y = yBerria;
-			if(LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.x,this.y).getSua()) {
-			LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Move", x, y, norabide,true);	
+			if(Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.x,this.y).getSua()) {
+			Generator.getNireGenerator().getLabirintoa().setChanged("Move", x, y, norabide,true);	
 	        this.bombermanHil();
 			}
-	        LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Move", x, y, norabide,true);
+			Generator.getNireGenerator().getLabirintoa().setChanged("Move", x, y, norabide,true);
 	        
 	    }
 	    else {
-	        LabirintoaKlasikoa.getNireLabirintoKlasikoa().setChanged("Biratu", x, y, norabide,false);
+	    	Generator.getNireGenerator().getLabirintoa().setChanged("Biratu", x, y, norabide,false);
 
 	    }
 	}
@@ -108,7 +108,7 @@ public abstract class Bomberman {
 	}
 
 	private boolean posizioaLibreaDa(int x, int y) {
-	    Gelaxka gelaxka = LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(x, y);
+	    Gelaxka gelaxka = Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(x, y);
 	    return gelaxka.getBloke() == null && gelaxka.getBomba() == false;
 	}
 
