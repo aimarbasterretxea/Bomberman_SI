@@ -6,15 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import Eredua.Jokua;
 
 import javax.swing.JLabel;
-import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.event.ActionEvent;
@@ -25,7 +23,7 @@ import javax.swing.ButtonGroup;
 public class Menua extends JFrame implements Observer {
 
 	private static Menua nireMenua;
-	private Kontroladorea kontroladorea;
+	private Kontroladorea kontroladorea=null;
 	
 	//Botoiak
 	private JRadioButton classicButton;
@@ -83,19 +81,19 @@ public class Menua extends JFrame implements Observer {
 		classicButton = new JRadioButton("Classic");
 		buttonGroup.add(classicButton);
 		classicButton.setBounds(119, 135, 57, 21);
-		classicButton.addActionListener(kontroladorea);
+		classicButton.addActionListener(getKontroladorea());
 		contentPane.add(classicButton);
 		
 		softButton = new JRadioButton("Soft");
 		buttonGroup.add(softButton);
 		softButton.setBounds(178, 135, 43, 21);
-		softButton.addActionListener(kontroladorea);
+		softButton.addActionListener(getKontroladorea());
 		contentPane.add(softButton);
 		
 		emptyButton = new JRadioButton("Empty");
 		buttonGroup.add(emptyButton);
 		emptyButton.setBounds(237, 135, 57, 21);
-		emptyButton.addActionListener(kontroladorea);
+		emptyButton.addActionListener(getKontroladorea());
 		contentPane.add(emptyButton);
 		
 		JLabel lblNewLabel_2 = new JLabel("Bomberman");
@@ -105,17 +103,17 @@ public class Menua extends JFrame implements Observer {
 		whiteBomber = new JRadioButton("White");
 		buttonGroup_1.add(whiteBomber);
 		whiteBomber.setBounds(118, 184, 57, 21);
-		whiteBomber.addActionListener(kontroladorea);
+		whiteBomber.addActionListener(getKontroladorea());
 		contentPane.add(whiteBomber);
 		
 		blackBomber = new JRadioButton("Black");
 		buttonGroup_1.add(blackBomber);
 		blackBomber.setBounds(184, 184, 57, 21);
-		blackBomber.addActionListener(kontroladorea);
+		blackBomber.addActionListener(getKontroladorea());
 		contentPane.add(blackBomber);
 		
 		jolastuButton = new JButton("Jolastu");
-		jolastuButton.addActionListener(kontroladorea);
+		jolastuButton.addActionListener(getKontroladorea());
 		jolastuButton.setBounds(311, 215, 85, 21);
 		contentPane.add(jolastuButton);
 		
@@ -142,6 +140,14 @@ public class Menua extends JFrame implements Observer {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	//KONTROLADOREA
+	private Kontroladorea getKontroladorea() {
+		if (kontroladorea == null) {
+			kontroladorea = new Kontroladorea();
+		}
+		return kontroladorea;
 	}
 
 	private class Kontroladorea extends Observable implements ActionListener {

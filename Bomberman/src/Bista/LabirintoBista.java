@@ -27,7 +27,7 @@ public class LabirintoBista extends JFrame implements Observer {
     private static JPanel panelMatrize;
     private static JPanel panelInfo;
     private static LabirintoBista nireLabirintoBista;
-    private Kontroladorea kontroladorea; // Controlador de teclado
+    private Kontroladorea kontroladorea = null; // Controlador de teclado
     private static int x;
     private static int y;
     private JLabel irudia;
@@ -77,8 +77,7 @@ public class LabirintoBista extends JFrame implements Observer {
         irudia.add(panelMatrize, BorderLayout.CENTER); 
 
         //Kontroladorea
-        kontroladorea = new Kontroladorea();
-        addKeyListener(kontroladorea);
+        addKeyListener(getKontroladorea());
         requestFocusInWindow(); 
         }
      
@@ -129,26 +128,32 @@ public class LabirintoBista extends JFrame implements Observer {
    
     
     // Controlador de teclado separado de "Controler"
+	private Kontroladorea getKontroladorea() {
+		if (kontroladorea == null) {
+			kontroladorea = new Kontroladorea();
+		}
+		return kontroladorea;
+	}
+
     private class Kontroladorea extends Observable implements KeyListener {
         @Override
         public void keyPressed(KeyEvent e) {
             int keyCode = e.getKeyCode();
-            Eredua.LabirintoaKlasikoa labirintoa = Eredua.LabirintoaKlasikoa.getNireLabirintoKlasikoa();
             switch (keyCode) {
                 case KeyEvent.VK_W:
-                    labirintoa.mugituBomberman('W');
+                	Eredua.LabirintoaKlasikoa.getNireLabirintoKlasikoa().mugituBomberman('W');
                     break;
                 case KeyEvent.VK_S:
-                	labirintoa.mugituBomberman('S');
+                	Eredua.LabirintoaKlasikoa.getNireLabirintoKlasikoa().mugituBomberman('S');
                     break;
                 case KeyEvent.VK_A:
-                	labirintoa.mugituBomberman('A');
+                	Eredua.LabirintoaKlasikoa.getNireLabirintoKlasikoa().mugituBomberman('A');
                     break;
                 case KeyEvent.VK_D:
-                	labirintoa.mugituBomberman('D');
+                	Eredua.LabirintoaKlasikoa.getNireLabirintoKlasikoa().mugituBomberman('D');
                     break;
                 case KeyEvent.VK_SPACE:
-                	labirintoa.getBomberman().bombaJarri();
+                	Eredua.LabirintoaKlasikoa.getNireLabirintoKlasikoa().getBomberman().bombaJarri();
 					break;
             }
         }

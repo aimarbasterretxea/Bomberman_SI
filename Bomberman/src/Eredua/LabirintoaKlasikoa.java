@@ -6,7 +6,7 @@ public class LabirintoaKlasikoa extends Labirintoa {
 	private static LabirintoaKlasikoa nireLabirintoKlasikoa;
 	
 	//Eraikitzailea
-	private LabirintoaKlasikoa() {
+	LabirintoaKlasikoa() {
 		super();		
 	}
 	

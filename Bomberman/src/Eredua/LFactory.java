@@ -15,13 +15,13 @@ public class LFactory {
 	public Labirintoa sortuLabirintoa(String pMota) {
 		Labirintoa nireLabirintoa = null;
         if (pMota.equals("Klasikoa")) {
-        	nireLabirintoa = LabirintoaKlasikoa.getNireLabirintoKlasikoa();
+        	nireLabirintoa = new LabirintoaKlasikoa();
 		}
 		else if (pMota.equals("Biguna")) {
-			nireLabirintoa = LabirintoaBiguna.getNireLabirintoaBiguna();
+			nireLabirintoa = new LabirintoaBiguna();
 		}
 		else if (pMota.equals("Hutsa")) {
-			nireLabirintoa = LabirintoaHutsa.getNireLabirintoaHutsa();
+			nireLabirintoa = new LabirintoaHutsa();
 		}
 		return nireLabirintoa;
 	}
