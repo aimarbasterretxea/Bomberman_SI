@@ -10,8 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import Eredua.Generator;
-
+import Eredua.LabirintoaKlasikoa;
 
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -38,8 +37,9 @@ public class LabirintoBista extends JFrame implements Observer {
     
     // ERAIKITZAILEA ////////////////
     private LabirintoBista() {
-     	Generator.getNireGenerator().getLabirintoa().addObserver(this);                                                 
-    	setTitle("BomberMan");
+    	Eredua.Generator.getNireGenerator().getLabirintoa().addObserver(this);
+    	System.out.println();
+        setTitle("BomberMan");
         setIconImage(Toolkit.getDefaultToolkit().getImage(LabirintoBista.class.getResource("/irudiak/blackfront1.png")));
         
         setResizable(false);
@@ -80,9 +80,6 @@ public class LabirintoBista extends JFrame implements Observer {
         //Kontroladorea
         addKeyListener(getKontroladorea());
         requestFocusInWindow(); 
-        
-
-
         }
      
     private void argazkiTamainaBerritu() {
@@ -130,8 +127,6 @@ public class LabirintoBista extends JFrame implements Observer {
     	this.y=hY;
     }
    
-    
-    // Controlador de teclado separado de "Controler"
 	private Kontroladorea getKontroladorea() {
 		if (kontroladorea == null) {
 			kontroladorea = new Kontroladorea();
@@ -173,25 +168,20 @@ public class LabirintoBista extends JFrame implements Observer {
 	public void update(Observable o, Object arg) {
 		GelaxkaBista gelaxka;
 		
-		
-		System.out.println("LabirintoBista: gelaxkabista gehitzen");
-		if (arg.equals("Matrizea sortu da")) {
-		for (int i = 0; i < 11; i++) {
-			for (int j = 0; j < 17; j++) {
-				gelaxka=new GelaxkaBista(false);
-				this.gehituGelaxka(gelaxka);
-				Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(i, j).addObserver(gelaxka);
-				System.out.println("Observer added: " + gelaxka);
-
+		if (arg.equals("Matrizea sortu da")) { 
+			for (int i = 0; i < 11; i++) {
+				for (int j = 0; j < 17; j++) {
+					gelaxka=new GelaxkaBista(false);
+					this.gehituGelaxka(gelaxka);
+					Eredua.Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(i, j).addObserver(gelaxka);
+				}
 			}
-		}
-		bilatuGelaxka(0,0).bombermanJarri('H');
-		this.x = 0;
-		this.y = 0;
-		}
-		else if (arg instanceof Object[]) {
-			Object[] obj = (Object[]) arg;
+			bilatuGelaxka(0,0).bombermanJarri('H');
+			this.x = 0;
+			this.y = 0;
 			
+		} else if (arg instanceof Object[]) {
+			Object[] obj = (Object[]) arg;
 			if (obj[0].equals("Move")) {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
@@ -209,6 +199,10 @@ public class LabirintoBista extends JFrame implements Observer {
 			} else if (obj[0].equals("BombaJarri")) {
 				int i = (int) obj[1];
 				this.eguneratuBombaKop(i);
+			} else if(obj[0].equals("EtsaiaHil")) {
+				int i = (int) obj[1];
+				int j = (int) obj[2];
+				this.bilatuGelaxka(i, j).etsaiaKendu();
 			} else if(obj[0].equals("Jokua amaitu da")) {
 				String izenburua;
 				String mezua;
@@ -234,19 +228,8 @@ public class LabirintoBista extends JFrame implements Observer {
 			else if (obj[0].equals("Biratu")){
 				this.mugituBomberman(x, y, (char) obj[3],false);
 			}
-			
-				
-			
-			/*else if (obj[0].equals("MoveEtsaia")) {
-				int i = (int) obj[1];
-				int j = (int) obj[2];
-				char norabide = (char) obj[3];
-				boolean mugitu = (boolean) obj[4];
-				this.mugituEtsaia(i, j, norabide,mugitu);
-			}*/
 		} 
 
-		
 	}
 	
 	public void eguneratuBombaKop(int pKop) {

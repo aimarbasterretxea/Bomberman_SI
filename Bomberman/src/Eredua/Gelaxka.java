@@ -12,7 +12,7 @@ public class Gelaxka extends Observable {
 	private int y;
 	private Bloke bloke;
 	private Bomba bomba;
-	private boolean sua;
+	private Sua sua;
 	private Timer timerBomba;
 	private Timer timerSua;
 	private int kont;
@@ -25,7 +25,7 @@ public class Gelaxka extends Observable {
 		this.y=pY;
 		this.bloke=null;
 		this.bomba=null;
-		this.sua=false;
+		this.sua=null;
 		this.timerBomba=null;
 		this.timerSua=null;
 		this.kont=1;
@@ -41,7 +41,7 @@ public class Gelaxka extends Observable {
 		return this.y;
 	}
 	
-	public boolean getSua() {
+	public Sua getSua() {
 		return this.sua;
 	}
 	
@@ -61,7 +61,6 @@ public class Gelaxka extends Observable {
 	}
 	
 	public void blokeaGehitu(String pMota) {
-		
 		bloke=BlokeFactory.getNireBFactory().sortuBloke(pMota);
 		setChanged();
 		notifyObservers(pMota);
@@ -122,30 +121,25 @@ public class Gelaxka extends Observable {
 	
 // SUAren METODOAK ////////////////////////////////////////////
 	
-	public boolean suaJarri() {
-		boolean sua=false;
-		if(this.sua==true&&this.timerSua!=null) {
+	public boolean suaJarri() {	
+		if(this.sua!=null&&this.timerSua!=null) {
 			this.timerSua.cancel();
 			this.timerSua=null;
 		}
 		
-		this.sua=true;
-		boolean blokeBiguna=bloke instanceof BlokeBiguna;
-		
+		this.sua=new Sua();
 		if((this.bloke instanceof BlokeBiguna || this.bloke==null)) {
 			this.bloke=null;
 			if (this.bomba instanceof Bomba) {
 				eztanda=true;
-				
-			} 
-				
-				suaTimer();
-				setChanged();
-				notifyObservers("SuaJarri");			
-				
+			}
+			suaTimer();
+			setChanged();
+			notifyObservers("SuaJarri");			
+			
 		}
 		
-		return this.sua;
+		return this.sua!=null;
 	}
 	
 	private void suaTimer() {
@@ -162,7 +156,7 @@ public class Gelaxka extends Observable {
 	
 	public void suaKendu() {
 	    System.out.println("Sua kendu da: (" + this.x + "," + this.y + ")");
-		this.sua=false;
+		this.sua=null;
 		eztanda=false;
 		setChanged();
 		notifyObservers("SuaKendu");

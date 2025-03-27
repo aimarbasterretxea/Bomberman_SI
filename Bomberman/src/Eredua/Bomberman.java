@@ -90,7 +90,7 @@ public abstract class Bomberman {
 	    if (posizioaBaliozkoaDa(xBerria, yBerria) && posizioaLibreaDa(xBerria, yBerria)) {
 	        this.x = xBerria;
 	        this.y = yBerria;
-			if(Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.x,this.y).getSua()) {
+	        if(Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.x,this.y).getSua()!=null || Generator.getNireGenerator().getLabirintoa().etsaiaDago(x,y)) {
 			Generator.getNireGenerator().getLabirintoa().setChanged("Move", x, y, norabide,true);	
 	        this.bombermanHil();
 			}
@@ -112,5 +112,12 @@ public abstract class Bomberman {
 	    return gelaxka.getBloke() == null && gelaxka.getBomba() == false;
 	}
 
-	public abstract void bombaJarri() ;
+	public void bombaJarri() {
+ 		if (Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.getX(), this.getY()).getBomba() == false && bombaKop > 0) {
+ 			Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.getX(), this.getY()).bombaJarri(this.bombaMota);
+ 			bombaKop--;
+ 			}	
+ 		Generator.getNireGenerator().getLabirintoa().bombaJarriDa(this.bombaKop);
+ 		this.eguneratuBombaKop();
+ 	}
 }

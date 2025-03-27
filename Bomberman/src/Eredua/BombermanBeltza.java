@@ -8,10 +8,5 @@ public class BombermanBeltza extends Bomberman {
 		this.bombaMota="Handia";
 	}
 
-	@Override
-	public void bombaJarri() {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

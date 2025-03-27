@@ -13,12 +13,14 @@ public class GelaxkaBista extends JPanel implements Observer {
 	private JLabel irudia;
 	private boolean bombaDago=false;
 	private boolean bombermanDago=false;
+	private boolean suaDago=false;
+	private boolean etsaiaDago = false;
 	private static final long serialVersionUID = 1L;
 	private static int pausuak=1;
 	private int bombaDenbora=1;
 	private static String aurrekoNorabidea="";
 	private String norabideBerria="";
-	private boolean etsaiaDago;
+
 	// ERAIKITZAILEA //////////////////////////
 	public GelaxkaBista(boolean pEgoera) {
 		this.irudia = new JLabel("");
@@ -49,7 +51,6 @@ public class GelaxkaBista extends JPanel implements Observer {
 				
 			}
 		}
-		else {
 		if (arg.equals("BombaKendu")) {
 			this.elementuaKendu();
 			
@@ -65,14 +66,12 @@ public class GelaxkaBista extends JPanel implements Observer {
 		}
 		else if(arg.equals("Gogorra")) {
 			this.blokeGogorra();
-			System.out.println("Bistan: bloke gogorra jarri da");
 		}
 		else if(arg.equals("Biguna")) {
 			this.blokeBiguna();
 		}
 		else if(arg.equals("Etsaia")) {
 			this.etsaia();
-		}
 		}
 		
 	}
@@ -139,6 +138,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 	}
 	
 	public void suaJarri() {
+		this.suaDago=true;
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/kaBomb5.png")));
 	}
 	
@@ -151,6 +151,9 @@ public class GelaxkaBista extends JPanel implements Observer {
 		else {
 			if (this.bombermanDago==true) {
 			this.bombermanDago=false;}
+			else if (this.suaDago==true) {
+				this.suaDago=false;
+			}
 			this.irudia.setIcon(null);
 			
 		}
@@ -164,14 +167,21 @@ public class GelaxkaBista extends JPanel implements Observer {
 
 
 	public void etsaiaKendu() {
-		this.irudia.setIcon(null);
+		if (suaDago==false) {
+			this.irudia.setIcon(null);
+		}
 		this.etsaiaDago=false;
 	}
 	
 	public void etsaiaJarri(Character pNorabide) {
 		this.etsaiaDago=true;
-		String pNorabideChar=pNorabide.toString();
-	    norabideBerria="1";
+		if (pNorabide.equals('D')) {
+			norabideBerria="1";
+		}
+		else {
+			 norabideBerria="2";
+		}
+	   
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/doria"+norabideBerria+".png")));
 		aurrekoNorabidea=norabideBerria;
 	}

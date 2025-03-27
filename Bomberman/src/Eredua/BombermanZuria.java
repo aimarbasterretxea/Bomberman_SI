@@ -8,19 +8,5 @@ public class BombermanZuria extends Bomberman{
 		this.bombaMota="Txikia";
 	}
 	
-	//Metodoak
-	public void bombermanHil() {
-		
-	}
-	
-	@Override  
-	public void bombaJarri() {
-		if (Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.getX(), this.getY()).getBomba() == false && bombaKop > 0) {
-			Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.getX(), this.getY()).bombaJarri(this.bombaMota);
-			bombaKop--;
-			}	
-		Generator.getNireGenerator().getLabirintoa().bombaJarriDa(this.bombaKop);
-		super.eguneratuBombaKop();
-	}
 }  
 
