@@ -185,11 +185,11 @@ public class Menua extends JFrame implements Observer {
 	                System.out.println("Empty selected");
 	            }
 	            if (jatorria == blackBomber) {
-	                bomberAukera = "Beltza";
+	                bomberAukera = "black";
 	                System.out.println("Black Bomber selected");
 	            }
 	            if (jatorria == whiteBomber) {
-	                bomberAukera = "Zuria";
+	                bomberAukera = "white";
 	                System.out.println("White Bomber selected");
 	            }
 	        }

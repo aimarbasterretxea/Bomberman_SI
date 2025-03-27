@@ -20,6 +20,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 	private int bombaDenbora=1;
 	private static String aurrekoNorabidea="";
 	private String norabideBerria="";
+	private String bombermanMota;
 
 	// ERAIKITZAILEA //////////////////////////
 	public GelaxkaBista(boolean pEgoera) {
@@ -76,8 +77,9 @@ public class GelaxkaBista extends JPanel implements Observer {
 		
 	}
 
-	public void bombermanJarri(Character pNorabide) {
+	public void bombermanJarri(Character pNorabide, String pMota) {
 		this.bombermanDago=true;
+		this.bombermanMota=pMota;
 		String pNorabideChar=pNorabide.toString();
 		if(bombaDago==false) {
 			if (pNorabideChar.equals("W")) {
@@ -107,7 +109,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 			else{
 				pausuak=1;
 			}
-			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/white"+norabideBerria+pausuak+".png")));
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/"+pMota+norabideBerria+pausuak+".png")));
 			aurrekoNorabidea=norabideBerria;}
 		}
 	
@@ -129,7 +131,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 	public void bombaJarri(int kont){
 		bombaDenbora=kont;
 		if (this.bombermanDago){
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitewithbomb"+bombaDenbora+".png")));
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/"+bombermanMota+"withbomb"+bombaDenbora+".png")));
 		this.bombaDago=true;}
 		else{
 			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/bomb"+bombaDenbora+".png")));

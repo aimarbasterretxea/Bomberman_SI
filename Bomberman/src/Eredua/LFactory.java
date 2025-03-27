@@ -23,10 +23,10 @@ public class LFactory {
         	nireLabirintoa = new LabirintoaKlasikoa();
 		}
 		else if (pMota.equals("Biguna")) {
-			//nireLabirintoa = new LabirintoaBiguna();
+			nireLabirintoa = new LabirintoaBiguna();
 		}
 		else if (pMota.equals("Hutsa")) {
-			//nireLabirintoa = new LabirintoaHutsa();
+			nireLabirintoa = new LabirintoaHutsa();
 		}
 		return nireLabirintoa;
 	}

@@ -30,6 +30,7 @@ public class LabirintoBista extends JFrame implements Observer {
     private Kontroladorea kontroladorea = null; // Controlador de teclado
     private static int x;
     private static int y;
+    private String bombermanMota;
     private JLabel irudia;
     private JLabel bombaKop;
     private Image argazkia; 
@@ -122,7 +123,7 @@ public class LabirintoBista extends JFrame implements Observer {
     	bilatuGelaxka(x, y).bombermanKendu();
     	}
     	
-    	bilatuGelaxka(hX, hY).bombermanJarri(pNorabide);
+    	bilatuGelaxka(hX, hY).bombermanJarri(pNorabide, bombermanMota);
     	this.x=hX;
     	this.y=hY;
     }
@@ -178,12 +179,15 @@ public class LabirintoBista extends JFrame implements Observer {
 						Eredua.Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(i, j).addObserver(gelaxka);
 					}
 				}
-				bilatuGelaxka(0,0).bombermanJarri('H');
+				
+			} else if(obj[0].equals("BombermanSortu")) {
+				String pMota =(String) obj[1]; 
+				this.bombermanMota=pMota;
+				bilatuGelaxka(0,0).bombermanJarri('H',pMota);
 				this.x = 0;
 				this.y = 0;
 				
-			}
-			else if (obj[0].equals("Move")) {
+			}else if (obj[0].equals("Move")) {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
 				char norabide = (char) obj[3];

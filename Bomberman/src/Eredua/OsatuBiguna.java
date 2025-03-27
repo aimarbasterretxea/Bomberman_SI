@@ -5,7 +5,7 @@ public class OsatuBiguna implements OsatuPortaera{
 	@Override
 	public void osatu() {
 		Labirintoa labirintoa = Generator.getNireGenerator().getLabirintoa();
-		labirintoa.setChanged("Matrizea sortu da", -1, -1, ' ', false);
+		labirintoa.setChanged(new Object[]{"Matrizea sortu da", -1, -1, ' ', false});
 		for (int i = 0; i < 11; i++) {
 			for (int j = 0; j < 17; j++) {
 				Gelaxka unekoGelaxka = labirintoa.bilatuGelaxka(i, j);
@@ -25,5 +25,6 @@ public class OsatuBiguna implements OsatuPortaera{
 			}
 		}
 		labirintoa.etsaiaTimer();
+		labirintoa.setChanged(new Object[]{"BombermanSortu", labirintoa.bombermanMota});
 	}
 }

@@ -15,6 +15,8 @@ public abstract class Labirintoa extends Observable{
 	protected static Bomberman bomberman;
 	protected static ArrayList<Etsaia> etsaiak = new ArrayList<Etsaia>();
 	protected static int blokeKop = 0;
+	protected String bombermanMota;
+	
 	private Timer timerEtsaia;
 	private OsatuPortaera osatuPortaera;
 	//Eraikitzailea
@@ -37,7 +39,9 @@ public abstract class Labirintoa extends Observable{
  	}
  	
  	public void sortuBomberman(String pMota) {
+    	System.out.println("Labirintoa: " + pMota);
  		this.bomberman = BombermanFactory.getBombermanFactory().sortuBomberman(pMota);
+ 		this.bombermanMota = pMota;
  	}
 	
 	//Geterrak
@@ -54,7 +58,6 @@ public abstract class Labirintoa extends Observable{
 	public ArrayList<Etsaia> getEtsaiak() {
 		return etsaiak;
 	}
-	public abstract void labirintoaOsatu();
 	
 	public Gelaxka bilatuGelaxka(int x, int y) {
 		return labirintoa[x][y];
@@ -65,7 +68,6 @@ public abstract class Labirintoa extends Observable{
 	}
 	
 	public void mugituEtsaiak() {
-		ArrayList<Etsaia> etsaiak = this.getEtsaiak(); // Suponiendo que tienes un método que devuelve la lista de enemigos
 	    for (int i = 0; i < etsaiak.size(); i++) {
 	        Etsaia etsaia = etsaiak.get(i);
 	        int xZaharra = etsaia.getX();
@@ -80,6 +82,9 @@ public abstract class Labirintoa extends Observable{
 	            i--; // Ajustar el índice debido a la eliminación
 	            setChanged();
 	            notifyObservers(new Object[]{"EtsaiaHil", xZaharra, yZaharra, norabide, false, xZaharra, yZaharra});
+	            if(etsaiak.isEmpty()) {
+	            	Jokua.getJokua().amaituJokua(2);
+	            }
 	        } else {
 	            setChanged();
 	            notifyObservers(new Object[]{"MoveEtsaia", etsaia.getX(), etsaia.getY(), norabide, true, xZaharra, yZaharra});
@@ -124,6 +129,20 @@ public abstract class Labirintoa extends Observable{
 	        if (this.bomberman.getX() == x && this.bomberman.getY() == y) {
 	            bizirik = false;
 	        }
+	        for (int i = 0; i < etsaiak.size(); i++) {
+		        Etsaia etsaia = etsaiak.get(i);
+		        int xEtsaia = etsaia.getX();
+		        int yEtsaia = etsaia.getY();
+		        if(xEtsaia ==x && yEtsaia == y) {
+		        	etsaiak.remove(i);
+		            i--; // Ajustar el índice debido a la eliminación
+		            setChanged();
+		            notifyObservers(new Object[]{"EtsaiaHil", xEtsaia, yEtsaia, ' ', false, xEtsaia, yEtsaia});
+		            if(etsaiak.isEmpty()) {
+		            	Jokua.getJokua().amaituJokua(2);
+		            }
+		        }
+	        }
 	    }
 
 	    if (!bizirik) {
@@ -140,10 +159,13 @@ public abstract class Labirintoa extends Observable{
 	}
 	
 	
-	public void setChanged(String pMezua, int pX, int pY, char pC, boolean pEgia) {
+	//public void setChanged(String pMezua, int pX, int pY, char pC, boolean pEgia) {
+	public void setChanged(Object[] pArg) {
 		setChanged();
-        notifyObservers(new Object[]{pMezua, pX, pY, pC,pEgia});
+        notifyObservers(pArg);
 	}
+	
+	
 	
 	// ETSAIAren METODOAK ////////////////////////////////////////////
 	protected void etsaiaTimer() {
