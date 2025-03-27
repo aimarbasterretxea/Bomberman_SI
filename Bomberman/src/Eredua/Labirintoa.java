@@ -173,7 +173,7 @@ public abstract class Labirintoa extends Observable{
 		timerEtsaia.scheduleAtFixedRate(timerTask, 0, 1000);
 	}
 	
-	private boolean etsaiaDago(int pX, int pY) {
+	public boolean etsaiaDago(int pX, int pY) {
 		Iterator<Etsaia> itr = this.getItr();
 		boolean badago=false;
 		while (itr.hasNext() && !badago) {

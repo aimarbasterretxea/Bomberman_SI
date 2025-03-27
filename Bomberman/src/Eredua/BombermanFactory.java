@@ -1,14 +1,14 @@
 package Eredua;
 
-public class bombermanFactory {
-	private bombermanFactory nirebombermanFactory;
+public class BombermanFactory {
+	private BombermanFactory nirebombermanFactory;
 	
-	private bombermanFactory() {
+	private BombermanFactory() {
 	}
 	
-	public bombermanFactory getbombermanFactory() {
+	public BombermanFactory getbombermanFactory() {
 		if (nirebombermanFactory == null) {
-			nirebombermanFactory = new bombermanFactory();
+			nirebombermanFactory = new BombermanFactory();
 		}
 		return nirebombermanFactory;
 	}
