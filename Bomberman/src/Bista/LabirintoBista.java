@@ -181,6 +181,8 @@ public class LabirintoBista extends JFrame implements Observer {
 				gelaxka=new GelaxkaBista(false);
 				this.gehituGelaxka(gelaxka);
 				Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(i, j).addObserver(gelaxka);
+				System.out.println("Observer added: " + gelaxka);
+
 			}
 		}
 		bilatuGelaxka(0,0).bombermanJarri('H');
@@ -190,15 +192,7 @@ public class LabirintoBista extends JFrame implements Observer {
 		else if (arg instanceof Object[]) {
 			Object[] obj = (Object[]) arg;
 			
-			if (obj[0].equals("Bloke gogorra gehitu da")) {
-				int i = (int) obj[1];
-				int j = (int) obj[2];
-				this.bilatuGelaxka(i, j).blokeGogorra();
-			} else if (obj[0].equals("Bloke biguna gehitu da")) {
-				int i = (int) obj[1];
-				int j = (int) obj[2];
-				this.bilatuGelaxka(i, j).blokeBiguna();
-			} else if (obj[0].equals("Move")) {
+			if (obj[0].equals("Move")) {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
 				char norabide = (char) obj[3];

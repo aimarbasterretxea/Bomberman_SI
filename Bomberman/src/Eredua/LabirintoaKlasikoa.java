@@ -44,5 +44,7 @@ public class LabirintoaKlasikoa extends Labirintoa {
 			}
 		}
 		etsaiaTimer();
+		setChanged();
+		notifyObservers("Matrizea sortu da");
 	}
 }

@@ -49,6 +49,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 				
 			}
 		}
+		else {
 		if (arg.equals("BombaKendu")) {
 			this.elementuaKendu();
 			
@@ -72,7 +73,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 		else if(arg.equals("Etsaia")) {
 			this.etsaia();
 		}
-
+		}
 		
 	}
 

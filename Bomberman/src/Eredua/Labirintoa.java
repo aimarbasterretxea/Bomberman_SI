@@ -19,16 +19,14 @@ public abstract class Labirintoa extends Observable{
 	
 	//Eraikitzailea
 	public Labirintoa() {
-		labirintoa = new Gelaxka[errenkada][zutabea];
+		//labirintoa = new Gelaxka[errenkada][zutabea];
+		Gelaxka[][] labirintoa= this.getLabirintoa();
 		for (int i = 0; i < errenkada; i++) {
 			for (int j = 0; j < zutabea; j++) {
 				labirintoa[i][j]= new Gelaxka(i,j);
 			}
 		}
 		this.bomberman=new BombermanZuria();
-		setChanged();
-		notifyObservers("Matrizea sortu da");	
-		
 		System.out.println("Labirintoa: Labirinto hutsa sortu da");
 	}
 	
