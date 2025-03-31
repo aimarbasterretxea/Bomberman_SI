@@ -27,7 +27,7 @@ public abstract class Labirintoa extends Observable{
  				labirintoa[i][j]= new Gelaxka(i,j);
  			}
  		}
- 		//bombermanMota=pBombermanMota;
+ 		bombermanMota=pBombermanMota;
  		System.out.println("Labirintoa: Labirinto hutsa sortu da");
  	
  	}
