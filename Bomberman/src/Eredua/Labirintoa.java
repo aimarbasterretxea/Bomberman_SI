@@ -10,17 +10,16 @@ import java.util.Iterator;
 public abstract class Labirintoa extends Observable{
 	//Atributuak
 	private static Gelaxka[][] labirintoa;
-	protected static int errenkada = 11;
-	protected static int zutabea = 17;
-	protected static Bomberman bomberman;
-	protected static ArrayList<Etsaia> etsaiak = new ArrayList<Etsaia>();
-	protected static int blokeKop = 0;
-	protected String bombermanMota;
+	private static int errenkada = 11;
+	private static int zutabea = 17;
+	private static Bomberman bomberman;
+	private static ArrayList<Etsaia> etsaiaLista = new ArrayList<Etsaia>();
+	private static int blokeKop = 0;
+	private static String bombermanMota;
 	
 	private Timer timerEtsaia;
-	private OsatuPortaera osatuPortaera;
 	//Eraikitzailea
- 	protected Labirintoa(OsatuPortaera pOPortaera) {
+ 	protected Labirintoa(String pBombermanMota) {
  		
  		labirintoa = new Gelaxka[errenkada][zutabea];
  		for (int i = 0; i < errenkada; i++) {
@@ -28,25 +27,35 @@ public abstract class Labirintoa extends Observable{
  				labirintoa[i][j]= new Gelaxka(i,j);
  			}
  		}
- 		osatuPortaera=pOPortaera;
- 		
+ 		//bombermanMota=pBombermanMota;
  		System.out.println("Labirintoa: Labirinto hutsa sortu da");
  	
  	}
  	
- 	public void osatuHasi() {
- 		osatuPortaera.osatu();
+ 	public abstract void osatu() ;
+ 	
+ 	public void blokeKopEguneratu() {
+ 		this.blokeKop++;
  	}
  	
+ 	public  ArrayList<Etsaia> getEtsaiaLista(){
+ 		return this.etsaiaLista;
+ 	}
+ 	
+ 	public static String getBombermanMota() {
+ 		return bombermanMota;
+ 	}
  	public void sortuBomberman(String pMota) {
     	System.out.println("Labirintoa: " + pMota);
  		this.bomberman = BombermanFactory.getBombermanFactory().sortuBomberman(pMota);
+		this.setChanged(new Object[]{"BombermanSortu", this.bombermanMota});
+
  		this.bombermanMota = pMota;
  	}
 	
 	//Geterrak
 	private Iterator<Etsaia> getItr() {
-		return etsaiak.iterator();
+		return etsaiaLista.iterator();
 	}
 	
 	public Gelaxka[][] getLabirintoa() { return labirintoa; }
@@ -56,7 +65,7 @@ public abstract class Labirintoa extends Observable{
 	}
 	
 	public ArrayList<Etsaia> getEtsaiak() {
-		return etsaiak;
+		return etsaiaLista;
 	}
 	
 	public Gelaxka bilatuGelaxka(int x, int y) {
@@ -68,8 +77,8 @@ public abstract class Labirintoa extends Observable{
 	}
 	
 	public void mugituEtsaiak() {
-	    for (int i = 0; i < etsaiak.size(); i++) {
-	        Etsaia etsaia = etsaiak.get(i);
+	    for (int i = 0; i < etsaiaLista.size(); i++) {
+	        Etsaia etsaia = etsaiaLista.get(i);
 	        int xZaharra = etsaia.getX();
 	        int yZaharra = etsaia.getY();
 
@@ -78,11 +87,11 @@ public abstract class Labirintoa extends Observable{
 	        char norabide = etsaia.mugitu(norabidePosibleak);
 
 	        if (this.bilatuGelaxka(etsaia.getX(), etsaia.getY()).getSua() != null) {
-	            etsaiak.remove(i); // Eliminar el enemigo de la lista
+	            etsaiaLista.remove(i); // Eliminar el enemigo de la lista
 	            i--; // Ajustar el índice debido a la eliminación
 	            setChanged();
 	            notifyObservers(new Object[]{"EtsaiaHil", xZaharra, yZaharra, norabide, false, xZaharra, yZaharra});
-	            if(etsaiak.isEmpty()) {
+	            if(etsaiaLista.isEmpty()) {
 	            	Jokua.getJokua().amaituJokua(2);
 	            }
 	        } else {
@@ -129,16 +138,16 @@ public abstract class Labirintoa extends Observable{
 	        if (this.bomberman.getX() == x && this.bomberman.getY() == y) {
 	            bizirik = false;
 	        }
-	        for (int i = 0; i < etsaiak.size(); i++) {
-		        Etsaia etsaia = etsaiak.get(i);
+	        for (int i = 0; i < etsaiaLista.size(); i++) {
+		        Etsaia etsaia = etsaiaLista.get(i);
 		        int xEtsaia = etsaia.getX();
 		        int yEtsaia = etsaia.getY();
 		        if(xEtsaia ==x && yEtsaia == y) {
-		        	etsaiak.remove(i);
+		        	etsaiaLista.remove(i);
 		            i--; // Ajustar el índice debido a la eliminación
 		            setChanged();
 		            notifyObservers(new Object[]{"EtsaiaHil", xEtsaia, yEtsaia, ' ', false, xEtsaia, yEtsaia});
-		            if(etsaiak.isEmpty()) {
+		            if(etsaiaLista.isEmpty()) {
 		            	Jokua.getJokua().amaituJokua(2);
 		            }
 		        }

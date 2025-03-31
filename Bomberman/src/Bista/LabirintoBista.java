@@ -1,5 +1,6 @@
 package Bista;
 
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.BorderLayout;
@@ -10,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import Eredua.LabirintoaKlasikoa;
+import Eredua.Generator;
 
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -38,7 +39,7 @@ public class LabirintoBista extends JFrame implements Observer {
     
     // ERAIKITZAILEA ////////////////
     private LabirintoBista() {
-    	Eredua.Generator.getNireGenerator().getLabirintoa().addObserver(this);
+    	Generator.getNireGenerator().getLabirintoa().addObserver(this);
     	System.out.println();
         setTitle("BomberMan");
         setIconImage(Toolkit.getDefaultToolkit().getImage(LabirintoBista.class.getResource("/irudiak/blackfront1.png")));
@@ -141,19 +142,19 @@ public class LabirintoBista extends JFrame implements Observer {
             int keyCode = e.getKeyCode();
             switch (keyCode) {
                 case KeyEvent.VK_W:
-                	Eredua.Generator.getNireGenerator().getLabirintoa().mugituBomberman('W');
+                	Generator.getNireGenerator().getLabirintoa().mugituBomberman('W');
                     break;
                 case KeyEvent.VK_S:
-                	Eredua.Generator.getNireGenerator().getLabirintoa().mugituBomberman('S');
+                	Generator.getNireGenerator().getLabirintoa().mugituBomberman('S');
                     break;
                 case KeyEvent.VK_A:
-                	Eredua.Generator.getNireGenerator().getLabirintoa().mugituBomberman('A');
+                	Generator.getNireGenerator().getLabirintoa().mugituBomberman('A');
                     break;
                 case KeyEvent.VK_D:
-                	Eredua.Generator.getNireGenerator().getLabirintoa().mugituBomberman('D');
+                	Generator.getNireGenerator().getLabirintoa().mugituBomberman('D');
                     break;
                 case KeyEvent.VK_SPACE:
-                	Eredua.Generator.getNireGenerator().getLabirintoa().getBomberman().bombaJarri();
+                	Generator.getNireGenerator().getLabirintoa().getBomberman().bombaJarri();
 					break;
             }
         }
@@ -176,7 +177,7 @@ public class LabirintoBista extends JFrame implements Observer {
 					for (int j = 0; j < 17; j++) {
 						gelaxka=new GelaxkaBista(false);
 						this.gehituGelaxka(gelaxka);
-						Eredua.Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(i, j).addObserver(gelaxka);
+						Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(i, j).addObserver(gelaxka);
 					}
 				}
 				
