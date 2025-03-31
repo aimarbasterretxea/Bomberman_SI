@@ -10,15 +10,16 @@ import java.util.Iterator;
 public abstract class Labirintoa extends Observable{
 	//Atributuak
 	private static Gelaxka[][] labirintoa;
-	protected static int errenkada = 11;
-	protected static int zutabea = 17;
-	protected static Bomberman bomberman;
-	protected static ArrayList<Etsaia> etsaiak = new ArrayList<Etsaia>();
-	protected static int blokeKop = 0;
+	private static int errenkada = 11;
+	private static int zutabea = 17;
+	private static Bomberman bomberman;
+	private static ArrayList<Etsaia> etsaiak = new ArrayList<Etsaia>();
+	private static int blokeKop = 0;
 	private Timer timerEtsaia;
+	private static String pBomberMota;
 	
 	//Eraikitzailea
- 	public Labirintoa() {
+ 	public Labirintoa(String pBomberMota) {
  		
  		labirintoa = new Gelaxka[errenkada][zutabea];
  		for (int i = 0; i < errenkada; i++) {
@@ -27,10 +28,31 @@ public abstract class Labirintoa extends Observable{
  			}
  		}
  		System.out.println("Labirintoa: Labirinto hutsa sortu da");
+ 		this.pBomberMota = pBomberMota;
  	}
+ 	
+ 	// Getterak ///////////////////////////////
+ 	
+      public static void blokeKopEguneratu() {
+		  blokeKop++;
+	  }
+      
+      public static void gehituEtsaia(int i, int j) {
+    	  etsaiak.add(new Etsaia(i,j));
+      }
+ 	
+      public static String getBombermanMota() {
+    	  return pBomberMota;
+      }
+ 	
+ 	
+ 	
+ 	
  	
  	public void sortuBomberman(String pMota) {
  		this.bomberman = BombermanFactory.getBombermanFactory().sortuBomberman(pMota);
+ 		setChanged();
+ 		notifyObservers(new Object[] {"BombermanSortu",pMota});
  	}
 	
 	//Geterrak
@@ -133,9 +155,9 @@ public abstract class Labirintoa extends Observable{
 	}
 	
 	
-	public void setChanged(String pMezua, int pX, int pY, char pC, boolean pEgia) {
+	public void setChanged(Object[] pArg) {
 		setChanged();
-        notifyObservers(new Object[]{pMezua, pX, pY, pC,pEgia});
+        notifyObservers(new Object[]{pArg});
 	}
 	
 	// ETSAIAren METODOAK ////////////////////////////////////////////

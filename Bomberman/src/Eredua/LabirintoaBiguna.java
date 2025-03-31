@@ -3,44 +3,38 @@ package Eredua;
 
 public class LabirintoaBiguna extends Labirintoa{
 	//Atributua
-	private static LabirintoaBiguna nireLabirintoaBiguna;
+	
 	
 	//Eraikitzailea
-	private LabirintoaBiguna() {
-		super();		
+	public LabirintoaBiguna(String pBomberMota) {
+		super(pBomberMota);		
 	}
 	
-	//Geterra
-	public static LabirintoaBiguna getNireLabirintoaBiguna(){
-		if(nireLabirintoaBiguna==null) {
-			nireLabirintoaBiguna=new LabirintoaBiguna();
-		}
-		return nireLabirintoaBiguna;
-	}
 	
 	//Metodoak
+	
 	@Override
 	public void labirintoaOsatu() {
-		Gelaxka[][] labirintoa = this.getLabirintoa();
-		for (int i = 0; i < errenkada; i++) {
-			for (int j = 0; j < zutabea; j++) {
-				Gelaxka unekoGelaxka = labirintoa[i][j];
+		setChanged();
+		notifyObservers("Matrizea sortu da");
+		for (int i = 0; i < 11; i++) {
+			for (int j = 0; j < 17; j++) {
+				Gelaxka unekoGelaxka = this.bilatuGelaxka(i, j);
 				if((i == 0 && j == 0) || (i==1 && j == 0) || (i == 0 && j == 1)) {
-					//Ezer ez
+				//Ezer ez
 				} else if (Math.random() >= 0.4) {
-					this.blokeKop++;
-					unekoGelaxka.blokeaGehitu("Biguna");
 					//Biguna gehitu
-				}
-				else if (Math.random() >= 0.9) {
+					blokeKopEguneratu();
+					unekoGelaxka.blokeaGehitu("Biguna");
+				} else if (Math.random() >= 0.9) {
 					if (this.getEtsaiak().size() < 8) {
 						//Etsaia gehitu
-						this.etsaiak.add(new Etsaia(i,j));
+						gehituEtsaia(i,j);
 					}
 				}
-				
 			}
 		}
 		etsaiaTimer();
+		
 	}
 }

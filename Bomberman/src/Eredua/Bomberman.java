@@ -28,7 +28,7 @@ public abstract class Bomberman {
         if (bombaKop == 0) { 
             bombaKop = 1; 
             //LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.x, this.y).bombaJarri();
-            Generator.getNireGenerator().getLabirintoa().setChanged("BombaJarri", bombaKop, -1, ' ',false);
+            Generator.getNireGenerator().getLabirintoa().setChanged(new Object[]{"BombaJarri", bombaKop, -1, ' ',false});
             if (timer != null) {
                 timer.cancel(); // Gelditu Timer
                 timer = null; // Berrabiarazi Timer
@@ -91,14 +91,14 @@ public abstract class Bomberman {
 	        this.x = xBerria;
 	        this.y = yBerria;
 	        if(Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.x,this.y).getSua()!=null || Generator.getNireGenerator().getLabirintoa().etsaiaDago(x,y)) {
-			Generator.getNireGenerator().getLabirintoa().setChanged("Move", x, y, norabide,true);	
+			Generator.getNireGenerator().getLabirintoa().setChanged(new Object[]{"Move", x, y, norabide,true});	
 	        this.bombermanHil();
 			}
-			Generator.getNireGenerator().getLabirintoa().setChanged("Move", x, y, norabide,true);
+			Generator.getNireGenerator().getLabirintoa().setChanged(new Object[]{"Move", x, y, norabide,true});
 	        
 	    }
 	    else {
-	    	Generator.getNireGenerator().getLabirintoa().setChanged("Biratu", x, y, norabide,false);
+	    	Generator.getNireGenerator().getLabirintoa().setChanged(new Object[]{"Biratu", x, y, norabide,false});
 
 	    }
 	}

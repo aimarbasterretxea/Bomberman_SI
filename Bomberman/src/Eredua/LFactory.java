@@ -12,7 +12,7 @@ public class LFactory {
 		}
 		return nLFactory;
 	}
-	public Labirintoa sortuLabirintoa(String pMota) {
+	public Labirintoa sortuLabirintoa(String pMota, String pBomberMota) {
     	System.out.println("LFactory: Sortu labirintoa sartu da");
     	System.out.println(pMota);
 
@@ -20,13 +20,13 @@ public class LFactory {
      
 		if (pMota.equals("Klasikoa")) {
         	System.out.println("LFactory: Klasikoa sortu da");
-        	nireLabirintoa = new LabirintoaKlasikoa();
+        	nireLabirintoa = new LabirintoaKlasikoa(pBomberMota);
 		}
 		else if (pMota.equals("Biguna")) {
-			//nireLabirintoa = new LabirintoaBiguna();
+			nireLabirintoa = new LabirintoaBiguna(pBomberMota);
 		}
 		else if (pMota.equals("Hutsa")) {
-			//nireLabirintoa = new LabirintoaHutsa();
+			nireLabirintoa = new LabirintoaHutsa(pBomberMota);
 		}
 		return nireLabirintoa;
 	}

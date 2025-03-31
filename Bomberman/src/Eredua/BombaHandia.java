@@ -14,17 +14,17 @@ public class BombaHandia extends Bomba {
 
 	    // Lau norabideak gehitu
 	    for (int[] norabidea : norabideak) {
-	        boolean jarraitu = true;  // 这里每次循环重新初始化
-	        for (int i = 1; i < 10 && jarraitu; i++) { // i=1，避免重复计算中心点
+	        boolean jarraitu = true;  
+	        for (int i = 1; i < 10 && jarraitu; i++) {
 	            int berriaX = pX + norabidea[0] * i;
 	            int berriaY = pY + norabidea[1] * i;
 
-	            // 先判断是否超出边界
+	            // BEGIRATU KANPOALDEAN DAGOEN
 	            if (berriaX < 0 || berriaX > 10 || berriaY < 0 || berriaY > 16) {
 	                break;
 	            }
 
-	            // 遇到硬格子，停止该方向的遍历
+	            // BEGIRATU HUTSA DEN
 	            if (!Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(berriaX, berriaY).hutsaDa()) {
 	                jarraitu = false;
 	            }

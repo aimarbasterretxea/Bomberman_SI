@@ -1,6 +1,7 @@
 package Bista;
 
 import java.awt.event.KeyEvent;
+
 import java.awt.event.KeyListener;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -10,13 +11,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import Eredua.LabirintoaKlasikoa;
+
+import Eredua.Generator;
 
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
+
 
 @SuppressWarnings("deprecation")
 public class LabirintoBista extends JFrame implements Observer {
@@ -33,11 +36,12 @@ public class LabirintoBista extends JFrame implements Observer {
     private JLabel irudia;
     private JLabel bombaKop;
     private Image argazkia; 
+    private String kolorea= "";
 
     
     // ERAIKITZAILEA ////////////////
     private LabirintoBista() {
-    	Eredua.Generator.getNireGenerator().getLabirintoa().addObserver(this);
+    	Generator.getNireGenerator().getLabirintoa().addObserver(this);
     	System.out.println();
         setTitle("BomberMan");
         setIconImage(Toolkit.getDefaultToolkit().getImage(LabirintoBista.class.getResource("/irudiak/blackfront1.png")));
@@ -92,6 +96,7 @@ public class LabirintoBista extends JFrame implements Observer {
     }
     
     // GETERRAK ////////////////
+    
    
     public static LabirintoBista getNireLabirintoBista() {
         if (nireLabirintoBista == null) {
@@ -117,12 +122,12 @@ public class LabirintoBista extends JFrame implements Observer {
     	bilatuGelaxka(hX, hY).etsaiaJarri(pNorabide);
     }
     
-    public void mugituBomberman(int hX, int hY, Character pNorabide, boolean mugitu) {
+    public void mugituBomberman(int hX, int hY, Character pNorabide, boolean mugitu, String pKolorea) {
     	if (mugitu==true){
     	bilatuGelaxka(x, y).bombermanKendu();
     	}
     	
-    	bilatuGelaxka(hX, hY).bombermanJarri(pNorabide);
+    	bilatuGelaxka(hX, hY).bombermanJarri(pNorabide, pKolorea);
     	this.x=hX;
     	this.y=hY;
     }
@@ -140,19 +145,19 @@ public class LabirintoBista extends JFrame implements Observer {
             int keyCode = e.getKeyCode();
             switch (keyCode) {
                 case KeyEvent.VK_W:
-                	Eredua.Generator.getNireGenerator().getLabirintoa().mugituBomberman('W');
+                	Generator.getNireGenerator().getLabirintoa().mugituBomberman('W');
                     break;
                 case KeyEvent.VK_S:
-                	Eredua.Generator.getNireGenerator().getLabirintoa().mugituBomberman('S');
+                	Generator.getNireGenerator().getLabirintoa().mugituBomberman('S');
                     break;
                 case KeyEvent.VK_A:
-                	Eredua.Generator.getNireGenerator().getLabirintoa().mugituBomberman('A');
+                	Generator.getNireGenerator().getLabirintoa().mugituBomberman('A');
                     break;
                 case KeyEvent.VK_D:
-                	Eredua.Generator.getNireGenerator().getLabirintoa().mugituBomberman('D');
+                	Generator.getNireGenerator().getLabirintoa().mugituBomberman('D');
                     break;
                 case KeyEvent.VK_SPACE:
-                	Eredua.Generator.getNireGenerator().getLabirintoa().getBomberman().bombaJarri();
+                	Generator.getNireGenerator().getLabirintoa().getBomberman().bombaJarri();
 					break;
             }
         }
@@ -173,21 +178,27 @@ public class LabirintoBista extends JFrame implements Observer {
 				for (int j = 0; j < 17; j++) {
 					gelaxka=new GelaxkaBista(false);
 					this.gehituGelaxka(gelaxka);
-					Eredua.Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(i, j).addObserver(gelaxka);
+					Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(i, j).addObserver(gelaxka);
 				}
 			}
-			bilatuGelaxka(0,0).bombermanJarri('H');
-			this.x = 0;
-			this.y = 0;
 			
 		} else if (arg instanceof Object[]) {
 			Object[] obj = (Object[]) arg;
-			if (obj[0].equals("Move")) {
+			if (obj[0].equals("BombermanSortu")) {
+				String koloreaLokala = (String) obj[1];
+				this.kolorea = koloreaLokala;
+				bilatuGelaxka(0,0).bombermanJarri('H',koloreaLokala);
+				this.x = 0;
+				this.y = 0;
+			} else if (obj[0].equals("Move")) {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
 				char norabide = (char) obj[3];
 				boolean mugitu = (boolean) obj[4];
-				this.mugituBomberman(i, j, norabide,mugitu);
+				this.mugituBomberman(i, j, norabide,mugitu, kolorea);
+			}else if(obj[0].equals("Kolorea")) {
+					this.kolorea = (String) obj[1];
+				
 			} else if (obj[0].equals("MoveEtsaia")) {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
@@ -226,7 +237,7 @@ public class LabirintoBista extends JFrame implements Observer {
 			            null); 
 			}
 			else if (obj[0].equals("Biratu")){
-				this.mugituBomberman(x, y, (char) obj[3],false);
+				this.mugituBomberman(x, y, (char) obj[3],false, kolorea);
 			}
 		} 
 

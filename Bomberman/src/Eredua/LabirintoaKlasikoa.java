@@ -6,8 +6,8 @@ public class LabirintoaKlasikoa extends Labirintoa {
 	//private static LabirintoaKlasikoa nireLabirintoKlasikoa;
 	
 	//Eraikitzailea
-	public LabirintoaKlasikoa() {
-		super();	
+	public LabirintoaKlasikoa(String pBomberMota) {
+		super(pBomberMota);	
 		System.out.println("LabirintoaKlasikoa: Osatuta");
 	}
 	
@@ -19,26 +19,28 @@ public class LabirintoaKlasikoa extends Labirintoa {
 	//Metodoak
 	@Override
 	public void labirintoaOsatu() {
-		Labirintoa labirintoa = Generator.getNireGenerator().getLabirintoa();
 		setChanged();
 		notifyObservers("Matrizea sortu da");
-		for (int i = 0; i < errenkada; i++) {
-			for (int j = 0; j < zutabea; j++) {
-				Gelaxka unekoGelaxka = labirintoa.bilatuGelaxka(i, j);
-				//unekoGelaxka.addObserver(LabirintoBista.getNireLabirintoBista().bilatuGelaxka(i, j));
+		for (int i = 0; i < 11; i++) {
+			for (int j = 0; j < 17; j++) {
+				Gelaxka unekoGelaxka = this.bilatuGelaxka(i, j);
 				if((i == 0 && j == 0) || (i==1 && j == 0) || (i == 0 && j == 1)) {
-					//Ezer ez
+					if (i == 0 && j == 0) {
+						//Bombermana gehitu
+						sortuBomberman(getBombermanMota());
+					}
 				} else if (1 == (i % 2) && 1 == (j % 2)) {
 					//Gogorra gehitu
 					unekoGelaxka.blokeaGehitu("Gogorra");
 				} else if (Math.random() >= 0.4) {
 					//Biguna gehitu
-					this.blokeKop++;
+					blokeKopEguneratu();
 					unekoGelaxka.blokeaGehitu("Biguna");
 				} else if (Math.random() >= 0.9) {
 					if (this.getEtsaiak().size() < 6) {
 						//Etsaia gehitu
-						this.etsaiak.add(new Etsaia(i,j));
+						gehituEtsaia(i,j);
+						
 					}
 				}
 			}
