@@ -53,6 +53,7 @@ public abstract class Labirintoa extends Observable{
  		this.bomberman = BombermanFactory.getBombermanFactory().sortuBomberman(pMota);
  		setChanged();
  		notifyObservers(new Object[] {"BombermanSortu",pMota});
+ 		
  	}
 	
 	//Geterrak
@@ -155,7 +156,7 @@ public abstract class Labirintoa extends Observable{
 	}
 	
 	
-	public void setChanged(Object[] pArg) {
+	public void abisatuObservers(Object[] pArg) {
 		setChanged();
         notifyObservers(new Object[]{pArg});
 	}

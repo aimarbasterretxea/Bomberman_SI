@@ -122,12 +122,12 @@ public class LabirintoBista extends JFrame implements Observer {
     	bilatuGelaxka(hX, hY).etsaiaJarri(pNorabide);
     }
     
-    public void mugituBomberman(int hX, int hY, Character pNorabide, boolean mugitu, String pKolorea) {
+    public void mugituBomberman(int hX, int hY, Character pNorabide, boolean mugitu) {
     	if (mugitu==true){
     	bilatuGelaxka(x, y).bombermanKendu();
     	}
     	
-    	bilatuGelaxka(hX, hY).bombermanJarri(pNorabide, pKolorea);
+    	bilatuGelaxka(hX, hY).bombermanJarri(pNorabide, kolorea);
     	this.x=hX;
     	this.y=hY;
     }
@@ -177,7 +177,7 @@ public class LabirintoBista extends JFrame implements Observer {
 			for (int i = 0; i < 11; i++) {
 				for (int j = 0; j < 17; j++) {
 					gelaxka=new GelaxkaBista(false);
-					this.gehituGelaxka(gelaxka);
+					gehituGelaxka(gelaxka);
 					Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(i, j).addObserver(gelaxka);
 				}
 			}
@@ -185,19 +185,18 @@ public class LabirintoBista extends JFrame implements Observer {
 		} else if (arg instanceof Object[]) {
 			Object[] obj = (Object[]) arg;
 			if (obj[0].equals("BombermanSortu")) {
-				String koloreaLokala = (String) obj[1];
-				this.kolorea = koloreaLokala;
-				bilatuGelaxka(0,0).bombermanJarri('H',koloreaLokala);
-				this.x = 0;
-				this.y = 0;
+				kolorea = (String) obj[1];
+				bilatuGelaxka(0,0).bombermanJarri('H',kolorea);
+				x = 0;
+				y = 0;
+				
 			} else if (obj[0].equals("Move")) {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
 				char norabide = (char) obj[3];
 				boolean mugitu = (boolean) obj[4];
-				this.mugituBomberman(i, j, norabide,mugitu, kolorea);
-			}else if(obj[0].equals("Kolorea")) {
-					this.kolorea = (String) obj[1];
+				this.mugituBomberman(i, j, norabide,mugitu);
+			
 				
 			} else if (obj[0].equals("MoveEtsaia")) {
 				int i = (int) obj[1];
@@ -237,7 +236,7 @@ public class LabirintoBista extends JFrame implements Observer {
 			            null); 
 			}
 			else if (obj[0].equals("Biratu")){
-				this.mugituBomberman(x, y, (char) obj[3],false, kolorea);
+				this.mugituBomberman(x, y, (char) obj[3],false);
 			}
 		} 
 

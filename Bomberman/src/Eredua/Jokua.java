@@ -43,9 +43,9 @@ public class Jokua extends Observable {
 	}
     
 	public void amaituJokua(int pY) {
-		Generator.getNireGenerator().getLabirintoa().setChanged(new Object[]{"Jokua amaitu da", pY, -1, ' ', false});
+		Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Jokua amaitu da", pY, -1, ' ', false});
 	    System.exit(0);
-		//System.out.println("Hil da");
+		System.out.println("Hil da");
 	
 	}
 }

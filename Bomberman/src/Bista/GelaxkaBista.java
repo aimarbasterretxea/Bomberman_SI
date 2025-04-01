@@ -84,29 +84,29 @@ public class GelaxkaBista extends JPanel implements Observer {
 		if(bombaDago==false) {
 			if (pNorabideChar.equals("W")) {
 				norabideBerria="up";
+		}
+		else if (pNorabideChar.equals("S")) {
+			if (pausuak>=4) {
+				pausuak=0;
 			}
-			else if (pNorabideChar.equals("S")) {
-				if (pausuak>=4) {
-					pausuak=0;
-				}
-				norabideBerria="down";
-			}
-			else if (pNorabideChar.equals("A")) {
+			norabideBerria="down";
+		}
+		else if (pNorabideChar.equals("A")) {
 				norabideBerria="left";
-			}
-			else if (pNorabideChar.equals("D")) {
+		}
+		else if (pNorabideChar.equals("D")) {
 				norabideBerria="right";
-			}
-			else {
+		}
+		else {
 				norabideBerria="front";
-			}
-			if (aurrekoNorabidea.equals(norabideBerria)&&aurrekoNorabidea!="") {
-				if (pausuak>=5) {
+		}
+		if (aurrekoNorabidea.equals(norabideBerria)&&aurrekoNorabidea!="") {
+			if (pausuak>=5) {
 					pausuak=0;
-				}
-					pausuak++;
-				}
-			else{
+			}
+			pausuak++;
+		}
+		else{
 				pausuak=1;
 			}
 			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/"+pKolorea+norabideBerria+pausuak+".png")));
