@@ -22,43 +22,19 @@ public abstract class Labirintoa extends Observable{
  	public Labirintoa(String pBomberMota) {
  		
  		labirintoa = new Gelaxka[errenkada][zutabea];
+ 		
  		for (int i = 0; i < errenkada; i++) {
  			for (int j = 0; j < zutabea; j++) {
  				labirintoa[i][j]= new Gelaxka(i,j);
  			}
  		}
  		System.out.println("Labirintoa: Labirinto hutsa sortu da");
-		//setChanged();
-		//notifyObservers("Matrizea sortu da");
  		this.pBomberMota = pBomberMota;
  	}
  	
+	public abstract void labirintoaOsatu();
+
  	// Getterak ///////////////////////////////
- 	
-      public static void blokeKopEguneratu() {
-		  blokeKop++;
-	  }
-      
-      public static void gehituEtsaia(int i, int j) {
-    	  etsaiak.add(new Etsaia(i,j));
-      }
- 	
-      public static String getBombermanMota() {
-    	  return pBomberMota;
-      }
- 	
- 	
- 	
- 	
- 	
- 	public void sortuBomberman(String pMota) {
- 		this.bomberman = BombermanFactory.getBombermanFactory().sortuBomberman(pMota);
- 		setChanged();
- 		notifyObservers(new Object[] {"BombermanSortu",pMota});
- 		
- 	}
-	
-	//Geterrak
 	private Iterator<Etsaia> getItr() {
 		return etsaiak.iterator();
 	}
@@ -72,32 +48,65 @@ public abstract class Labirintoa extends Observable{
 	public ArrayList<Etsaia> getEtsaiak() {
 		return etsaiak;
 	}
-	public abstract void labirintoaOsatu();
+	
+	public static String getBombermanMota() {
+		return pBomberMota;
+	}
+	
+	//Metodoak////////////////////////////////
+	public void abisatuObservers(Object[] pArg) {
+		setChanged();
+        notifyObservers(pArg);
+	}
+	
+	public static void blokeKopEguneratu() {
+		blokeKop++;
+	}
 	
 	public Gelaxka bilatuGelaxka(int x, int y) {
 		return labirintoa[x][y];
 	}
+    
+	//BOMBERMANren METODOAK////////////////////////////////////////	
+ 	public void sortuBomberman(String pMota) {
+ 		int bombaKop;
+ 		this.bomberman = BombermanFactory.getBombermanFactory().sortuBomberman(pMota);
+ 		if (pMota.equals("white")) {
+ 			bombaKop=10;
+ 			}
+ 		else {
+ 			bombaKop=1;
+ 			}
+ 		setChanged();
+ 		notifyObservers(new Object[] {"BombermanSortu",pMota,bombaKop});
+ 		
+ 	}
 	
-	public void mugituBomberman(char pKey) {
-			bomberman.mugitu(pKey);
+	public void mugituBomberman(String pNorabidea) {
+		bomberman.mugitu(pNorabidea,this.bilatuGelaxka(bomberman.getX(), bomberman.getY()).getBomba());
+	}
+	
+	//ETSAIAren METODOAK////////////////////////////////////////
+	public static void gehituEtsaia(int i, int j) {
+		etsaiak.add(new Etsaia(i,j));
 	}
 	
 	public void mugituEtsaiak() {
-		ArrayList<Etsaia> etsaiak = this.getEtsaiak(); // Suponiendo que tienes un método que devuelve la lista de enemigos
+		ArrayList<Etsaia> etsaiak = this.getEtsaiak(); 
 	    for (int i = 0; i < etsaiak.size(); i++) {
 	        Etsaia etsaia = etsaiak.get(i);
 	        int xZaharra = etsaia.getX();
 	        int yZaharra = etsaia.getY();
 
-	        // Calcular posiciones posibles
+	        // Posizio posibleak kalkulatu
 	        ArrayList<Character> norabidePosibleak = this.kalkulatuNorabidePosibleak(etsaia.getX(), etsaia.getY());
 	        char norabide = etsaia.mugitu(norabidePosibleak);
 
 	        if (this.bilatuGelaxka(etsaia.getX(), etsaia.getY()).getSua() != null) {
-	            etsaiak.remove(i); // Eliminar el enemigo de la lista
-	            i--; // Ajustar el índice debido a la eliminación
+	            etsaiak.remove(i); 
+	            i--; 
 	            setChanged();
-	            notifyObservers(new Object[]{"EtsaiaHil", xZaharra, yZaharra, norabide, false, xZaharra, yZaharra});
+	            notifyObservers(new Object[]{"EtsaiaHil", xZaharra, yZaharra});
 	        } else {
 	            setChanged();
 	            notifyObservers(new Object[]{"MoveEtsaia", etsaia.getX(), etsaia.getY(), norabide, true, xZaharra, yZaharra});
@@ -129,41 +138,6 @@ public abstract class Labirintoa extends Observable{
 		return norabidePosibleak;
 	}
 
-	public void bombaKendu(ArrayList<int[]> sutea) {
-	    boolean bizirik = true;
-
-	    for (int[] pos : sutea) {
-	        int x = pos[0];
-	        int y = pos[1];
-
-	        if (this.bilatuGelaxka(x, y).suaJarri()) {
-	            this.blokeKop--;
-	        }
-	        if (this.bomberman.getX() == x && this.bomberman.getY() == y) {
-	            bizirik = false;
-	        }
-	    }
-
-	    if (!bizirik) {
-	        Jokua.getJokua().amaituJokua(1);
-	    } else if (this.blokeKop == 0) {
-	        Jokua.getJokua().amaituJokua(2);
-	    }
-	}
-	
-	
-	public void bombaJarriDa(int pKop) {
-		setChanged();
-		notifyObservers(new Object[]{"BombaJarri",pKop});
-	}
-	
-	
-	public void abisatuObservers(Object[] pArg) {
-		setChanged();
-        notifyObservers(pArg);
-	}
-	
-	// ETSAIAren METODOAK ////////////////////////////////////////////
 	protected void etsaiaTimer() {
 		TimerTask timerTask = new TimerTask() {
 			@Override
@@ -185,5 +159,28 @@ public abstract class Labirintoa extends Observable{
 			}
 		}
 		return badago;
+	}
+	
+	// SUAren METODOAK ////////////////////////////////////////////
+	public void bombaKendu(ArrayList<int[]> sutea) {
+	    boolean bizirik = true;
+
+	    for (int[] pos : sutea) {
+	        int x = pos[0];
+	        int y = pos[1];
+
+	        if (this.bilatuGelaxka(x, y).suaJarri()) {
+	            this.blokeKop--;
+	        }
+	        if (this.bomberman.getX() == x && this.bomberman.getY() == y) {
+	            bizirik = false;
+	        }
+	    }
+
+	    if (!bizirik) {
+	        Jokua.getJokua().amaituJokua(1);
+	    } else if (this.blokeKop == 0) {
+	        Jokua.getJokua().amaituJokua(2);
+	    }
 	}
 }

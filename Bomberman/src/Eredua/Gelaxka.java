@@ -1,6 +1,5 @@
 package Eredua;
 
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -60,8 +59,6 @@ public class Gelaxka extends Observable {
 		}
 	}
 	
-	
-	
 	public void blokeaGehitu(String pMota) {
 		bloke=BlokeFactory.getNireBFactory().sortuBloke(pMota);
 		setChanged();
@@ -93,7 +90,7 @@ public class Gelaxka extends Observable {
 				azpiKont++;
 				if(kont<4&&!eztanda) {
 					setChanged();
-					notifyObservers(new Object[]{"BombaJarri",kont});
+					notifyObservers(new Object[]{"BombaAldatu",kont});
 					if (azpiKont==2) {
 					kont++;
 					azpiKont=0;

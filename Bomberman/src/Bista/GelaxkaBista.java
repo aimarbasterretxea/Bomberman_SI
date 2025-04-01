@@ -16,9 +16,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 	private boolean suaDago=false;
 	private boolean etsaiaDago = false;
 	private static final long serialVersionUID = 1L;
-	private static int pausuak=1;
 	private int bombaDenbora=1;
-	private static String aurrekoNorabidea="";
 	private String norabideBerria="";
 	private String bombermanKolorea="";
 
@@ -39,15 +37,11 @@ public class GelaxkaBista extends JPanel implements Observer {
 	public void blokeBiguna() {
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/soft4.png")));
 	}
-	private void etsaia() {
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/doria1.png")));
-	}
-	
 	@Override
 	public void update(Observable o, Object arg) {
 		if(arg instanceof Object[]) {
 			Object[] obj = (Object[]) arg;
-			if(obj[0].equals("BombaJarri")) {
+			if(obj[0].equals("BombaAldatu")) {
 				this.bombaJarri((int) obj[1]);
 				
 			}
@@ -71,46 +65,13 @@ public class GelaxkaBista extends JPanel implements Observer {
 		else if(arg.equals("Biguna")) {
 			this.blokeBiguna();
 		}
-		else if(arg.equals("Etsaia")) {
-			this.etsaia();
-		}
 		
 	}
 
-	public void bombermanJarri(Character pNorabide, String pKolorea) {
+	public void bombermanJarri(String pNorabide, String pKolorea, int pausuak) {
 		this.bombermanDago=true;
 		this.bombermanKolorea=pKolorea;
-		String pNorabideChar=pNorabide.toString();
-		if(bombaDago==false) {
-			if (pNorabideChar.equals("W")) {
-				norabideBerria="up";
-		}
-		else if (pNorabideChar.equals("S")) {
-			if (pausuak>=4) {
-				pausuak=0;
-			}
-			norabideBerria="down";
-		}
-		else if (pNorabideChar.equals("A")) {
-				norabideBerria="left";
-		}
-		else if (pNorabideChar.equals("D")) {
-				norabideBerria="right";
-		}
-		else {
-				norabideBerria="front";
-		}
-		if (aurrekoNorabidea.equals(norabideBerria)&&aurrekoNorabidea!="") {
-			if (pausuak>=5) {
-					pausuak=0;
-			}
-			pausuak++;
-		}
-		else{
-				pausuak=1;
-			}
-			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/"+pKolorea+norabideBerria+pausuak+".png")));
-			aurrekoNorabidea=norabideBerria;}
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/"+pKolorea+pNorabide+pausuak+".png")));
 		}
 	
 			
@@ -131,7 +92,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 	public void bombaJarri(int kont){
 		bombaDenbora=kont;
 		if (this.bombermanDago){
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/whitewithbomb"+bombaDenbora+".png")));
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/"+bombermanKolorea+"withbomb"+bombaDenbora+".png")));
 		this.bombaDago=true;}
 		else{
 			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/bomb"+bombaDenbora+".png")));
@@ -185,6 +146,5 @@ public class GelaxkaBista extends JPanel implements Observer {
 		}
 	   
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/doria"+norabideBerria+".png")));
-		aurrekoNorabidea=norabideBerria;
 	}
 }

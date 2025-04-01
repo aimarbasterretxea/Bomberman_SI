@@ -123,12 +123,12 @@ public class LabirintoBista extends JFrame implements Observer {
     	bilatuGelaxka(hX, hY).etsaiaJarri(pNorabide);
     }
     
-    public void mugituBomberman(int hX, int hY, Character pNorabide, boolean mugitu) {
+    public void mugituBomberman(int hX, int hY, String pNorabide, boolean mugitu,int pausuak) {
     	if (mugitu==true){
     	bilatuGelaxka(x, y).bombermanKendu();
     	}
     	
-    	bilatuGelaxka(hX, hY).bombermanJarri(pNorabide, kolorea);
+    	bilatuGelaxka(hX, hY).bombermanJarri(pNorabide, kolorea,pausuak);
     	this.x=hX;
     	this.y=hY;
     }
@@ -146,16 +146,16 @@ public class LabirintoBista extends JFrame implements Observer {
             int keyCode = e.getKeyCode();
             switch (keyCode) {
                 case KeyEvent.VK_W:
-                	Generator.getNireGenerator().getLabirintoa().mugituBomberman('W');
+                	Generator.getNireGenerator().getLabirintoa().mugituBomberman("up");
                     break;
                 case KeyEvent.VK_S:
-                	Generator.getNireGenerator().getLabirintoa().mugituBomberman('S');
+                	Generator.getNireGenerator().getLabirintoa().mugituBomberman("down");
                     break;
                 case KeyEvent.VK_A:
-                	Generator.getNireGenerator().getLabirintoa().mugituBomberman('A');
+                	Generator.getNireGenerator().getLabirintoa().mugituBomberman("left");
                     break;
                 case KeyEvent.VK_D:
-                	Generator.getNireGenerator().getLabirintoa().mugituBomberman('D');
+                	Generator.getNireGenerator().getLabirintoa().mugituBomberman("right");
                     break;
                 case KeyEvent.VK_SPACE:
                 	Generator.getNireGenerator().getLabirintoa().getBomberman().bombaJarri();
@@ -187,17 +187,22 @@ public class LabirintoBista extends JFrame implements Observer {
 			Object[] obj = (Object[]) arg;
 			if (obj[0].equals("BombermanSortu")) {
 				kolorea = (String) obj[1];
-				bilatuGelaxka(0,0).bombermanJarri('H',kolorea);
+				bombaKop.setText(":  "+ obj[2]);
+				bilatuGelaxka(0,0).bombermanJarri("front",kolorea,1);
 				x = 0;
 				y = 0;
 				
 			} else if (obj[0].equals("Move")) {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
-				char norabide = (char) obj[3];
+				String norabide = (String) obj[3];
 				boolean mugitu = (boolean) obj[4];
-				this.mugituBomberman(i, j, norabide,mugitu);
-			
+				int pausuak = (int) obj[5];
+				this.mugituBomberman(i, j, norabide,mugitu,pausuak);
+				
+			} else if (obj[0].equals("Biratu")){
+				
+				this.mugituBomberman(x, y, (String) obj[3],false,(int) obj[5]);
 				
 			} else if (obj[0].equals("MoveEtsaia")) {
 				int i = (int) obj[1];
@@ -207,13 +212,16 @@ public class LabirintoBista extends JFrame implements Observer {
 				int aurrekoX = (int) obj[5];
 				int aurrekoY = (int) obj[6];
 				this.mugituEtsaia(i, j, norabide,mugitu, aurrekoX, aurrekoY);
-			} else if (obj[0].equals("BombaJarri")) {
+				
+			} else if (obj[0].equals("Bomba kop eguneratu")) {
 				int i = (int) obj[1];
-				this.eguneratuBombaKop(i);
+				bombaKop.setText(":  "+ i);
+				
 			} else if(obj[0].equals("EtsaiaHil")) {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
 				this.bilatuGelaxka(i, j).etsaiaKendu();
+				
 			} else if(obj[0].equals("Jokua amaitu da")) {
 				String izenburua;
 				String mezua;
@@ -227,7 +235,7 @@ public class LabirintoBista extends JFrame implements Observer {
 				}
 				Object[] opciones = {"Ados"};
 			    JOptionPane.showOptionDialog(
-			            Bista.LabirintoBista.getNireLabirintoBista(),
+			            this,
 			            mezua,
 			            izenburua,
 			            JOptionPane.DEFAULT_OPTION,
@@ -236,16 +244,9 @@ public class LabirintoBista extends JFrame implements Observer {
 			            opciones,
 			            null); 
 			}
-			else if (obj[0].equals("Biratu")){
-				this.mugituBomberman(x, y, (char) obj[3],false);
-			}
 		} 
 
 	}
 	
-	public void eguneratuBombaKop(int pKop) {
-		bombaKop.setText(":  "+ pKop);
-		
-	}
 		
 }

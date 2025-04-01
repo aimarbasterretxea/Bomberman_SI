@@ -11,6 +11,9 @@ public abstract class Bomberman {
 	private static Timer timer=null;
 	protected int bombaKop;
 	protected String bombaMota;
+	private static int pausuak=1;
+	private String aurrekoNorabidea ="";
+	private String norabideBerria="";
 	
 	//Eraikitzailea
 	protected Bomberman() { 
@@ -65,43 +68,66 @@ public abstract class Bomberman {
 		Jokua.getJokua().amaituJokua(1);
 	}
 	
-	public void mugitu(char norabide) {
+	public void mugitu(String norabide, boolean bombaDago) {
 	    int xBerria = this.x;
 	    int yBerria = this.y;
-
+	 
+	    
+	    //if(!bombaDago) {
 	    switch (norabide) {
-	        case 'A': // Ezkerretara mugitu
+	        case "left": // Ezkerretara mugitu
 	            yBerria--;
+	            norabideBerria="left";
 	            break;
-	        case 'D': // Eskuinera mugitu
+	        case "right": // Eskuinera mugitu
 	            yBerria++;
+	            norabideBerria="right";
 	            break;
-	        case 'W': // Gora mugitu
+	        case "up": // Gora mugitu
 	            xBerria--;
+	            norabideBerria="up";
 	            break;
-	        case 'S': // Behera mugitu
+	        case "down": // Behera mugitu
 	            xBerria++;
+	            if (pausuak>=4) {
+	            	pausuak=0;
+	            }
+	            norabideBerria="down";
 	            break;
 	        default:
 	            return; // Norabide baliogabea bada, irten
 	    }
-
+	    
+	    System.out.println(aurrekoNorabidea);
+	    if (aurrekoNorabidea.equals(norabideBerria)&&aurrekoNorabidea!="") {
+	    				if (pausuak>=5) {
+	    					pausuak=0;
+	    				}
+	    				pausuak++;
+	    }
+	    else{
+	    				pausuak=1;
+	    }
+	   
+	    aurrekoNorabidea=norabideBerria;
 	    // Egiaztatu posizio berria baliozkoa eta libre dagoen
 	    if (posizioaBaliozkoaDa(xBerria, yBerria) && posizioaLibreaDa(xBerria, yBerria)) {
 	        this.x = xBerria;
 	        this.y = yBerria;
 	        if(Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.x,this.y).getSua()!=null || Generator.getNireGenerator().getLabirintoa().etsaiaDago(x,y)) {
-	        	Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Move", x, y, norabide,true});	
+	        	Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Move", x, y, norabide,true,pausuak});	
 	        	this.bombermanHil();
 			}
-				Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Move", x, y, norabide, true});
+				Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Move", x, y, norabide, true,pausuak});
 	        
 	    }
 	    else {
-	    	Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Biratu", x, y, norabide,false});
+	    	Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Biratu", x, y, norabide,false,pausuak});
 
 	    }
-	}
+	   
+	    }
+	//}
 
 	private boolean posizioaBaliozkoaDa(int x, int y) {
 	    return x >= 0 && x < 11 && y >= 0 && y < 17;
@@ -117,7 +143,7 @@ public abstract class Bomberman {
  			Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.getX(), this.getY()).bombaJarri(this.bombaMota);
  			bombaKop--;
  			}	
- 		Generator.getNireGenerator().getLabirintoa().bombaJarriDa(this.bombaKop);
+ 		Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[] {"Bomba kop eguneratu", this.bombaKop});
  		this.eguneratuBombaKop();
  	}
 }
