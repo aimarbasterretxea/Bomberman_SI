@@ -6,6 +6,7 @@ public class BombermanZuria extends Bomberman{
 		super();
 		this.bombaKop=10;
 		this.bombaMota="Txikia";
+		this.kolorea="white";
 	}
 	
 }  

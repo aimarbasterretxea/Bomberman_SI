@@ -6,6 +6,7 @@ public class BombermanBeltza extends Bomberman {
 		super();
 		this.bombaKop=1;
 		this.bombaMota="Handia";
+		this.kolorea="black";
 	}
 
 
