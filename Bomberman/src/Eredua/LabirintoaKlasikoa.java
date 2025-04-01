@@ -2,25 +2,25 @@ package Eredua;
 import Bista.LabirintoBista;
 
 public class LabirintoaKlasikoa extends Labirintoa {
-	//Atributua
+	
 	//private static LabirintoaKlasikoa nireLabirintoKlasikoa;
 	
 	//Eraikitzailea
 	public LabirintoaKlasikoa(String pBomberMota) {
 		super(pBomberMota);	
+		//labirintoaOsatu();
 		System.out.println("LabirintoaKlasikoa: Osatuta");
 	}
 	
 	//Geterra
-	public  LabirintoaKlasikoa getNireLabirintoKlasikoa(){
-		return this;
-	}
+	
 	
 	//Metodoak
 	@Override
 	public void labirintoaOsatu() {
 		setChanged();
 		notifyObservers("Matrizea sortu da");
+		//abisatuObservers(new Object[] {"Matrizea sortu da"});
 		for (int i = 0; i < 11; i++) {
 			for (int j = 0; j < 17; j++) {
 				Gelaxka unekoGelaxka = this.bilatuGelaxka(i, j);

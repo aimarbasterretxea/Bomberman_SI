@@ -28,6 +28,7 @@ public class LFactory {
 		else if (pMota.equals("Hutsa")) {
 			nireLabirintoa = new LabirintoaHutsa(pBomberMota);
 		}
+		
 		return nireLabirintoa;
 	}
 }

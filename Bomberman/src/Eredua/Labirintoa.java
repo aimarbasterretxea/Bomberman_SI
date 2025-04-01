@@ -28,6 +28,8 @@ public abstract class Labirintoa extends Observable{
  			}
  		}
  		System.out.println("Labirintoa: Labirinto hutsa sortu da");
+		//setChanged();
+		//notifyObservers("Matrizea sortu da");
  		this.pBomberMota = pBomberMota;
  	}
  	
@@ -158,7 +160,7 @@ public abstract class Labirintoa extends Observable{
 	
 	public void abisatuObservers(Object[] pArg) {
 		setChanged();
-        notifyObservers(new Object[]{pArg});
+        notifyObservers(pArg);
 	}
 	
 	// ETSAIAren METODOAK ////////////////////////////////////////////

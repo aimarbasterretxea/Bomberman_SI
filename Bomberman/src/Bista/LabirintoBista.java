@@ -42,6 +42,7 @@ public class LabirintoBista extends JFrame implements Observer {
     // ERAIKITZAILEA ////////////////
     private LabirintoBista() {
     	Generator.getNireGenerator().getLabirintoa().addObserver(this);
+    	System.out.println("LabirintoBista: LabirintoBista sortua");
     	System.out.println();
         setTitle("BomberMan");
         setIconImage(Toolkit.getDefaultToolkit().getImage(LabirintoBista.class.getResource("/irudiak/blackfront1.png")));

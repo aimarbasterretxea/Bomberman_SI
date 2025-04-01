@@ -21,7 +21,10 @@ public class LabirintoaBiguna extends Labirintoa{
 			for (int j = 0; j < 17; j++) {
 				Gelaxka unekoGelaxka = this.bilatuGelaxka(i, j);
 				if((i == 0 && j == 0) || (i==1 && j == 0) || (i == 0 && j == 1)) {
-				//Ezer ez
+					if (i == 0 && j == 0) {
+						//Bombermana gehitu
+						sortuBomberman(getBombermanMota());
+					}
 				} else if (Math.random() >= 0.4) {
 					//Biguna gehitu
 					blokeKopEguneratu();
