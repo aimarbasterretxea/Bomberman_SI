@@ -11,9 +11,12 @@ public class Etsaia {
 	private Timer timerEtsaia;
 	
 	//Eraikitzailea
-	public Etsaia(int pX, int pY) {
-		this.x=pX;
-		this.y=pY;
+	public Etsaia() {
+	}
+	
+	public void setKoordenatuak(int pX, int pY) {
+		this.x = pX;
+		this.y = pY;
 	}
 	
 	//Metodoak

@@ -88,7 +88,9 @@ public abstract class Labirintoa extends Observable{
 	
 	//ETSAIAren METODOAK////////////////////////////////////////
 	public static void gehituEtsaia(int i, int j) {
-		etsaiak.add(new Etsaia(i,j));
+		Etsaia etsaia = EtsaiaFactory.getNireEFactory().sortuEtsaia("Normala");
+		etsaiak.add(etsaia);
+		etsaia.setKoordenatuak(i, j);
 	}
 	
 	public void mugituEtsaiak() {
