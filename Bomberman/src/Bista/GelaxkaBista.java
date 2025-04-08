@@ -33,11 +33,34 @@ public class GelaxkaBista extends JPanel implements Observer {
 	
 	// METODOAK //////////////////////////
 	public void blokeGogorra() {
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/hard5.png")));
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/hard1.png")));
 	}
 	
 	public void blokeBiguna() {
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/soft4.png")));
+		float aux = (float) Math.random();
+		
+		if(aux<=0.4 && aux>0.3) {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/soft41.png")));
+		}
+		else if(aux<=0.5 && aux>0.4) {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/soft42.png")));
+		}
+		else if(aux<=0.6 && aux>0.5) {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/soft43.png")));
+		}
+		else if(aux<=0.7 && aux>0.6) {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/soft44.png")));
+		}
+		else if(aux<=0.75 && aux>0.7) {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/soft45.png")));
+		}
+		else if(aux<=0.9 && aux>0.8) {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/soft46.png")));
+		}else {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/soft4.png")));
+		}
+		
+		
 	}
 	private void etsaia() {
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/doria1.png")));

@@ -160,6 +160,7 @@ public class LabirintoBista extends JFrame implements Observer {
                 case KeyEvent.VK_SPACE:
                 	Generator.getNireGenerator().getLabirintoa().getBomberman().bombaJarri();
 					break;
+                
             }
         }
 
@@ -247,5 +248,7 @@ public class LabirintoBista extends JFrame implements Observer {
 		bombaKop.setText(":  "+ pKop);
 		
 	}
+	
+	
 		
 }
