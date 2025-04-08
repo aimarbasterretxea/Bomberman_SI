@@ -111,7 +111,7 @@ public abstract class Labirintoa extends Observable{
 	            setChanged();
 	            notifyObservers(new Object[]{"EtsaiaHil", xZaharra, yZaharra});
 	            if(etsaiak.isEmpty()) {
-	            	Jokua.getJokua().amaituJokua(0);
+	            	Jokua.getJokua().amaituJokua(2);
 	            }
 	        } else  {
 	            setChanged();
@@ -170,7 +170,7 @@ public abstract class Labirintoa extends Observable{
 	// SUAren METODOAK ////////////////////////////////////////////
 	public void bombaKendu(ArrayList<int[]> sutea) {
 	    boolean bizirik = true;
-
+	    int size = etsaiak.size();
 	    for (int[] pos : sutea) {
 	        int x = pos[0];
 	        int y = pos[1];
@@ -180,6 +180,19 @@ public abstract class Labirintoa extends Observable{
 	        }
 	        if (this.bomberman.getX() == x && this.bomberman.getY() == y) {
 	            bizirik = false;
+	        }
+	        
+	        if (this.etsaiaDago(x, y)) {
+	        	for (int i=0; i<size; i++) {
+	        		Etsaia etsaia= etsaiak.get(i);
+	        		if(etsaia.getX() == x && etsaia.getY() == y) {
+	        			this.etsaiak.remove(i);
+	        			size--;
+	        			if(etsaiak.isEmpty()|| size==0) {
+	        				Jokua.getJokua().amaituJokua(2);
+	        			}
+	        		}
+	        	}	
 	        }
 	    }
 

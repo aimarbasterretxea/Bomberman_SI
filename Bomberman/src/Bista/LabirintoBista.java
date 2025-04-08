@@ -225,12 +225,12 @@ public class LabirintoBista extends JFrame implements Observer {
 			} else if (obj[0].equals("Bomba kop eguneratu")) {
 				int i = (int) obj[1];
 				bombaKop.setText(":  "+ i);
-			} /*else if(obj[0].equals("EtsaiaHil")) {
+			} else if(obj[0].equals("EtsaiaHil")) {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
-				this.bilatuGelaxka(i, j).elementuaKendu();*/
+				this.bilatuGelaxka(i, j).elementuaKendu();
 				
-			else if(obj[0].equals("Jokua amaitu da")) {
+			}else if(obj[0].equals("Jokua amaitu da")) {
 				String izenburua;
 				String mezua;
 				if (obj[1].equals(2)) {
