@@ -14,6 +14,7 @@ public abstract class Bomberman {
 	private static int pausuak=1;
 	private String aurrekoNorabidea ="";
 	private String norabideBerria="";
+	protected String kolorea="";
 	
 	//Eraikitzailea
 	protected Bomberman() { 
@@ -30,8 +31,7 @@ public abstract class Bomberman {
     public void bombaGehitu() {
         if (bombaKop == 0) { 
             bombaKop = 1; 
-            //LabirintoaKlasikoa.getNireLabirintoKlasikoa().bilatuGelaxka(this.x, this.y).bombaJarri();
-            Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"BombaJarri", bombaKop, -1, ' ',false});
+            Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Bomba kop eguneratu", bombaKop});
             if (timer != null) {
                 timer.cancel(); // Gelditu Timer
                 timer = null; // Berrabiarazi Timer
@@ -71,7 +71,9 @@ public abstract class Bomberman {
 	public void mugitu(String norabide, boolean bombaDago) {
 	    int xBerria = this.x;
 	    int yBerria = this.y;
-	 
+	    int xZaharra = this.x;
+	    int yZaharra = this.y;
+	    
 	    
 	    //if(!bombaDago) {
 	    switch (norabide) {
@@ -110,20 +112,28 @@ public abstract class Bomberman {
 	    }
 	   
 	    aurrekoNorabidea=norabideBerria;
+	    boolean bomba=Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.x, this.y).getBomba();
 	    // Egiaztatu posizio berria baliozkoa eta libre dagoen
 	    if (posizioaBaliozkoaDa(xBerria, yBerria) && posizioaLibreaDa(xBerria, yBerria)) {
 	        this.x = xBerria;
 	        this.y = yBerria;
 	        if(Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.x,this.y).getSua()!=null || Generator.getNireGenerator().getLabirintoa().etsaiaDago(x,y)) {
-	        	Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Move", x, y, norabide,true,pausuak});	
+	        	Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Move", x, y, norabide,pausuak, kolorea});	
 	        	this.bombermanHil();
 			}
-				Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Move", x, y, norabide, true,pausuak});
-	        
+				Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Move", x, y, norabide, pausuak,kolorea});
+				if(!bomba){
+				Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Bomberman kendu", xZaharra, yZaharra,this.kolorea});
 	    }
+				else {
+					Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(xZaharra, yZaharra).bombaAldatu();
+				}
+				}
+	    	
 	    else {
-	    	Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Biratu", x, y, norabide,false,pausuak});
-
+	    	if(!bomba) {
+	    	Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Biratu", x, y, norabide,pausuak,kolorea});
+	    	}
 	    }
 	   
 	    }

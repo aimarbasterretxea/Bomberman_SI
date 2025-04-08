@@ -16,6 +16,7 @@ public class Gelaxka extends Observable {
 	private Timer timerSua;
 	private int kont;
 	private boolean eztanda;
+	boolean bombermanDago;
 	
 	
 	//Eraikitzaileka
@@ -74,7 +75,9 @@ public class Gelaxka extends Observable {
 	}	
 	
 	public void bombaJarri(String pMota) {
+		
 		if(this.bomba==null) {
+			
 			bomba=BombaFactory.getNireBFactory().sortuBomba(pMota);
 			bombaTimer();
 			setChanged();
@@ -89,8 +92,7 @@ public class Gelaxka extends Observable {
 			public void run() {
 				azpiKont++;
 				if(kont<4&&!eztanda) {
-					setChanged();
-					notifyObservers(new Object[]{"BombaAldatu",kont});
+					bombaAldatu();
 					if (azpiKont==2) {
 					kont++;
 					azpiKont=0;
@@ -107,14 +109,29 @@ public class Gelaxka extends Observable {
 		this.timerBomba = new Timer();
 		timerBomba.scheduleAtFixedRate(timerTask, 0, 500);
 	}
-	
+	public void bombaAldatu() {
+		if(bombermanDago()) {
+			setChanged();
+			notifyObservers(new Object[]{"BombaAldatu",kont,Generator.getNireGenerator().getLabirintoa().getBombermanMota()});}
+			else {
+				setChanged();
+				notifyObservers(new Object[]{"BombaJarri",kont});
+			}
+	}
+	public boolean bombermanDago() {
+		if(this.x==Generator.getNireGenerator().getLabirintoa().getBomberman().getX()&&this.y==Generator.getNireGenerator().getLabirintoa().getBomberman().getY()) {
+			return true;
+		}
+		else {
+			return false;
+	}}
 	public void bombaKendu() {
 		eztanda=false;
 		this.timerBomba.cancel();
 		this.timerBomba=null;
 		setChanged();
 		notifyObservers("BombaKendu");
-		bomba.kalkulatuKoordenatuak(this.x, this.y);
+		bomba.kalkulatu(this.x, this.y);
 		bomba=null;
 	}
 	

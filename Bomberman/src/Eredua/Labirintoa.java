@@ -103,13 +103,17 @@ public abstract class Labirintoa extends Observable{
 	        // Posizio posibleak kalkulatu
 	        ArrayList<Character> norabidePosibleak = this.kalkulatuNorabidePosibleak(etsaia.getX(), etsaia.getY());
 	        char norabide = etsaia.mugitu(norabidePosibleak);
+	        
 
 	        if (this.bilatuGelaxka(etsaia.getX(), etsaia.getY()).getSua() != null) {
 	            etsaiak.remove(i); 
 	            i--; 
 	            setChanged();
 	            notifyObservers(new Object[]{"EtsaiaHil", xZaharra, yZaharra});
-	        } else {
+	            if(etsaiak.isEmpty()) {
+	            	Jokua.getJokua().amaituJokua(0);
+	            }
+	        } else  {
 	            setChanged();
 	            notifyObservers(new Object[]{"MoveEtsaia", etsaia.getX(), etsaia.getY(), norabide, true, xZaharra, yZaharra});
 

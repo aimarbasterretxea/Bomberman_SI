@@ -11,15 +11,8 @@ public class GelaxkaBista extends JPanel implements Observer {
 	
 	// ATRIBUTUAK //////////////////////////
 	private JLabel irudia;
-	private boolean bombaDago=false;
-	private boolean bombermanDago=false;
-	private boolean suaDago=false;
-	private boolean etsaiaDago = false;
 	private static final long serialVersionUID = 1L;
-	private int bombaDenbora=1;
-	private String norabideBerria="";
-	private String bombermanKolorea="";
-
+	
 	// ERAIKITZAILEA //////////////////////////
 	public GelaxkaBista(boolean pEgoera) {
 		this.irudia = new JLabel("");
@@ -42,17 +35,15 @@ public class GelaxkaBista extends JPanel implements Observer {
 		if(arg instanceof Object[]) {
 			Object[] obj = (Object[]) arg;
 			if(obj[0].equals("BombaAldatu")) {
-				this.bombaJarri((int) obj[1]);
+				this.bombaAldatu((int) obj[1], (String) obj[2]);
 				
 			}
-		}
+			else if(obj[0].equals("BombaJarri")) {
+				this.bombaJarri((int) obj[1]);
+			}
+			
 		if (arg.equals("BombaKendu")) {
-			this.elementuaKendu();
-			
-		} else if (arg.equals("BombaJarri")) {
-			this.bombaJarri(bombaDenbora);
-			
-			
+			this.elementuaKendu();}
 		} else if(arg.equals("SuaJarri")) {
 			this.suaJarri();
 			
@@ -65,86 +56,53 @@ public class GelaxkaBista extends JPanel implements Observer {
 		else if(arg.equals("Biguna")) {
 			this.blokeBiguna();
 		}
+		/*else if(arg.equals("BombermanJarri")) {
+			this.bombaJarri(bombaDenbora);
+		}*/
 		
 	}
 
 	public void bombermanJarri(String pNorabide, String pKolorea, int pausuak) {
-		this.bombermanDago=true;
-		this.bombermanKolorea=pKolorea;
+		//this.bombermanDago=true;
+		//this.bombermanKolorea=pKolorea;
 			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/"+pKolorea+pNorabide+pausuak+".png")));
 		}
 	
 			
 	
 
-	public void bombermanKendu(){
-		if(this.bombaDago==true) {
-			this.bombermanDago=false;
-			this.bombaJarri(bombaDenbora);
-			
-		}
-		else {
+	public void bombermanKendu(String pKolorea) {
 			this.irudia.setIcon(null);
-			this.bombermanDago=false;
-		}		
 	}
 	
-	public void bombaJarri(int kont){
-		bombaDenbora=kont;
-		if (this.bombermanDago){
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/"+bombermanKolorea+"withbomb"+bombaDenbora+".png")));
-		this.bombaDago=true;}
-		else{
-			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/bomb"+bombaDenbora+".png")));
-			this.bombaDago=true;
-		}
+	public void bombaJarri(int pDenbora) {
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/bomb"+pDenbora+".png")));
+		
 	}
+		public void bombaAldatu(int kont, String bombermanKolorea) {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/"+bombermanKolorea+"withbomb"+kont+".png")));
+		}
 	
 	public void suaJarri() {
-		this.suaDago=true;
+	//	this.suaDago=true;
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/kaBomb5.png")));
 	}
 	
 	
 	public void elementuaKendu(){
-		if (this.bombaDago==true) {
-			
-			bombaKendu();
-		}
-		else {
-			if (this.bombermanDago==true) {
-			this.bombermanDago=false;}
-			else if (this.suaDago==true) {
-				this.suaDago=false;
-			}
-			this.irudia.setIcon(null);
-			
-		}
-
+			this.irudia.setIcon(null);		
 	}
 	
-	public void bombaKendu() {
-		this.bombaDago=false;
-		this.irudia.setIcon(null);
-	}
 
 
-	public void etsaiaKendu() {
-		if (suaDago==false) {
-			this.irudia.setIcon(null);
-		}
-		this.etsaiaDago=false;
-	}
-	
+
+
 	public void etsaiaJarri(Character pNorabide) {
-		this.etsaiaDago=true;
+
 		if (pNorabide.equals('D')) {
-			norabideBerria="1";
-		}
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/doria1.png")));}
 		else {
-			 norabideBerria="2";
-		}
 	   
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/doria"+norabideBerria+".png")));
-	}
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/doria2.png")));
+	}}
 }

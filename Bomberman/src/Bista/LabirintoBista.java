@@ -31,12 +31,9 @@ public class LabirintoBista extends JFrame implements Observer {
     private static JPanel panelInfo;
     private static LabirintoBista nireLabirintoBista;
     private Kontroladorea kontroladorea = null; // Controlador de teclado
-    private static int x;
-    private static int y;
     private JLabel irudia;
     private JLabel bombaKop;
     private Image argazkia; 
-    private String kolorea= "";
 
     
     // ERAIKITZAILEA ////////////////
@@ -117,22 +114,22 @@ public class LabirintoBista extends JFrame implements Observer {
     
     public void mugituEtsaia(int hX, int hY, Character pNorabide, boolean mugitu, int aurrekoX, int aurrekoY) {	//AQUI EL PROBLEMA
     	if (mugitu==true){
-    		bilatuGelaxka(aurrekoX,aurrekoY).etsaiaKendu();
+    		bilatuGelaxka(aurrekoX,aurrekoY).elementuaKendu();
     	}
     	
     	bilatuGelaxka(hX, hY).etsaiaJarri(pNorabide);
     }
     
-    public void mugituBomberman(int hX, int hY, String pNorabide, boolean mugitu,int pausuak) {
+    /*public void mugituBomberman(int hX, int hY, String pNorabide, boolean mugitu,int pausuak) {
     	if (mugitu==true){
     	bilatuGelaxka(x, y).bombermanKendu();
     	}
     	
     	bilatuGelaxka(hX, hY).bombermanJarri(pNorabide, kolorea,pausuak);
-    	this.x=hX;
-    	this.y=hY;
-    }
-   
+    	//this.x=hX;
+    	//this.y=hY;
+    }*/
+    
 	private Kontroladorea getKontroladorea() {
 		if (kontroladorea == null) {
 			kontroladorea = new Kontroladorea();
@@ -186,23 +183,35 @@ public class LabirintoBista extends JFrame implements Observer {
 		} else if (arg instanceof Object[]) {
 			Object[] obj = (Object[]) arg;
 			if (obj[0].equals("BombermanSortu")) {
-				kolorea = (String) obj[1];
+				String kolorea = (String) obj[1];
 				bombaKop.setText(":  "+ obj[2]);
 				bilatuGelaxka(0,0).bombermanJarri("front",kolorea,1);
-				x = 0;
-				y = 0;
+				//x = 0;
+				//y = 0;
 				
 			} else if (obj[0].equals("Move")) {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
 				String norabide = (String) obj[3];
-				boolean mugitu = (boolean) obj[4];
-				int pausuak = (int) obj[5];
-				this.mugituBomberman(i, j, norabide,mugitu,pausuak);
+				String kolorea = (String) obj[5];
+				int pausuak = (int) obj[4];
+				this.bilatuGelaxka(i,j).bombermanJarri(norabide,kolorea,pausuak);
+			
+			} else if (obj[0].equals("Bomberman kendu")) {
+				int i = (int) obj[1];
+				int j = (int) obj[2];
+				String kolorea = (String) obj[3];
+				//boolean bomba = (boolean) obj[3];
+				this.bilatuGelaxka(i, j).bombermanKendu(kolorea);
 				
-			} else if (obj[0].equals("Biratu")){
-				
-				this.mugituBomberman(x, y, (String) obj[3],false,(int) obj[5]);
+			}else if (obj[0].equals("Biratu")){
+				int i = (int) obj[1];
+				int j = (int) obj[2];
+				String norabide = (String) obj[3];
+				int pausuak = (int) obj[4];
+				String kolorea = (String) obj[5];
+				this.bilatuGelaxka(i,j).bombermanJarri(norabide,kolorea,pausuak);
+				//this.mugituBomberman( (String) obj[3],false,(int) obj[5]);
 				
 			} else if (obj[0].equals("MoveEtsaia")) {
 				int i = (int) obj[1];
@@ -216,13 +225,12 @@ public class LabirintoBista extends JFrame implements Observer {
 			} else if (obj[0].equals("Bomba kop eguneratu")) {
 				int i = (int) obj[1];
 				bombaKop.setText(":  "+ i);
-				
-			} else if(obj[0].equals("EtsaiaHil")) {
+			} /*else if(obj[0].equals("EtsaiaHil")) {
 				int i = (int) obj[1];
 				int j = (int) obj[2];
-				this.bilatuGelaxka(i, j).etsaiaKendu();
+				this.bilatuGelaxka(i, j).elementuaKendu();*/
 				
-			} else if(obj[0].equals("Jokua amaitu da")) {
+			else if(obj[0].equals("Jokua amaitu da")) {
 				String izenburua;
 				String mezua;
 				if (obj[1].equals(2)) {

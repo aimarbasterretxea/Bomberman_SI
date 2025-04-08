@@ -2,12 +2,10 @@ package Eredua;
 
 import java.util.ArrayList;
 
-public class BombaHandia extends Bomba {
-	public BombaHandia() {
-		super(new LehertuHandia());
-	}
-	/*@Override
-	public ArrayList<int[]> kalkulatuKoordenatuak(int pX, int pY) {
+public class LehertuHandia implements LehertuPortaera{
+
+	@Override
+	public ArrayList<int[]> Lehertu(int pX, int pY) {
 	    ArrayList<int[]> sutea = new ArrayList<>();
 	    int[][] norabideak = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
@@ -37,7 +35,7 @@ public class BombaHandia extends Bomba {
 	    }
 
 	    Generator.getNireGenerator().getLabirintoa().bombaKendu(sutea);
-	    return sutea;
-	}*/
-
+	    return sutea;		
+	}
+	
 }
