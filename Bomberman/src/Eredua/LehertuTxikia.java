@@ -6,7 +6,6 @@ public class LehertuTxikia implements LehertuPortaera{
 
 	@Override
 	public ArrayList<int[]> Lehertu(int pX, int pY) {
-		// TODO Auto-generated method stub
 		ArrayList<int[]> sutea = new ArrayList<>();
 	    int[][] norabideak = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
@@ -18,7 +17,8 @@ public class LehertuTxikia implements LehertuPortaera{
 	        int berriaX = pX + norabidea[0];
 	        int berriaY = pY + norabidea[1];
 
-	        if (berriaX >= 0 && berriaX <= 10 && berriaY >= 0 && berriaY <= 16) {
+	        if (berriaX >= 0 && berriaX <= 10 && berriaY >= 0 && berriaY <= 16 && 
+	        	!(Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(berriaX, berriaY).getBloke() instanceof BlokeGogorra)) {
 	            sutea.add(new int[]{berriaX, berriaY});
 	        }
 	    }

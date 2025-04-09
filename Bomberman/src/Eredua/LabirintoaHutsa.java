@@ -1,23 +1,17 @@
 package Eredua;
 
 public class LabirintoaHutsa extends Labirintoa{
-	//Atributua
-
 	
 	//Eraikitzailea
 	public LabirintoaHutsa(String pBomberMota) {
 		super(pBomberMota);		
-	}
-	
-
-	
-	//Metodoak
-	
+	}	
 	
 	@Override
 	public void labirintoaOsatu() {
 		setChanged();
 		notifyObservers("Matrizea sortu da");
+		
 		for (int i = 0; i < 11; i++) {
 			for (int j = 0; j < 17; j++) {
 				Gelaxka unekoGelaxka = this.bilatuGelaxka(i, j);
@@ -26,7 +20,6 @@ public class LabirintoaHutsa extends Labirintoa{
 						//Bombermana gehitu
 						sortuBomberman(getBombermanMota());
 					}
-				
 				} else if (Math.random() >= 0.95) {
 					if (this.getEtsaiak().size() < 10) {
 						//Etsaia gehitu
@@ -36,6 +29,5 @@ public class LabirintoaHutsa extends Labirintoa{
 			}
 		}
 		etsaiaTimer();
-		
 	}
 }

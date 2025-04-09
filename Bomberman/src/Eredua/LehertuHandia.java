@@ -25,13 +25,13 @@ public class LehertuHandia implements LehertuPortaera{
 	            }
 
 	            // BEGIRATU HUTSA DEN
-	            if (!Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(berriaX, berriaY).hutsaDa()) {
+	            if (Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(berriaX, berriaY).getBloke() instanceof BlokeGogorra) {
 	                jarraitu = false;
 	            }
-
+	            else {
 	            sutea.add(new int[]{berriaX, berriaY});
-	            System.out.println("koordenatuak: " + berriaX + " " + berriaY);
-	        }
+	            }
+            }
 	    }
 
 	    Generator.getNireGenerator().getLabirintoa().bombaKendu(sutea);

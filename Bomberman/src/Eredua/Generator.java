@@ -19,7 +19,6 @@ public class Generator {
 	}
 	
 	public Labirintoa getLabirintoa() {
-		
 		return egungoLabirintoa;
 	}
 }

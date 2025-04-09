@@ -3,8 +3,7 @@ package Eredua;
 public class LFactory {
 	private static LFactory nLFactory=null;
 	
-	private LFactory() {
-	}
+	private LFactory() {}
 	
 	public static LFactory getNireLFactory() {
 		if (nLFactory == null) {
@@ -12,14 +11,12 @@ public class LFactory {
 		}
 		return nLFactory;
 	}
+	
 	public Labirintoa sortuLabirintoa(String pMota, String pBomberMota) {
-    	System.out.println("LFactory: Sortu labirintoa sartu da");
-    	System.out.println(pMota);
 
 		Labirintoa nireLabirintoa =null;
      
 		if (pMota.equals("Klasikoa")) {
-        	System.out.println("LFactory: Klasikoa sortu da");
         	nireLabirintoa = new LabirintoaKlasikoa(pBomberMota);
 		}
 		else if (pMota.equals("Biguna")) {

@@ -241,10 +241,6 @@ public class Menua extends JFrame implements Observer {
 	            }else {
 	            	         	
 	            	menuaItxi();
-		            System.out.println("Jolastu botoia sakatu duzu");
-		            System.out.println("Zure aukerak:");
-		            System.out.println(labAukera);
-		            System.out.println(bomberAukera);
 		            Jokua.getJokua().jokuaHasieratu(labAukera, bomberAukera);
 	            }
 	        }
@@ -307,9 +303,8 @@ public class Menua extends JFrame implements Observer {
 
 	    
 	    
-	    public void itemStateChanged(ItemEvent e) {
-	              	
-	        }
+	    public void itemStateChanged(ItemEvent e) {}
+	    
 	    @Override
 	    public void keyPressed(KeyEvent e) {
 	    	if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -323,15 +318,11 @@ public class Menua extends JFrame implements Observer {
 	    	}
 	    }
 
-
-
 		@Override
 		public void keyTyped(KeyEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
-
-
 
 		@Override
 		public void keyReleased(KeyEvent e) {

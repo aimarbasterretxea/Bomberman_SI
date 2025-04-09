@@ -1,22 +1,18 @@
 
 package Eredua;
 
-public class LabirintoaBiguna extends Labirintoa{
-	//Atributua
-	
+public class LabirintoaBiguna extends Labirintoa{	
 	
 	//Eraikitzailea
 	public LabirintoaBiguna(String pBomberMota) {
 		super(pBomberMota);		
 	}
-	
-	
-	//Metodoak
-	
+		
 	@Override
 	public void labirintoaOsatu() {
 		setChanged();
 		notifyObservers("Matrizea sortu da");
+		
 		for (int i = 0; i < 11; i++) {
 			for (int j = 0; j < 17; j++) {
 				Gelaxka unekoGelaxka = this.bilatuGelaxka(i, j);
@@ -38,6 +34,5 @@ public class LabirintoaBiguna extends Labirintoa{
 			}
 		}
 		etsaiaTimer();
-		
 	}
 }

@@ -28,7 +28,6 @@ public abstract class Labirintoa extends Observable{
  				labirintoa[i][j]= new Gelaxka(i,j);
  			}
  		}
- 		System.out.println("Labirintoa: Labirinto hutsa sortu da");
  		this.pBomberMota = pBomberMota;
  	}
  	
@@ -38,9 +37,7 @@ public abstract class Labirintoa extends Observable{
 	private Iterator<Etsaia> getItr() {
 		return etsaiak.iterator();
 	}
-	
-	public Gelaxka[][] getLabirintoa() { return labirintoa; }
-	
+		
 	public Bomberman getBomberman() {
 		return bomberman;
 	}

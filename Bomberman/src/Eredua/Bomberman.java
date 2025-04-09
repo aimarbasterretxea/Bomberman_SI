@@ -49,7 +49,7 @@ public abstract class Bomberman {
                 }
             };
             timer = new Timer();
-            timer.scheduleAtFixedRate(timerTask, 3000, 3000); // Esperar 3 segundos antes de la primera ejecución
+            timer.scheduleAtFixedRate(timerTask, 3000, 3000); 
         }
     }
 	

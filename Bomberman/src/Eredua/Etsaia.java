@@ -21,11 +21,10 @@ public class Etsaia {
 	
 	//Metodoak
 	public char mugitu(ArrayList<Character> pNorabidePosibleak) {
-		System.out.println("Etsaia: "+pNorabidePosibleak);
 	    int xBerria = this.x;
 	    int yBerria = this.y;
 	    char norabide = etsaiaMugitu(pNorabidePosibleak);
-	    System.out.println("Etsaia: "+norabide);
+
 	    switch (norabide) {
 	        case 'A': // Ezkerretara mugitu
 	            yBerria--;
@@ -46,15 +45,15 @@ public class Etsaia {
         this.y = yBerria;
 	    return norabide;
 	}
+	
 	public int getX() {
 		return this.x;
 	}
+	
 	public int getY() {
 		return this.y;
 	}
-	private int getRandomIndex(ArrayList<?> arrayList) {
-	    return (int) (Math.random() * arrayList.size());
-	}
+	
 	private char etsaiaMugitu(ArrayList<Character> pNorabidePosibleak) {
 	    return pNorabidePosibleak.get((int) (Math.random() * pNorabidePosibleak.size()));
 	}	

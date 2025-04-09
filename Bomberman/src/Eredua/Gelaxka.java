@@ -16,8 +16,6 @@ public class Gelaxka extends Observable {
 	private Timer timerSua;
 	private int kont;
 	private boolean eztanda;
-	boolean bombermanDago;
-	
 	
 	//Eraikitzaileka
 	public Gelaxka(int pX, int pY) {
@@ -144,17 +142,15 @@ public class Gelaxka extends Observable {
 		}
 		
 		this.sua=new Sua();
-		if((this.bloke instanceof BlokeBiguna || this.bloke==null)) {
-			this.bloke=null;
-			if (this.bomba instanceof Bomba) {
-				eztanda=true;
-			}
-			suaTimer();
-			setChanged();
-			notifyObservers("SuaJarri");			
-			
-		}
 		
+		this.bloke=null;
+		if (this.bomba instanceof Bomba) {
+			eztanda=true;
+		}
+		suaTimer();
+		setChanged();
+		notifyObservers("SuaJarri");			
+					
 		return this.sua!=null;
 	}
 	
