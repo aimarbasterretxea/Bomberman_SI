@@ -9,9 +9,10 @@ public class Etsaia {
 	private int x;
 	private int y;
 	private Timer timerEtsaia;
-	
+	private MugimenduPortaera portaera;
 	//Eraikitzailea
-	public Etsaia() {
+	public Etsaia(MugimenduPortaera pPortaera) {
+		this.portaera=pPortaera;
 	}
 	
 	public void setKoordenatuak(int pX, int pY) {
@@ -20,10 +21,10 @@ public class Etsaia {
 	}
 	
 	//Metodoak
-	public char mugitu(ArrayList<Character> pNorabidePosibleak) {
+	public char mugitu(ArrayList<Character> pNorabidePosibleak, int bombermX, int bombermY) {
 	    int xBerria = this.x;
 	    int yBerria = this.y;
-	    char norabide = etsaiaMugitu(pNorabidePosibleak);
+        char norabide = portaera.aukeratuNorabidea(pNorabidePosibleak, xBerria, yBerria, bombermX, bombermY);
 
 	    switch (norabide) {
 	        case 'A': // Ezkerretara mugitu
@@ -54,8 +55,8 @@ public class Etsaia {
 		return this.y;
 	}
 	
-	private char etsaiaMugitu(ArrayList<Character> pNorabidePosibleak) {
+	/*private char etsaiaMugitu(ArrayList<Character> pNorabidePosibleak) {
 	    return pNorabidePosibleak.get((int) (Math.random() * pNorabidePosibleak.size()));
-	}	
+	}*/	
 
 }

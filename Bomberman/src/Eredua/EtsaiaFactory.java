@@ -17,9 +17,11 @@ public class EtsaiaFactory {
 		Etsaia nireEtsaia =null;
 	 
 		if (pMota.equals("Normala")) {
-			nireEtsaia = new Etsaia();
+			nireEtsaia = new Etsaia(new AusazkoMugimendua());
 		}
-		
+		else if (pMota.equals("Inteligente")) {
+			nireEtsaia = new Etsaia(new BombermanJarraitu());
+		}
 		return nireEtsaia;
 	}
 	

@@ -99,7 +99,7 @@ public abstract class Labirintoa extends Observable{
 
 	        // Posizio posibleak kalkulatu
 	        ArrayList<Character> norabidePosibleak = this.kalkulatuNorabidePosibleak(etsaia.getX(), etsaia.getY());
-	        char norabide = etsaia.mugitu(norabidePosibleak);
+	        char norabide = etsaia.mugitu(norabidePosibleak, this.bomberman.getX(),this.bomberman.getY());
 	        
 
 	        if (this.bilatuGelaxka(etsaia.getX(), etsaia.getY()).getSua() != null) {
