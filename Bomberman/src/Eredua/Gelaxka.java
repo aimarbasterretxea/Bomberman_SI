@@ -50,7 +50,7 @@ public class Gelaxka extends Observable {
 	
 	//Metodoak
 	public boolean hutsaDa() {
-		if (this.bloke==null&&this.bomba==null) {
+		if ((this.bloke==null&&this.bomba==null&&this.sua==null)||Generator.getNireGenerator().getLabirintoa().getBomberman().getX()==this.x&&Generator.getNireGenerator().getLabirintoa().getBomberman().getY()==this.y) {
 			return true;
 		}
 		else {

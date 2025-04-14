@@ -36,8 +36,8 @@ public class Jokua extends Observable {
     	
 	}
     
-	public void amaituJokua(int pMezua) {
-		Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Jokua amaitu da", pMezua});
+	public void amaituJokua(int pMezua, Object[] koordenatuak) {
+		Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[]{"Jokua amaitu da", pMezua, koordenatuak});
 	    System.exit(0);	
 	}
 }

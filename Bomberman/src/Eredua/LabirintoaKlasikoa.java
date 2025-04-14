@@ -33,7 +33,7 @@ public class LabirintoaKlasikoa extends Labirintoa {
 				} else if (Math.random() >= 0.9) {
 					if (this.getEtsaiak().size() < 6) {
 						//Etsaia gehitu
-						gehituEtsaia(i,j);
+						gehituEtsaia(i,j,"Inteligente");
 						
 					}
 				}

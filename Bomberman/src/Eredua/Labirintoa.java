@@ -15,6 +15,7 @@ public abstract class Labirintoa extends Observable{
 	private static Bomberman bomberman;
 	private static ArrayList<Etsaia> etsaiak = new ArrayList<Etsaia>();
 	private static int blokeKop = 0;
+	private int etsaiaDelay=1;
 	private Timer timerEtsaia;
 	private static String pBomberMota;
 	
@@ -84,13 +85,14 @@ public abstract class Labirintoa extends Observable{
 	}
 	
 	//ETSAIAren METODOAK////////////////////////////////////////
-	public static void gehituEtsaia(int i, int j) {
-		Etsaia etsaia = EtsaiaFactory.getNireEFactory().sortuEtsaia("Normala");
+	public static void gehituEtsaia(int i, int j,String pMota) {
+		Etsaia etsaia = EtsaiaFactory.getNireEFactory().sortuEtsaia(pMota);
 		etsaiak.add(etsaia);
 		etsaia.setKoordenatuak(i, j);
 	}
 	
 	public void mugituEtsaiak() {
+		char norabide = ' ';
 		ArrayList<Etsaia> etsaiak = this.getEtsaiak(); 
 	    for (int i = 0; i < etsaiak.size(); i++) {
 	        Etsaia etsaia = etsaiak.get(i);
@@ -98,28 +100,36 @@ public abstract class Labirintoa extends Observable{
 	        int yZaharra = etsaia.getY();
 
 	        // Posizio posibleak kalkulatu
+	        if (etsaiaDelay==0 && this.bomberman.getBizirik()) {
+	       
 	        ArrayList<Character> norabidePosibleak = this.kalkulatuNorabidePosibleak(etsaia.getX(), etsaia.getY());
-	        char norabide = etsaia.mugitu(norabidePosibleak, this.bomberman.getX(),this.bomberman.getY());
+	         norabide = etsaia.mugitu(norabidePosibleak, this.bomberman.getX(),this.bomberman.getY());}
 	        
 
-	        if (this.bilatuGelaxka(etsaia.getX(), etsaia.getY()).getSua() != null) {
+	      /*  if (this.bilatuGelaxka(etsaia.getX(), etsaia.getY()).getSua() != null) {
 	            etsaiak.remove(i); 
 	            i--; 
 	            setChanged();
 	            notifyObservers(new Object[]{"EtsaiaHil", xZaharra, yZaharra});
 	            if(etsaiak.isEmpty()) {
-	            	Jokua.getJokua().amaituJokua(2);
+	            	Jokua.getJokua().amaituJokua(2,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.pBomberMota});
 	            }
-	        } else  {
+	        }*/ if (etsaia.getX() == this.bomberman.getX() && etsaia.getY() == this.bomberman.getY()) {
+	        	  this.bomberman.setBizirik(false);
+                Jokua.getJokua().amaituJokua(1,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.pBomberMota});}
+	          
+           
+	        	
 	            setChanged();
 	            notifyObservers(new Object[]{"MoveEtsaia", etsaia.getX(), etsaia.getY(), norabide, true, xZaharra, yZaharra});
-
-	            if (etsaia.getX() == this.bomberman.getX() && etsaia.getY() == this.bomberman.getY()) {
-	                Jokua.getJokua().amaituJokua(1);
-	            }
-	        }
+	        	
+	    }   
+	    	etsaiaDelay=0;
 	    }
-	}
+	
+	        
+	    
+	
 	
 	protected ArrayList<Character> kalkulatuNorabidePosibleak(int x, int y){
 		ArrayList<Character> norabidePosibleak = new ArrayList<Character>();
@@ -132,7 +142,7 @@ public abstract class Labirintoa extends Observable{
 		if(y-1>=0 && this.bilatuGelaxka(x, y-1).hutsaDa() && !this.etsaiaDago(x,y-1)) {
 			norabidePosibleak.add('A');
 		}
-		if(y+1<zutabea && this.bilatuGelaxka(x, y+1).hutsaDa() && !this.etsaiaDago(x,y+1)) {
+		if(y+1<zutabea && this.bilatuGelaxka(x, y+1).hutsaDa() && !this.etsaiaDago(x,y+1) ) {
 			norabidePosibleak.add('D');
 		}
 		if(norabidePosibleak.isEmpty()) {
@@ -186,7 +196,7 @@ public abstract class Labirintoa extends Observable{
 	        			this.etsaiak.remove(i);
 	        			size--;
 	        			if(etsaiak.isEmpty()|| size==0) {
-	        				Jokua.getJokua().amaituJokua(2);
+	        				Jokua.getJokua().amaituJokua(2,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.pBomberMota});
 	        			}
 	        		}
 	        	}	
@@ -194,9 +204,53 @@ public abstract class Labirintoa extends Observable{
 	    }
 
 	    if (!bizirik) {
-	        Jokua.getJokua().amaituJokua(1);
+	        Jokua.getJokua().amaituJokua(1,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.pBomberMota});
 	    } else if (this.blokeKop == 0) {
-	        Jokua.getJokua().amaituJokua(2);
+	        Jokua.getJokua().amaituJokua(2,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.pBomberMota});
 	    }
+	}
+	public Object[] biderikMotzenaKalkulatu(int xEtsaia, int yEtsaia, int pLuzera, Character lehenNorabidea, boolean[][] bisitatuak) {
+	    if (this.bomberman.getX() == xEtsaia && this.bomberman.getY() == yEtsaia) {
+	        return new Object[]{lehenNorabidea, pLuzera};
+	    }
+	    if (bisitatuak[xEtsaia][yEtsaia]) {
+	        return new Object[]{' ', Integer.MAX_VALUE};
+	    }
+	    bisitatuak[xEtsaia][yEtsaia] = true;
+	    ArrayList<Character> aukerak = this.kalkulatuNorabidePosibleak(xEtsaia, yEtsaia);
+	    if (aukerak.isEmpty()) {
+	        return new Object[]{' ', Integer.MAX_VALUE}; 
+	    }
+	    Character norabiderikHoberena = ' ';
+	    int biderikMotzena = Integer.MAX_VALUE;
+
+	    for (Character norabidea : aukerak) {
+	        int lagX = xEtsaia, lagY = yEtsaia;
+	        switch (norabidea) {
+	            case 'W': 
+	            	lagX--;
+	            	break;
+	            case 'A':
+	            	lagY--;
+	            	break;
+	            case 'S':
+	            	lagX++;
+	            	break;
+	            case 'D':
+	            	lagY++;
+	            	break;
+	        }
+	        Object[] emaitza = this.biderikMotzenaKalkulatu(lagX, lagY, pLuzera + 1, 
+	                                                       lehenNorabidea == ' ' ? norabidea : lehenNorabidea,
+	                                                       bisitatuak);
+	        int emaitzaBideLuzera = (int) emaitza[1];
+	        if (emaitzaBideLuzera < biderikMotzena) {
+	            biderikMotzena = emaitzaBideLuzera;
+	            norabiderikHoberena = (Character) emaitza[0];
+	        }
+	    }
+	    bisitatuak[xEtsaia][yEtsaia] = false;
+
+	    return new Object[]{norabiderikHoberena, biderikMotzena};
 	}
 }

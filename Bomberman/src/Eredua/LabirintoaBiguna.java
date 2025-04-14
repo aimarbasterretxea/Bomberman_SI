@@ -28,7 +28,7 @@ public class LabirintoaBiguna extends Labirintoa{
 				} else if (Math.random() >= 0.9) {
 					if (this.getEtsaiak().size() < 8) {
 						//Etsaia gehitu
-						gehituEtsaia(i,j);
+						gehituEtsaia(i,j,"Inteligente");
 					}
 				}
 			}

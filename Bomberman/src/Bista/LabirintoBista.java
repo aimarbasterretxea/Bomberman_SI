@@ -217,6 +217,10 @@ public class LabirintoBista extends JFrame implements Observer {
 			}else if(obj[0].equals("Jokua amaitu da")) {
 				String izenburua;
 				String mezua;
+				Object[] koord = (Object[])obj[2];
+				int x = (int) koord[0];
+				int y = (int) koord[1];
+				String pMota = koord[2].toString();
 				if (obj[1].equals(2)) {
 					izenburua="Zorionak";
 					mezua="Jokua irabazi duzu, sakatu 'Ados' irteteko.";
@@ -225,6 +229,7 @@ public class LabirintoBista extends JFrame implements Observer {
 					izenburua="Game Over";
 					mezua="Bomberman hil egin da sakatu 'Ados' irteteko.";
 				}
+					this.bilatuGelaxka(x, y).bombermanIrudia((int)obj[1],pMota);
 				Object[] opciones = {"Ados"};
 			    JOptionPane.showOptionDialog(
 			            this,

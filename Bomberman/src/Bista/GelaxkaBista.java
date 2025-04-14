@@ -107,7 +107,8 @@ public class GelaxkaBista extends JPanel implements Observer {
 	
 	public void suaJarri() {
 	//	this.suaDago=true;
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/kaBomb5.png")));
+		//this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/kaBomb5.png")));
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/miniBlast3.gif")));
 	}
 	
 	
@@ -116,7 +117,21 @@ public class GelaxkaBista extends JPanel implements Observer {
 	}
 	
 
-
+	public void bombermanIrudia(int irabaziGaldu, String pMota) {
+		int bomberman;
+		if (irabaziGaldu==2) {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/"+pMota+"happy1.png")));
+		}
+		else if (irabaziGaldu==1) {
+			if(pMota=="white") {
+				bomberman=1;
+			}
+			else {
+				bomberman=3;
+			}
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/onFire"+bomberman+".png")));
+		}
+	}
 
 
 	public void etsaiaJarri(Character pNorabide) {

@@ -23,7 +23,7 @@ public class LabirintoaHutsa extends Labirintoa{
 				} else if (Math.random() >= 0.95) {
 					if (this.getEtsaiak().size() < 10) {
 						//Etsaia gehitu
-						gehituEtsaia(i,j);
+						gehituEtsaia(i,j,"Normala");
 					}
 				}
 			}

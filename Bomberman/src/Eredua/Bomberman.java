@@ -15,6 +15,7 @@ public abstract class Bomberman {
 	private String aurrekoNorabidea ="";
 	private String norabideBerria="";
 	protected String kolorea="";
+	private boolean bizirik=true;
 	
 	//Eraikitzailea
 	protected Bomberman() { 
@@ -61,11 +62,17 @@ public abstract class Bomberman {
 	public int getY() {
 		return this.y;
 	}
+	public boolean getBizirik() {
+		return this.bizirik;
+	}
 	
 	//Metodoak
+	public void setBizirik(boolean bizirik) {
+		this.bizirik=bizirik;
+	}
 	private void bombermanHil(){
 		Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.x,this.y).suaKendu();
-		Jokua.getJokua().amaituJokua(1);
+		Jokua.getJokua().amaituJokua(1,new Object[] {this.x, this.y,this.kolorea});
 	}
 	
 	public void mugitu(String norabide, boolean bombaDago) {

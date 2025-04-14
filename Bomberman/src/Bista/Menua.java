@@ -135,7 +135,7 @@ public class Menua extends JFrame implements Observer {
 		bomberZuria.setBackground(SystemColor.control);
 		bomberZuria.setForeground(SystemColor.control);
 		bomberZuria.setIcon(new ImageIcon(Menua.class.getResource("/irudiak/whitefront1.png")));
-		bomberZuria.setSelectedIcon(new ImageIcon(Menua.class.getResource("/irudiak/whitehappy2.png")));
+		//bomberZuria.setSelectedIcon(new ImageIcon(Menua.class.getResource("/irudiak/whitehappy2.png")));
 		bomberZuria.setBounds(235, 220, 65, 71);
 		bomberZuria.setBorderPainted(false);
 		bomberZuria.addActionListener(getKontroladorea());
@@ -143,7 +143,7 @@ public class Menua extends JFrame implements Observer {
 		
 		bomberBeltza = new JButton("");
 		bomberBeltza.setToolTipText("B_BELTZA: bomberman honek bomba handi bat izango du 3s-ro");
-		bomberBeltza.setSelectedIcon(new ImageIcon(Menua.class.getResource("/irudiak/blackdown3.png")));
+		//bomberBeltza.setSelectedIcon(new ImageIcon(Menua.class.getResource("/irudiak/blackdown3.png")));
 		bomberBeltza.setIcon(new ImageIcon(Menua.class.getResource("/irudiak/blackfront1.png")));
 		bomberBeltza.setForeground(SystemColor.control);
 		bomberBeltza.setBackground(SystemColor.control);
@@ -256,7 +256,7 @@ public class Menua extends JFrame implements Observer {
 	        	this.bomberAukera = "white";
 	        }
 	        if(jatorria == bomberBeltza) {
-	        	bomberBeltza.setIcon(new ImageIcon(Menua.class.getResource("/irudiak/blackdown3.png")));
+	        	bomberBeltza.setIcon(new ImageIcon(Menua.class.getResource("/irudiak/blackhappy2.png")));
 	        	bomberBeltza.setBackground(new Color(204, 204, 204));
 	        	bomberBeltza.setBounds(343, 217, 65, 71);
 	        	
