@@ -71,7 +71,7 @@ public class Menua extends JFrame implements Observer {
 	/**
 	 * Create the frame.
 	 */
-	public Menua() {
+	private Menua() {
 		setResizable(false);
 		Jokua.getJokua().addObserver(this);
 		buttonGroup = new ButtonGroup();
