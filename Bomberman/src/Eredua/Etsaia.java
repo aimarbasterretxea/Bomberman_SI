@@ -4,14 +4,15 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Etsaia {
+public abstract class Etsaia {
 	//Atributuak
 	private int x;
 	private int y;
 	private Timer timerEtsaia;
 	
 	//Eraikitzailea
-	public Etsaia() {
+	protected Etsaia() {
+		
 	}
 	
 	public void setKoordenatuak(int pX, int pY) {

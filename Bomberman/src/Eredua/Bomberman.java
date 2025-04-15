@@ -100,7 +100,7 @@ public abstract class Bomberman {
 	            return; // Norabide baliogabea bada, irten
 	    }
 	    
-	    System.out.println(aurrekoNorabidea);
+	   // System.out.println(aurrekoNorabidea);
 	    if (aurrekoNorabidea.equals(norabideBerria)&&aurrekoNorabidea!="") {
 	    				if (pausuak>=5) {
 	    					pausuak=0;

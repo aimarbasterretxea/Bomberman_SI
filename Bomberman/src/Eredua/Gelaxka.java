@@ -167,7 +167,7 @@ public class Gelaxka extends Observable {
 	}
 	
 	public void suaKendu() {
-	    System.out.println("Sua kendu da: (" + this.x + "," + this.y + ")");
+	    //System.out.println("Sua kendu da: (" + this.x + "," + this.y + ")");
 		this.sua=null;
 		eztanda=false;
 		setChanged();

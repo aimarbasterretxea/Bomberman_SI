@@ -19,7 +19,7 @@ public abstract class Labirintoa extends Observable{
 	private static String pBomberMota;
 	
 	//Eraikitzailea
- 	public Labirintoa(String pBomberMota) {
+ 	protected Labirintoa(String pBomberMota) {
  		
  		labirintoa = new Gelaxka[errenkada][zutabea];
  		
@@ -121,7 +121,7 @@ public abstract class Labirintoa extends Observable{
 	    }
 	}
 	
-	protected ArrayList<Character> kalkulatuNorabidePosibleak(int x, int y){
+	public ArrayList<Character> kalkulatuNorabidePosibleak(int x, int y){
 		ArrayList<Character> norabidePosibleak = new ArrayList<Character>();
 		if (x-1>=0 && this.bilatuGelaxka(x-1, y).hutsaDa() && !this.etsaiaDago(x-1,y)) {
 			norabidePosibleak.add('W');
@@ -141,7 +141,7 @@ public abstract class Labirintoa extends Observable{
 		return norabidePosibleak;
 	}
 
-	protected void etsaiaTimer() {
+	public void etsaiaTimer() {
 		TimerTask timerTask = new TimerTask() {
 			@Override
 			public void run() {
