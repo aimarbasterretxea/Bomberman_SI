@@ -14,8 +14,8 @@ public class Generator {
 		return nireGenerator;
 		}
 	
-	public void sortuLabirintoa(String pMota, String pBomberMota) {
-		 egungoLabirintoa=LFactory.getNireLFactory().sortuLabirintoa(pMota, pBomberMota);
+	public void sortuLabirintoa(String pMota ) {
+		 egungoLabirintoa=LFactory.getNireLFactory().sortuLabirintoa(pMota);
 	}
 	
 	public Labirintoa getLabirintoa() {

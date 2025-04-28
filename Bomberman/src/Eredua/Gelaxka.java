@@ -49,8 +49,13 @@ public class Gelaxka extends Observable {
 
 	
 	//Metodoak
-	public boolean hutsaDa() {
-		if ((this.bloke==null&&this.bomba==null&&this.sua==null)||Generator.getNireGenerator().getLabirintoa().getBomberman().getX()==this.x&&Generator.getNireGenerator().getLabirintoa().getBomberman().getY()==this.y) {
+	public boolean hutsaDa(boolean intelijentea) {
+		if (intelijentea) {
+			if(this.sua!=null) {
+				intelijentea=false;
+			}
+		}
+		if ((this.bloke==null&&this.bomba==null&&intelijentea)||Generator.getNireGenerator().getLabirintoa().getBomberman().getX()==this.x&&Generator.getNireGenerator().getLabirintoa().getBomberman().getY()==this.y) {
 			return true;
 		}
 		else {
@@ -110,7 +115,7 @@ public class Gelaxka extends Observable {
 	public void bombaAldatu() {
 		if(bombermanDago()) {
 			setChanged();
-			notifyObservers(new Object[]{"BombaAldatu",kont,Generator.getNireGenerator().getLabirintoa().getBombermanMota()});}
+			notifyObservers(new Object[]{"BombaAldatu",kont,Generator.getNireGenerator().getLabirintoa().getBomberman().getKolorea()});}
 			else {
 				setChanged();
 				notifyObservers(new Object[]{"BombaJarri",kont});

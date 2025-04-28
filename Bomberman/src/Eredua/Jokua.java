@@ -28,11 +28,12 @@ public class Jokua extends Observable {
     }
     
     public void jokuaHasieratu(String labirintoMota, String bomberMota) {
-    	
-    	Generator.getNireGenerator().sortuLabirintoa(labirintoMota,bomberMota);
+    	//TODO etsaiaMota pasatzea falta zaio, menuan gehityçu ondoren
+    	Generator.getNireGenerator().sortuLabirintoa(labirintoMota);
     	LabirintoBista frame2 = LabirintoBista.getNireLabirintoBista();        
     	frame2.setVisible(true);
-    	Generator.getNireGenerator().getLabirintoa().labirintoaOsatu();
+    	Generator.getNireGenerator().getLabirintoa().labirintoaOsatu(bomberMota);
+    	
     	
 	}
     

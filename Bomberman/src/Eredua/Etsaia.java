@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Etsaia {
+public abstract class Etsaia {
 	//Atributuak
 	private int x;
 	private int y;
-	private Timer timerEtsaia;
+	//private Timer timerEtsaia;
 	private MugimenduPortaera portaera;
 	//Eraikitzailea
 	public Etsaia(MugimenduPortaera pPortaera) {
@@ -54,9 +54,6 @@ public class Etsaia {
 	public int getY() {
 		return this.y;
 	}
-	
-	/*private char etsaiaMugitu(ArrayList<Character> pNorabidePosibleak) {
-	    return pNorabidePosibleak.get((int) (Math.random() * pNorabidePosibleak.size()));
-	}*/	
+
 
 }

@@ -102,6 +102,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 		
 	}
 		public void bombaAldatu(int kont, String bombermanKolorea) {
+			System.out.println(kont+bombermanKolorea);
 			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/"+bombermanKolorea+"withbomb"+kont+".png")));
 		}
 	

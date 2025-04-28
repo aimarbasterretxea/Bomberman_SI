@@ -12,18 +12,18 @@ public class LFactory {
 		return nLFactory;
 	}
 	
-	public Labirintoa sortuLabirintoa(String pMota, String pBomberMota) {
+	public Labirintoa sortuLabirintoa(String pMota) {
 
 		Labirintoa nireLabirintoa =null;
      
 		if (pMota.equals("Klasikoa")) {
-        	nireLabirintoa = new LabirintoaKlasikoa(pBomberMota);
+        	nireLabirintoa = new LabirintoaKlasikoa();
 		}
 		else if (pMota.equals("Biguna")) {
-			nireLabirintoa = new LabirintoaBiguna(pBomberMota);
+			nireLabirintoa = new LabirintoaBiguna();
 		}
 		else if (pMota.equals("Hutsa")) {
-			nireLabirintoa = new LabirintoaHutsa(pBomberMota);
+			nireLabirintoa = new LabirintoaHutsa();
 		}
 		
 		return nireLabirintoa;

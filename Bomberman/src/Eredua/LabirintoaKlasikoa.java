@@ -5,13 +5,13 @@ public class LabirintoaKlasikoa extends Labirintoa {
 	
 	
 	//Eraikitzailea
-	public LabirintoaKlasikoa(String pBomberMota) {
-		super(pBomberMota);	
+	public LabirintoaKlasikoa() {
+		super();	
 	}	
 	
 	//Metodoak
 	@Override
-	public void labirintoaOsatu() {
+	public void labirintoaOsatu(String pBomberMota) {
 		setChanged();
 		notifyObservers("Matrizea sortu da");
 		
@@ -21,7 +21,9 @@ public class LabirintoaKlasikoa extends Labirintoa {
 				if((i == 0 && j == 0) || (i==1 && j == 0) || (i == 0 && j == 1)) {
 					if (i == 0 && j == 0) {
 						//Bombermana gehitu
-						sortuBomberman(getBombermanMota());
+						sortuBomberman(pBomberMota);
+				 		//setChanged();
+				 		//notifyObservers(new Object[] {"BombermanSortu",this.getBomberman().getKolorea(),this.getBomberman().getBombaKop()});
 					}
 				} else if (1 == (i % 2) && 1 == (j % 2)) {
 					//Gogorra gehitu

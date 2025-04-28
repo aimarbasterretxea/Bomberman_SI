@@ -1,14 +1,20 @@
 package Eredua;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LehertuHandia implements LehertuPortaera{
 
 	@Override
 	public ArrayList<int[]> Lehertu(int pX, int pY) {
 	    ArrayList<int[]> sutea = new ArrayList<>();
-	    int[][] norabideak = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
-
+		ArrayList<int[]> norabideak = new ArrayList<>(Arrays.asList(
+			    new int[]{-1, 0},
+			    new int[]{1, 0},
+			    new int[]{0, -1},
+			    new int[]{0, 1}
+			));
+		
 	    // Bombaren erdigunea gehitu
 	    sutea.add(new int[]{pX, pY});
 

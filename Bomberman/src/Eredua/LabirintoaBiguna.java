@@ -4,12 +4,12 @@ package Eredua;
 public class LabirintoaBiguna extends Labirintoa{	
 	
 	//Eraikitzailea
-	public LabirintoaBiguna(String pBomberMota) {
-		super(pBomberMota);		
+	public LabirintoaBiguna() {
+		super();		
 	}
 		
 	@Override
-	public void labirintoaOsatu() {
+	public void labirintoaOsatu(String pBomberMota) {
 		setChanged();
 		notifyObservers("Matrizea sortu da");
 		
@@ -19,7 +19,9 @@ public class LabirintoaBiguna extends Labirintoa{
 				if((i == 0 && j == 0) || (i==1 && j == 0) || (i == 0 && j == 1)) {
 					if (i == 0 && j == 0) {
 						//Bombermana gehitu
-						sortuBomberman(getBombermanMota());
+						sortuBomberman(pBomberMota);
+				 		//setChanged();
+				 		//notifyObservers(new Object[] {"BombermanSortu",this.getBomberman().getKolorea(),this.getBomberman().getBombaKop()});
 					}
 				} else if (Math.random() >= 0.4) {
 					//Biguna gehitu

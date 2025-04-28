@@ -20,7 +20,7 @@ public abstract class Labirintoa extends Observable{
 	private static String pBomberMota;
 	
 	//Eraikitzailea
- 	public Labirintoa(String pBomberMota) {
+ 	public Labirintoa() {
  		
  		labirintoa = new Gelaxka[errenkada][zutabea];
  		
@@ -29,10 +29,9 @@ public abstract class Labirintoa extends Observable{
  				labirintoa[i][j]= new Gelaxka(i,j);
  			}
  		}
- 		this.pBomberMota = pBomberMota;
  	}
  	
-	public abstract void labirintoaOsatu();
+	public abstract void labirintoaOsatu(String pBomberMota);
 
  	// Getterak ///////////////////////////////
 	private Iterator<Etsaia> getItr() {
@@ -106,7 +105,7 @@ public abstract class Labirintoa extends Observable{
 	         norabide = etsaia.mugitu(norabidePosibleak, this.bomberman.getX(),this.bomberman.getY());}
 	        
 
-	      /*  if (this.bilatuGelaxka(etsaia.getX(), etsaia.getY()).getSua() != null) {
+	        if (this.bilatuGelaxka(etsaia.getX(), etsaia.getY()).getSua() != null) {
 	            etsaiak.remove(i); 
 	            i--; 
 	            setChanged();
@@ -114,9 +113,9 @@ public abstract class Labirintoa extends Observable{
 	            if(etsaiak.isEmpty()) {
 	            	Jokua.getJokua().amaituJokua(2,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.pBomberMota});
 	            }
-	        }*/ if (etsaia.getX() == this.bomberman.getX() && etsaia.getY() == this.bomberman.getY()) {
+	        }if (etsaia.getX() == this.bomberman.getX() && etsaia.getY() == this.bomberman.getY()) {
 	        	  this.bomberman.setBizirik(false);
-                Jokua.getJokua().amaituJokua(1,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.pBomberMota});}
+                Jokua.getJokua().amaituJokua(1,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.bomberman.getKolorea()});}
 	          
            
 	        	
@@ -127,22 +126,21 @@ public abstract class Labirintoa extends Observable{
 	    	etsaiaDelay=0;
 	    }
 	
-	        
-	    
 	
-	
-	protected ArrayList<Character> kalkulatuNorabidePosibleak(int x, int y){
+	public ArrayList<Character> kalkulatuNorabidePosibleak(int x, int y){
 		ArrayList<Character> norabidePosibleak = new ArrayList<Character>();
-		if (x-1>=0 && this.bilatuGelaxka(x-1, y).hutsaDa() && !this.etsaiaDago(x-1,y)) {
+		boolean intelijentea=this.etsaiak.get(0) instanceof EtsaiaInteligentea;
+		//boolean intelijentea=true;
+		if (x-1>=0 && this.bilatuGelaxka(x-1, y).hutsaDa(intelijentea) && !this.etsaiaDago(x-1,y)) {
 			norabidePosibleak.add('W');
 		}
-		if(x+1<errenkada && this.bilatuGelaxka(x+1, y).hutsaDa() && !this.etsaiaDago(x+1,y)) {
+		if(x+1<errenkada && this.bilatuGelaxka(x+1, y).hutsaDa(intelijentea) && !this.etsaiaDago(x+1,y)) {
 			norabidePosibleak.add('S');
 		}
-		if(y-1>=0 && this.bilatuGelaxka(x, y-1).hutsaDa() && !this.etsaiaDago(x,y-1)) {
+		if(y-1>=0 && this.bilatuGelaxka(x, y-1).hutsaDa(intelijentea) && !this.etsaiaDago(x,y-1)) {
 			norabidePosibleak.add('A');
 		}
-		if(y+1<zutabea && this.bilatuGelaxka(x, y+1).hutsaDa() && !this.etsaiaDago(x,y+1) ) {
+		if(y+1<zutabea && this.bilatuGelaxka(x, y+1).hutsaDa(intelijentea) && !this.etsaiaDago(x,y+1) ) {
 			norabidePosibleak.add('D');
 		}
 		if(norabidePosibleak.isEmpty()) {
@@ -151,7 +149,7 @@ public abstract class Labirintoa extends Observable{
 		return norabidePosibleak;
 	}
 
-	protected void etsaiaTimer() {
+	public void etsaiaTimer() {
 		TimerTask timerTask = new TimerTask() {
 			@Override
 			public void run() {
@@ -204,9 +202,9 @@ public abstract class Labirintoa extends Observable{
 	    }
 
 	    if (!bizirik) {
-	        Jokua.getJokua().amaituJokua(1,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.pBomberMota});
+	        Jokua.getJokua().amaituJokua(1,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.bomberman.getKolorea()});
 	    } else if (this.blokeKop == 0) {
-	        Jokua.getJokua().amaituJokua(2,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.pBomberMota});
+	        Jokua.getJokua().amaituJokua(2,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.bomberman.getKolorea()});
 	    }
 	}
 	public Object[] biderikMotzenaKalkulatu(int xEtsaia, int yEtsaia, int pLuzera, Character lehenNorabidea, boolean[][] bisitatuak) {

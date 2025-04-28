@@ -28,6 +28,14 @@ public abstract class Bomberman {
             birkargatuBomba();
         }
     }
+    
+	public int getBombaKop() {
+		return this.bombaKop;
+	}
+	
+	public String getKolorea() {
+		return this.kolorea;
+	}
 
     public void bombaGehitu() {
         if (bombaKop == 0) { 
