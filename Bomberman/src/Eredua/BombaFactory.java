@@ -16,7 +16,7 @@ public class BombaFactory {
 	public Bomba sortuBomba(String pMota) {
         Bomba nireBomba = null;
         if (pMota.equals("Txikia")) {
-			nireBomba = new BombaTxikia();
+			nireBomba = new BombaRandom();
 		}
 		else if (pMota.equals("Handia")) {
 			nireBomba = new BombaHandia();

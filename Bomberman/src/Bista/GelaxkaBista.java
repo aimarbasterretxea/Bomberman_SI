@@ -101,20 +101,18 @@ public class GelaxkaBista extends JPanel implements Observer {
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/bomb"+pDenbora+".png")));
 		
 	}
-		public void bombaAldatu(int kont, String bombermanKolorea) {
-			System.out.println(kont+bombermanKolorea);
-			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/"+bombermanKolorea+"withbomb"+kont+".png")));
-		}
+	
+	public void bombaAldatu(int kont, String bombermanKolorea) {
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/"+bombermanKolorea+"withbomb"+kont+".png")));
+	}
 	
 	public void suaJarri() {
-	//	this.suaDago=true;
-		//this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/kaBomb5.png")));
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/miniBlast3.gif")));
 	}
 	
 	
 	public void elementuaKendu(){
-			this.irudia.setIcon(null);		
+		this.irudia.setIcon(null);		
 	}
 	
 

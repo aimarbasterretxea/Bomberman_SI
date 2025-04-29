@@ -90,7 +90,6 @@ public abstract class Bomberman {
 	    int yZaharra = this.y;
 	    
 	    
-	    //if(!bombaDago) {
 	    switch (norabide) {
 	        case "left": // Ezkerretara mugitu
 	            yBerria--;
@@ -115,7 +114,6 @@ public abstract class Bomberman {
 	            return; // Norabide baliogabea bada, irten
 	    }
 	    
-	    System.out.println(aurrekoNorabidea);
 	    if (aurrekoNorabidea.equals(norabideBerria)&&aurrekoNorabidea!="") {
 	    				if (pausuak>=5) {
 	    					pausuak=0;
@@ -128,6 +126,7 @@ public abstract class Bomberman {
 	   
 	    aurrekoNorabidea=norabideBerria;
 	    boolean bomba=Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.x, this.y).getBomba();
+	    
 	    // Egiaztatu posizio berria baliozkoa eta libre dagoen
 	    if (posizioaBaliozkoaDa(xBerria, yBerria) && posizioaLibreaDa(xBerria, yBerria)) {
 	        this.x = xBerria;
@@ -151,8 +150,7 @@ public abstract class Bomberman {
 	    	}
 	    }
 	   
-	    }
-	//}
+    }
 
 	private boolean posizioaBaliozkoaDa(int x, int y) {
 	    return x >= 0 && x < 11 && y >= 0 && y < 17;

@@ -19,10 +19,10 @@ public class LehertuTxikia implements LehertuPortaera{
 
 	    // Lau norabideak gehitu
 	     norabideak.stream()
-    .map(norabidea -> new int[]{pX + norabidea[0], pY + norabidea[1]})
-    .filter(pos -> pos[0] >= 0 && pos[0] <= 10 && pos[1] >= 0 && pos[1] <= 16)
-    .filter(pos -> !(Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(pos[0], pos[1]).getBloke() instanceof BlokeGogorra))
-    .forEach(pos -> sutea.add(new int[]{pos[0], pos[1]}));
+			.map(norabidea -> new int[]{pX + norabidea[0], pY + norabidea[1]})
+			.filter(pos -> pos[0] >= 0 && pos[0] <= 10 && pos[1] >= 0 && pos[1] <= 16)
+			.filter(pos -> !(Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(pos[0], pos[1]).getBloke() instanceof BlokeGogorra))
+			.forEach(pos -> sutea.add(new int[]{pos[0], pos[1]}));
 
 	     
 	    Generator.getNireGenerator().getLabirintoa().bombaKendu(sutea);

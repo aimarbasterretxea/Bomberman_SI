@@ -3,6 +3,7 @@ package Eredua;
 import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.stream.IntStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -17,7 +18,7 @@ public abstract class Labirintoa extends Observable{
 	private static int blokeKop = 0;
 	private int etsaiaDelay=1;
 	private Timer timerEtsaia;
-	private static String pBomberMota;
+	//private static String pBomberMota;
 	
 	//Eraikitzailea
  	public Labirintoa() {
@@ -30,7 +31,7 @@ public abstract class Labirintoa extends Observable{
  			}
  		}
  	}
- 	
+ 	 
 	public abstract void labirintoaOsatu(String pBomberMota);
 
  	// Getterak ///////////////////////////////
@@ -44,10 +45,6 @@ public abstract class Labirintoa extends Observable{
 	
 	public ArrayList<Etsaia> getEtsaiak() {
 		return etsaiak;
-	}
-	
-	public static String getBombermanMota() {
-		return pBomberMota;
 	}
 	
 	//Metodoak////////////////////////////////
@@ -91,41 +88,50 @@ public abstract class Labirintoa extends Observable{
 	}
 	
 	public void mugituEtsaiak() {
-		char norabide = ' ';
-		ArrayList<Etsaia> etsaiak = this.getEtsaiak(); 
+	    char norabide = ' ';
+	    ArrayList<Etsaia> etsaiak = this.getEtsaiak();
+
 	    for (int i = 0; i < etsaiak.size(); i++) {
 	        Etsaia etsaia = etsaiak.get(i);
 	        int xZaharra = etsaia.getX();
 	        int yZaharra = etsaia.getY();
 
-	        // Posizio posibleak kalkulatu
-	        if (etsaiaDelay==0 && this.bomberman.getBizirik()) {
-	       
-	        ArrayList<Character> norabidePosibleak = this.kalkulatuNorabidePosibleak(etsaia.getX(), etsaia.getY());
-	         norabide = etsaia.mugitu(norabidePosibleak, this.bomberman.getX(),this.bomberman.getY());}
-	        
+	        // Atsedenik ez badago eta Bomberman bizirik badago, etsaia mugitzen da
+	        if (etsaiaDelay == 0 && this.bomberman.getBizirik()) {
+	            ArrayList<Character> norabidePosibleak = this.kalkulatuNorabidePosibleak(etsaia.getX(), etsaia.getY());
+	            norabide = etsaia.mugitu(norabidePosibleak, this.bomberman.getX(), this.bomberman.getY());
+	        }
 
-	        if (this.bilatuGelaxka(etsaia.getX(), etsaia.getY()).getSua() != null) {
-	            etsaiak.remove(i); 
-	            i--; 
+	        int xBerria = etsaia.getX();
+	        int yBerria = etsaia.getY();
+
+	        // Sua duen gelaxkan sartuz gero, etsaia hil egiten da
+	        if (this.bilatuGelaxka(xBerria, yBerria).getSua() != null) {
+	            etsaiak.remove(i);
+	            i--;
 	            setChanged();
 	            notifyObservers(new Object[]{"EtsaiaHil", xZaharra, yZaharra});
-	            if(etsaiak.isEmpty()) {
-	            	Jokua.getJokua().amaituJokua(2,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.pBomberMota});
+	            if (etsaiak.isEmpty()) {
+	                Jokua.getJokua().amaituJokua(2, new Object[]{this.bomberman.getX(), this.bomberman.getY(), this.bomberman.getKolorea()});
 	            }
-	        }if (etsaia.getX() == this.bomberman.getX() && etsaia.getY() == this.bomberman.getY()) {
-	        	  this.bomberman.setBizirik(false);
-                Jokua.getJokua().amaituJokua(1,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.bomberman.getKolorea()});}
-	          
-           
-	        	
-	            setChanged();
-	            notifyObservers(new Object[]{"MoveEtsaia", etsaia.getX(), etsaia.getY(), norabide, true, xZaharra, yZaharra});
-	        	
-	    }   
-	    	etsaiaDelay=0;
+	            continue; // Etsaia hil da, ez da beharrezkoa jarraitzea
+	        }
+
+	        // Etsaia Bombermanekin talka egiten badu
+	        if (xBerria == this.bomberman.getX() && yBerria == this.bomberman.getY()) {
+	            this.bomberman.setBizirik(false);
+	            Jokua.getJokua().amaituJokua(1, new Object[]{this.bomberman.getX(), this.bomberman.getY(), this.bomberman.getKolorea()});
+	        }
+
+	        // Etsaia bizirik badago, mugimenduaren berri eman
+	        setChanged();
+	        notifyObservers(new Object[]{"MoveEtsaia", xBerria, yBerria, norabide, true, xZaharra, yZaharra});
 	    }
-	
+
+	    etsaiaDelay = 0;
+	}
+
+
 	
 	public ArrayList<Character> kalkulatuNorabidePosibleak(int x, int y){
 		ArrayList<Character> norabidePosibleak = new ArrayList<Character>();
@@ -194,7 +200,7 @@ public abstract class Labirintoa extends Observable{
 	        			this.etsaiak.remove(i);
 	        			size--;
 	        			if(etsaiak.isEmpty()|| size==0) {
-	        				Jokua.getJokua().amaituJokua(2,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.pBomberMota});
+	        				Jokua.getJokua().amaituJokua(2,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.bomberman.getKolorea()});
 	        			}
 	        		}
 	        	}	

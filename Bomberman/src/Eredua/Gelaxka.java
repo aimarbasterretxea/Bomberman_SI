@@ -49,13 +49,16 @@ public class Gelaxka extends Observable {
 
 	
 	//Metodoak
-	public boolean hutsaDa(boolean intelijentea) {
-		if (intelijentea) {
+	public boolean hutsaDa(boolean inteligentea) {
+		if (inteligentea) {
 			if(this.sua!=null) {
-				intelijentea=false;
+				inteligentea=false;
 			}
 		}
-		if ((this.bloke==null&&this.bomba==null&&intelijentea)||Generator.getNireGenerator().getLabirintoa().getBomberman().getX()==this.x&&Generator.getNireGenerator().getLabirintoa().getBomberman().getY()==this.y) {
+		else {
+			inteligentea=true;
+		}
+		if ((this.bloke==null&&this.bomba==null&&inteligentea)||Generator.getNireGenerator().getLabirintoa().getBomberman().getX()==this.x&&Generator.getNireGenerator().getLabirintoa().getBomberman().getY()==this.y) {
 			return true;
 		}
 		else {
@@ -172,7 +175,6 @@ public class Gelaxka extends Observable {
 	}
 	
 	public void suaKendu() {
-	    System.out.println("Sua kendu da: (" + this.x + "," + this.y + ")");
 		this.sua=null;
 		eztanda=false;
 		setChanged();
