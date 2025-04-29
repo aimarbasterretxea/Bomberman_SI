@@ -1,5 +1,5 @@
 package Eredua;
 
-public class Bloke {
-
+public abstract class Bloke {
+	protected Bloke() {}
 }

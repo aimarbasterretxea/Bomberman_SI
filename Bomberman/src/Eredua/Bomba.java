@@ -10,7 +10,7 @@ public abstract class Bomba{
 	}
 	
 	public ArrayList<int[]> kalkulatu(int pX, int pY) {
-		return lPortaera.Lehertu(pX, pY);
+		return lPortaera.lehertu(pX, pY);
 	}
 	
 }

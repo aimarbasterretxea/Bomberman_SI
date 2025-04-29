@@ -7,7 +7,7 @@ import java.util.List;
 public class LehertuHandia implements LehertuPortaera{
 
 	@Override	  
-	public ArrayList<int[]> Lehertu(int pX, int pY) {
+	public ArrayList<int[]> lehertu(int pX, int pY) {
 	    ArrayList<int[]> sutea = new ArrayList<>();
 	    ArrayList<int[]> norabideak = new ArrayList<>(Arrays.asList(
 	        new int[]{-1, 0},

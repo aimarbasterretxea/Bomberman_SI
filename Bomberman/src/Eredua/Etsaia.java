@@ -7,16 +7,24 @@ public abstract class Etsaia {
 	//Atributuak
 	private int x;
 	private int y;
-	//private Timer timerEtsaia;
 	private MugimenduPortaera portaera;
+	
 	//Eraikitzailea
-	public Etsaia(MugimenduPortaera pPortaera) {
+	protected Etsaia(MugimenduPortaera pPortaera) {
 		this.portaera=pPortaera;
 	}
 	
 	public void setKoordenatuak(int pX, int pY) {
 		this.x = pX;
 		this.y = pY;
+	}
+	
+	public int getX() {
+		return this.x;
+	}
+	
+	public int getY() {
+		return this.y;
 	}
 	
 	//Metodoak
@@ -45,14 +53,5 @@ public abstract class Etsaia {
         this.y = yBerria;
 	    return norabide;
 	}
-	
-	public int getX() {
-		return this.x;
-	}
-	
-	public int getY() {
-		return this.y;
-	}
-
 
 }

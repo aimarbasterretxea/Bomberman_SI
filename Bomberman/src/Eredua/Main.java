@@ -7,7 +7,7 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                	Jokua.getJokua().Hasieraketa();
+                	Jokua.getJokua().hasieraketa();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

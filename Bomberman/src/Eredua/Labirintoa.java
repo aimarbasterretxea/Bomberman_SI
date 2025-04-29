@@ -18,10 +18,9 @@ public abstract class Labirintoa extends Observable{
 	private static int blokeKop = 0;
 	private int etsaiaDelay=1;
 	private Timer timerEtsaia;
-	//private static String pBomberMota;
 	
 	//Eraikitzailea
- 	public Labirintoa() {
+ 	protected Labirintoa() {
  		
  		labirintoa = new Gelaxka[errenkada][zutabea];
  		
@@ -57,8 +56,8 @@ public abstract class Labirintoa extends Observable{
 		blokeKop++;
 	}
 	
-	public Gelaxka bilatuGelaxka(int x, int y) {
-		return labirintoa[x][y];
+	public Gelaxka bilatuGelaxka(int pX, int pY) {
+		return labirintoa[pX][pY];
 	}
     
 	//BOMBERMANren METODOAK////////////////////////////////////////	

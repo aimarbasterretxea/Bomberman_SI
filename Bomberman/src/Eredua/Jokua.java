@@ -22,7 +22,7 @@ public class Jokua extends Observable {
     }
     
     //Metodoa
-    public void Hasieraketa() {
+    public void hasieraketa() {
         	Menua frame1 = Menua.getNireMenua();
         	frame1.setVisible(true);
     }

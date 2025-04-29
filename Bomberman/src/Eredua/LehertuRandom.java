@@ -8,7 +8,7 @@ import java.util.Set;
 public class LehertuRandom implements LehertuPortaera{
 
 	@Override
-	public ArrayList<int[]> Lehertu(int pX, int pY) {
+	public ArrayList<int[]> lehertu(int pX, int pY) {
 	    ArrayList<int[]> sutea = new ArrayList<>();
         Set<String> bisitatuak = new HashSet<>();
         Random rand = new Random();

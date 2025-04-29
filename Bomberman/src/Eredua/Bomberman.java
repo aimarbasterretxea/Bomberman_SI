@@ -6,8 +6,8 @@ import java.util.TimerTask;
 
 public abstract class Bomberman {
 	//Atributuak
-	protected int x;
-	protected int y;
+	private int x;
+	private int y;
 	private static Timer timer=null;
 	protected int bombaKop;
 	protected String bombaMota;
@@ -23,12 +23,23 @@ public abstract class Bomberman {
 		this.y = 0;
 	}
 	
-    public void eguneratuBombaKop() {
-        if (bombaKop <= 0) {
-            birkargatuBomba();
-        }
-    }
-    
+	public void setBizirik(boolean bizirik) {
+		this.bizirik=bizirik;
+	}
+	
+	//Geterrak
+	public int getX() {
+		return this.x;
+	}
+	
+	public int getY() {
+		return this.y;
+	}
+	
+	public boolean getBizirik() {
+		return this.bizirik;
+	}
+	
 	public int getBombaKop() {
 		return this.bombaKop;
 	}
@@ -36,7 +47,14 @@ public abstract class Bomberman {
 	public String getKolorea() {
 		return this.kolorea;
 	}
-
+	
+	//Metodoak
+    public void eguneratuBombaKop() {
+        if (bombaKop <= 0) {
+            birkargatuBomba();
+        }
+    }
+    
     public void bombaGehitu() {
         if (bombaKop == 0) { 
             bombaKop = 1; 
@@ -61,27 +79,15 @@ public abstract class Bomberman {
             timer.scheduleAtFixedRate(timerTask, 3000, 3000); 
         }
     }
-	
-	//Geterrak
-	public int getX() {
-		return this.x;
-	}
-	
-	public int getY() {
-		return this.y;
-	}
-	public boolean getBizirik() {
-		return this.bizirik;
-	}
-	
-	//Metodoak
-	public void setBizirik(boolean bizirik) {
-		this.bizirik=bizirik;
-	}
-	private void bombermanHil(){
-		Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.x,this.y).suaKendu();
-		Jokua.getJokua().amaituJokua(1,new Object[] {this.x, this.y,this.kolorea});
-	}
+    
+	public void bombaJarri() {
+ 		if (Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.getX(), this.getY()).getBomba() == false && bombaKop > 0) {
+ 			Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.getX(), this.getY()).bombaJarri(this.bombaMota);
+ 			bombaKop--;
+ 			}	
+ 		Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[] {"Bomba kop eguneratu", this.bombaKop});
+ 		this.eguneratuBombaKop();
+ 	}
 	
 	public void mugitu(String norabide, boolean bombaDago) {
 	    int xBerria = this.x;
@@ -160,13 +166,10 @@ public abstract class Bomberman {
 	    Gelaxka gelaxka = Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(x, y);
 	    return gelaxka.getBloke() == null && gelaxka.getBomba() == false;
 	}
+	
+	private void bombermanHil(){
+		Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.x,this.y).suaKendu();
+		Jokua.getJokua().amaituJokua(1,new Object[] {this.x, this.y,this.kolorea});
+	}
 
-	public void bombaJarri() {
- 		if (Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.getX(), this.getY()).getBomba() == false && bombaKop > 0) {
- 			Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.getX(), this.getY()).bombaJarri(this.bombaMota);
- 			bombaKop--;
- 			}	
- 		Generator.getNireGenerator().getLabirintoa().abisatuObservers(new Object[] {"Bomba kop eguneratu", this.bombaKop});
- 		this.eguneratuBombaKop();
- 	}
 }
