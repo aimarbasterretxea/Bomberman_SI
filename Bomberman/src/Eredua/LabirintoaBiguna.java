@@ -20,8 +20,6 @@ public class LabirintoaBiguna extends Labirintoa{
 					if (i == 0 && j == 0) {
 						//Bombermana gehitu
 						sortuBomberman(pBomberMota);
-				 		//setChanged();
-				 		//notifyObservers(new Object[] {"BombermanSortu",this.getBomberman().getKolorea(),this.getBomberman().getBombaKop()});
 					}
 				} else if (Math.random() >= 0.4) {
 					//Biguna gehitu
