@@ -212,7 +212,9 @@ public abstract class Labirintoa extends Observable{
 	        Jokua.getJokua().amaituJokua(2,new Object[] {this.bomberman.getX(), this.bomberman.getY(),this.bomberman.getKolorea()});
 	    }
 	}
-	public Object[] biderikMotzenaKalkulatu(int xEtsaia, int yEtsaia, int pLuzera, Character lehenNorabidea, boolean[][] bisitatuak) {
+	
+	//Biderik motzena kalkulatzeko metodoa
+	 public Object[] biderikMotzenaKalkulatu(int xEtsaia, int yEtsaia, int pLuzera, Character lehenNorabidea, boolean[][] bisitatuak) {
 	    if (this.bomberman.getX() == xEtsaia && this.bomberman.getY() == yEtsaia) {
 	        return new Object[]{lehenNorabidea, pLuzera};
 	    }
@@ -256,4 +258,6 @@ public abstract class Labirintoa extends Observable{
 
 	    return new Object[]{norabiderikHoberena, biderikMotzena};
 	}
+
+
 }
