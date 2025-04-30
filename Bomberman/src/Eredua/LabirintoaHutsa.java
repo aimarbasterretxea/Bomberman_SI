@@ -8,7 +8,7 @@ public class LabirintoaHutsa extends Labirintoa{
 	}	
 	
 	@Override
-	public void labirintoaOsatu(String pBomberMota) {
+	public void labirintoaOsatu(String pBomberMota,String pEtsaiaMota) {
 		setChanged();
 		notifyObservers("Matrizea sortu da");
 		
@@ -25,7 +25,7 @@ public class LabirintoaHutsa extends Labirintoa{
 				} else if (Math.random() >= 0.95) {
 					if (this.getEtsaiak().size() < 10) {
 						//Etsaia gehitu
-						gehituEtsaia(i,j,"Normala");
+						gehituEtsaia(i,j,pEtsaiaMota);
 					}
 				}
 			}

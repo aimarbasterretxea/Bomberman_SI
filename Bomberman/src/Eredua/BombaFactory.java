@@ -16,13 +16,13 @@ public class BombaFactory {
 	public Bomba sortuBomba(String pMota) {
         Bomba nireBomba = null;
         if (pMota.equals("Txikia")) {
-			nireBomba = new BombaRandom();
+			nireBomba = new BombaTxikia();
 		}
 		else if (pMota.equals("Handia")) {
 			nireBomba = new BombaHandia();
 		}
 		else if (pMota.equals("Random")) {
-			//nireBomba= new BombaRandom();
+			nireBomba= new BombaRandom();
 		}
 		return nireBomba;
 	}

@@ -21,7 +21,7 @@ public class BombermanFactory {
 		else if(pMota.equals("white")) {
 			nireBomberman = new BombermanZuria();
 		}
-		else if (pMota.equals("Random")) {
+		else if (pMota.equals("random")) {
 			nireBomberman = new BombermanRandom();
 		}
 		

@@ -31,7 +31,7 @@ public abstract class Labirintoa extends Observable{
  		}
  	}
  	 
-	public abstract void labirintoaOsatu(String pBomberMota);
+	public abstract void labirintoaOsatu(String pBomberMota, String pEtsaiaMota);
 
  	// Getterak ///////////////////////////////
 	private Iterator<Etsaia> getItr() {
@@ -124,7 +124,7 @@ public abstract class Labirintoa extends Observable{
 
 	        // Etsaia bizirik badago, mugimenduaren berri eman
 	        setChanged();
-	        notifyObservers(new Object[]{"MoveEtsaia", xBerria, yBerria, norabide, true, xZaharra, yZaharra});
+	        notifyObservers(new Object[]{"MoveEtsaia", xBerria, yBerria, norabide, true, xZaharra, yZaharra,etsaia instanceof EtsaiaInteligentea});
 	    }
 
 	    etsaiaDelay = 0;

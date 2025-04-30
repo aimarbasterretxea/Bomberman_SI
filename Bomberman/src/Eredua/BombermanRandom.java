@@ -5,6 +5,6 @@ public class BombermanRandom extends Bomberman{
 		super();
 		this.bombaKop=20;
 		this.bombaMota="Random";
-		//this.kolorea="black";
+		this.kolorea="random";
 	}
 }

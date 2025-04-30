@@ -3,8 +3,19 @@ package Bista;
 import java.awt.event.KeyEvent;
 
 import java.awt.event.KeyListener;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.io.IOException;
+
+
+import javax.sound.sampled.AudioFormat;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -31,6 +42,7 @@ public class LabirintoBista extends JFrame implements Observer {
     private static JPanel panelInfo;
     private static LabirintoBista nireLabirintoBista;
     private Kontroladorea kontroladorea = null; 
+    private SoundPlayer soinuPlayer = null;
     private JLabel irudia;
     private JLabel bombaKop;
     private Image argazkia; 
@@ -80,7 +92,34 @@ public class LabirintoBista extends JFrame implements Observer {
         //Kontroladorea
         addKeyListener(getKontroladorea());
         requestFocusInWindow(); 
+        SoundPlayer.playSound("/soinuak/music (2).wav");
         }
+    public class SoundPlayer {
+        public static void playSound(String resourcePath) {
+            try {
+                InputStream audioSrc = SoundPlayer.class.getResourceAsStream(resourcePath);
+                if (audioSrc == null) {
+                    throw new RuntimeException("Ez da soinua aurkitu: " + resourcePath);
+                }
+                InputStream bufferedIn = new BufferedInputStream(audioSrc);
+                AudioInputStream originalStream = AudioSystem.getAudioInputStream(bufferedIn);
+                AudioFormat baseFormat = originalStream.getFormat();
+                Clip clip = AudioSystem.getClip();
+                clip.open(originalStream);
+                clip.start();
+
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public  SoundPlayer getSoundPlayer() {
+		if (soinuPlayer == null) {
+			soinuPlayer = new SoundPlayer();
+		}
+		return soinuPlayer;
+	}
+    
      
     private void argazkiTamainaBerritu() {
         int zabalera = getWidth();
@@ -110,12 +149,12 @@ public class LabirintoBista extends JFrame implements Observer {
         return (GelaxkaBista) panelMatrize.getComponent(x * 17 + y);
     }
     
-    public void mugituEtsaia(int hX, int hY, Character pNorabide, boolean mugitu, int aurrekoX, int aurrekoY) {	
+    public void mugituEtsaia(int hX, int hY, Character pNorabide, boolean mugitu, int aurrekoX, int aurrekoY, boolean pInteligente) {	
     	if (mugitu==true){
     		bilatuGelaxka(aurrekoX,aurrekoY).elementuaKendu();
     	}
     	
-    	bilatuGelaxka(hX, hY).etsaiaJarri(pNorabide);
+    	bilatuGelaxka(hX, hY).etsaiaJarri(pNorabide,pInteligente);
     }
 
 	private Kontroladorea getKontroladorea() {
@@ -146,6 +185,7 @@ public class LabirintoBista extends JFrame implements Observer {
                 	Generator.getNireGenerator().getLabirintoa().getBomberman().bombaJarri();
 					break;
             }
+            SoundPlayer.playSound("/soinuak/Walking1.wav");
         }
 
         @Override
@@ -204,7 +244,8 @@ public class LabirintoBista extends JFrame implements Observer {
 				boolean mugitu = (boolean) obj[4];
 				int aurrekoX = (int) obj[5];
 				int aurrekoY = (int) obj[6];
-				this.mugituEtsaia(i, j, norabide,mugitu, aurrekoX, aurrekoY);
+				boolean inteligente = (boolean) obj[7];
+				this.mugituEtsaia(i, j, norabide,mugitu, aurrekoX, aurrekoY,inteligente);
 				
 			} else if (obj[0].equals("Bomba kop eguneratu")) {
 				int i = (int) obj[1];

@@ -107,6 +107,7 @@ public class GelaxkaBista extends JPanel implements Observer {
 	}
 	
 	public void suaJarri() {
+		LabirintoBista.getNireLabirintoBista().getSoundPlayer().playSound("/soinuak/BombExplodes.wav");
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/miniBlast3.gif")));
 	}
 	
@@ -133,12 +134,21 @@ public class GelaxkaBista extends JPanel implements Observer {
 	}
 
 
-	public void etsaiaJarri(Character pNorabide) {
-
+	public void etsaiaJarri(Character pNorabide, boolean pInteligente) {
+		if(!pInteligente) {
 		if (pNorabide.equals('D')) {
 			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/doria1.png")));}
 		else {
-	   
 		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/doria2.png")));
-	}}
+	         }
+
+		}
+		else {
+			if (pNorabide.equals('D')) {
+				this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/baloon1.png")));}
+			else {
+			this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/baloon2.png")));
+		         }
+		}
+     }
 }
