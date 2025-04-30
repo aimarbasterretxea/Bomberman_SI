@@ -76,7 +76,7 @@ public abstract class Labirintoa extends Observable{
  	}
 	
 	public void mugituBomberman(String pNorabidea) {
-		bomberman.mugitu(pNorabidea,this.bilatuGelaxka(bomberman.getX(), bomberman.getY()).getBomba());
+		bomberman.mugitu(pNorabidea,this.bilatuGelaxka(bomberman.getX(), bomberman.getY()).bombaDago());
 	}
 	
 	//ETSAIAren METODOAK////////////////////////////////////////

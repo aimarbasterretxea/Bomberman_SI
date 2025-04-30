@@ -81,7 +81,7 @@ public abstract class Bomberman {
     }
     
 	public void bombaJarri() {
- 		if (Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.getX(), this.getY()).getBomba() == false && bombaKop > 0) {
+ 		if (Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.getX(), this.getY()).bombaDago() == false && bombaKop > 0) {
  			Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.getX(), this.getY()).bombaJarri(this.bombaMota);
  			bombaKop--;
  			}	
@@ -131,7 +131,7 @@ public abstract class Bomberman {
 	    }
 	   
 	    aurrekoNorabidea=norabideBerria;
-	    boolean bomba=Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.x, this.y).getBomba();
+	    boolean bomba=Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(this.x, this.y).bombaDago();
 	    
 	    // Egiaztatu posizio berria baliozkoa eta libre dagoen
 	    if (posizioaBaliozkoaDa(xBerria, yBerria) && posizioaLibreaDa(xBerria, yBerria)) {
@@ -164,7 +164,7 @@ public abstract class Bomberman {
 
 	private boolean posizioaLibreaDa(int x, int y) {
 	    Gelaxka gelaxka = Generator.getNireGenerator().getLabirintoa().bilatuGelaxka(x, y);
-	    return gelaxka.getBloke() == null && gelaxka.getBomba() == false;
+	    return gelaxka.getBloke() == null && gelaxka.bombaDago() == false;
 	}
 	
 	private void bombermanHil(){

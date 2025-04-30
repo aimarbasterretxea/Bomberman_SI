@@ -1,16 +1,16 @@
 package Eredua;
 
 public class BombermanFactory {
-	private static BombermanFactory nirebombermanFactory;
+	private static BombermanFactory nireBombermanFactory;
 	
 	private BombermanFactory() {
 	}
 	
 	public static BombermanFactory getBombermanFactory() {
-		if (nirebombermanFactory == null) {
-			nirebombermanFactory = new BombermanFactory();
+		if (nireBombermanFactory == null) {
+			nireBombermanFactory = new BombermanFactory();
 		}
-		return nirebombermanFactory;
+		return nireBombermanFactory;
 	}
 	
 	public Bomberman sortuBomberman(String pMota) {

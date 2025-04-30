@@ -76,7 +76,7 @@ public class Gelaxka extends Observable {
 	
 // BOMBAren METODOAK ////////////////////////////////////////////
 	
-	public boolean getBomba() {
+	public boolean bombaDago() {
 		return this.bomba instanceof Bomba;
 	}	
 	
