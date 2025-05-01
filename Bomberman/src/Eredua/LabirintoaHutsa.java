@@ -55,26 +55,5 @@ public class LabirintoaHutsa extends Labirintoa{
 	    
 	return new Object[]{norabiderikHoberena, 0};
 	}
-	@Override
-	public ArrayList<Character> kalkulatuNorabidePosibleak(int x, int y){
-		ArrayList<Character> norabidePosibleak = new ArrayList<Character>();
-		boolean intelijentea=this.getEtsaiak().get(0) instanceof EtsaiaInteligentea;
-		//boolean intelijentea=true;
-		if (x-1>=0  && !this.etsaiaDago(x-1,y)) {
-			norabidePosibleak.add('W');
-		}
-		if(x+1<11  && !this.etsaiaDago(x+1,y)) {
-			norabidePosibleak.add('S');
-		}
-		if(y-1>=0 &&!this.etsaiaDago(x,y-1)) {
-			norabidePosibleak.add('A');
-		}
-		if(y+1<17 && !this.etsaiaDago(x,y+1) ) {
-			norabidePosibleak.add('D');
-		}
-		if(norabidePosibleak.isEmpty()) {
-			norabidePosibleak.add(' ');
-		}
-		return norabidePosibleak;
-	}
+
 }
