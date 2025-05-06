@@ -218,6 +218,9 @@ public abstract class Labirintoa extends Observable{
 	    if (this.bomberman.getX() == xEtsaia && this.bomberman.getY() == yEtsaia) {
 	        return new Object[]{lehenNorabidea, pLuzera};
 	    }
+	    if (pLuzera > 15) {
+	        return new Object[]{' ', Integer.MAX_VALUE};
+	    }
 	    if (bisitatuak[xEtsaia][yEtsaia]) {
 	        return new Object[]{' ', Integer.MAX_VALUE};
 	    }

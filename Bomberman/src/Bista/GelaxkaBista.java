@@ -98,8 +98,11 @@ public class GelaxkaBista extends JPanel implements Observer {
 	}
 	
 	public void bombaJarri(int pDenbora) {
-		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/bomb"+pDenbora+".png")));
+		if (pDenbora>3 || pDenbora <1) {
+			pDenbora=1;
 		
+		}
+		this.irudia.setIcon(new ImageIcon(LabirintoBista.class.getResource("/irudiak/bomb"+pDenbora+".png")));
 	}
 	
 	public void bombaAldatu(int kont, String bombermanKolorea) {
