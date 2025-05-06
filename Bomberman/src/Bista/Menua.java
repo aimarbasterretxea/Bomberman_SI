@@ -175,7 +175,7 @@ public class Menua extends JFrame implements Observer {
         btnHutsa.setBounds(399, 147, 65, 63);
         contentPane.add(btnHutsa);
         
-        erroreMezua = new JLabel("lehenik aukeratu Bomberman eta Labirinto mota jolasteko!");
+        erroreMezua = new JLabel("lehenik aukeratu Bomberman, Labirinto mota eta etsai mota jolasteko!");
         erroreMezua.setHorizontalAlignment(SwingConstants.CENTER);
         erroreMezua.setForeground(new Color(204, 0, 0));
         erroreMezua.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
@@ -255,7 +255,7 @@ public class Menua extends JFrame implements Observer {
         public void actionPerformed(ActionEvent e) {
             Object jatorria = e.getSource();
             if (jatorria == jolastuButton) {
-                if(labAukera==""||bomberAukera=="") {
+                if(labAukera==""||bomberAukera==""||etsaiAukera=="") {
                     erroreMezua.setVisible(true);
                     jolastuButton.setBounds(250, 305, 136, 38);
                 } else {
